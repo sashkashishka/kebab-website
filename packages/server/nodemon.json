@@ -1,0 +1,6 @@
+{
+  "watch": ["src"],
+  "ext": "ts",
+  "ignore": ["src/build"],
+  "exec": "NODE_ENV=development dotenv -e .env ts-node src/index.ts"
+}

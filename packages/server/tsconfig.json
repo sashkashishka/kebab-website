@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "baseUrl": "./",
+    "rootDir": "./src",
+    "outDir": "./build",
+    "removeComments": true
+  },
+  "exclude": [
+    "node_modules", 
+    ".cache",
+    "public",
+    ".yarn"
+  ],
+  "include": [
+    "./src/**/*.ts"
+  ]
+}

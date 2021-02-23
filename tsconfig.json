@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "removeComments": false,
+    "strict": true,
+    "noImplicitReturns": true,
+    "skipLibCheck": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "outDir": "./dist/",        // path to output directory
+    "sourceMap": true,          // allow sourcemap support
+    "strictNullChecks": true,   // enable strict null checks as a best practice
+    "module": "esnext",            // specify module code generation
+    "jsx": "react-jsx",             // use typescript to transpile jsx to js
+    "target": "es6",            // specify ECMAScript target version
+    "allowJs": false,            // allow a partial TypeScript and JavaScript codebase
+    "resolveJsonModule": true,
+    "moduleResolution": "node"
+  },
+  "include": [
+    "./packages/**/*.ts",
+    "./packages/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    ".yarn"
+  ]
+}
