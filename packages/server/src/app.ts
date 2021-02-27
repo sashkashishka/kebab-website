@@ -1,83 +1,105 @@
-import express from 'express';
+import path from 'path';
+import express, {
+  Express,
+  Router,
+} from 'express';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import compression from 'compression';
 import logger from 'loglevel';
 
-import { getRoutes } from './routes';
+import { errorMiddleware } from './middlewares';
+import { setupCloseOnExit } from './utils';
 
-function errorMiddleware(error, req, res, next) {
-  if (res.headersSent) {
-    next(error);
-  } else {
-    logger.error(error);
-    res.status(500);
-    res.json({
-      message: error.message,
-      // we only add a `stack` property in non-production environments
-      ...(process.env.NODE_ENV === 'production' ? null : { stack: error.stack }),
-    });
+interface ServerOptions {
+  getRoutes(): Router;
+  env: {
+    PORT?: string;
+    GOOGLE_SERVICE_ACCOUNT_EMAIL?: string;
+    GOOGLE_PRIVATE_KEY?: string;
   }
 }
 
-function setupCloseOnExit(server) {
-  // thank you stack overflow
-  // https://stackoverflow.com/a/14032965/971592
-  async function exitHandler(options = {}) {
-    await server
-      .close()
-      .then(() => {
-        logger.info('Server successfully closed');
-      })
-      .catch((e: any) => {
-        logger.warn('Something went wrong closing the server', e.stack);
-      });
-    // eslint-disable-next-line no-process-exit
-    if (options.exit) process.exit();
+export class Server {
+  public app: Express;
+
+  private getRoutes: ServerOptions['getRoutes'];
+
+  private env: ServerOptions['env'];
+
+  constructor(options: ServerOptions) {
+    const {
+      getRoutes,
+      env,
+    } = options;
+
+    this.app = express();
+
+    this.getRoutes = getRoutes;
+    this.env = env;
   }
 
-  // do something when app is closing
-  process.on('exit', exitHandler);
+  private async initMiddlewares() {
+    this.app.use(compression());
+    this.app.use(helmet());
+    this.app.use(bodyParser.json());
+    this.app.use(bodyParser.urlencoded({ extended: false }));
+    this.app.use(cors());
+    this.app.use(errorMiddleware);
+  }
 
-  // catches ctrl+c event
-  process.on('SIGINT', exitHandler.bind(null, { exit: true }));
+  private async initApi() {
+    this.app.use('/api', this.getRoutes());
+  }
 
-  // catches "kill pid" (for example: nodemon restart)
-  process.on('SIGUSR1', exitHandler.bind(null, { exit: true }));
-  process.on('SIGUSR2', exitHandler.bind(null, { exit: true }));
+  private async serveStatic() {
+    this.app.use(express.static(path.resolve(
+      __dirname,
+      process.env.NODE_ENV === 'production'
+        ? 'public'
+        : '../public',
+    )));
+  }
 
-  // catches uncaught exceptions
-  process.on('uncaughtException', exitHandler.bind(null, { exit: true }));
-}
+  private async setCachePolicy(): Promise<void> {
+    this.app.use((req, res, next) => {
+      const { path: urlPath } = req;
+      const { ext } = path.parse(urlPath);
 
+      switch (ext) {
+        case ('.json'):
+        case ('.html'): {
+          res.setHeader('Cache-control', 'public, max-age=0, must-revalidate');
+          break;
+        }
 
-function startServer({ port = process.env.PORT } = {}) {
-  const app = express();
+        case ('.css'):
+        case ('.js'):
+        default: {
+          if (urlPath.match('sw.js') || urlPath === '/') {
+            res.setHeader('Cache-control', 'public, max-age=0, must-revalidate');
+          } else {
+            res.setHeader('Cache-control', 'public, max-age=31536000, immutable');
+          }
+        }
+      }
 
-  app.use(compression());
-  app.use(helmet());
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(cors());
-
-  app.use('/api', getRoutes());
-
-  app.use(errorMiddleware);
-
-  return new Promise((resolve) => {
-    const server = app.listen(port, () => {
-      logger.info(`Listening on port ${server?.address()?.port}`);
-      const originalClose = server.close.bind(server);
-
-      server.close = () => new Promise<any>((resolveClose) => {
-        originalClose(resolveClose);
-      });
-
-      setupCloseOnExit(server);
-      resolve(server);
+      next();
     });
-  });
-}
+  }
 
-export { startServer };
+  public async start() {
+    // await this.connectDB();
+    await this.initMiddlewares();
+    await this.initApi();
+    await this.setCachePolicy();
+    await this.serveStatic();
+
+    const server = this.app.listen(this.env.PORT, () => {
+      logger.info(`Kebab app listeting port ${this.env.PORT}`);
+    });
+
+    setupCloseOnExit(server);
+  }
+}
