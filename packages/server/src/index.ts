@@ -1,6 +1,6 @@
 import logger from 'loglevel';
 import { Server } from './app';
-import { getRoutes } from './routes';
+import { getApis } from './api';
 
 const isTest = process.env.NODE_ENV === 'test';
 const logLevel = process.env.LOG_LEVEL || (isTest ? 'warn' : 'info');
@@ -9,7 +9,7 @@ const logLevel = process.env.LOG_LEVEL || (isTest ? 'warn' : 'info');
 logger.setLevel(logLevel);
 
 const server = new Server({
-  getRoutes,
+  getApis,
   env: {
     PORT: process.env.PORT,
     GOOGLE_PRIVATE_KEY: process.env.GOOGLE_PRIVATE_KEY,

@@ -5,3 +5,4 @@ export const ping = (_req: Request, res: Response) => {
     pong: 'pong',
   });
 };
+

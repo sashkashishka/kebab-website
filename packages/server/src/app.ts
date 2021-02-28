@@ -13,7 +13,7 @@ import { errorMiddleware } from './middlewares';
 import { setupCloseOnExit } from './utils';
 
 interface ServerOptions {
-  getRoutes(): Router;
+  getApis(): Router;
   env: {
     PORT?: string;
     GOOGLE_SERVICE_ACCOUNT_EMAIL?: string;
@@ -24,19 +24,19 @@ interface ServerOptions {
 export class Server {
   public app: Express;
 
-  private getRoutes: ServerOptions['getRoutes'];
+  private getApis: ServerOptions['getApis'];
 
   private env: ServerOptions['env'];
 
   constructor(options: ServerOptions) {
     const {
-      getRoutes,
+      getApis,
       env,
     } = options;
 
     this.app = express();
 
-    this.getRoutes = getRoutes;
+    this.getApis = getApis;
     this.env = env;
   }
 
@@ -46,11 +46,14 @@ export class Server {
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
     this.app.use(cors());
+  }
+
+  private initErrorHandler() {
     this.app.use(errorMiddleware);
   }
 
   private async initApi() {
-    this.app.use('/api', this.getRoutes());
+    this.app.use('/api', this.getApis());
   }
 
   private async serveStatic() {
@@ -90,11 +93,11 @@ export class Server {
   }
 
   public async start() {
-    // await this.connectDB();
     await this.initMiddlewares();
     await this.initApi();
     await this.setCachePolicy();
     await this.serveStatic();
+    this.initErrorHandler();
 
     const server = this.app.listen(this.env.PORT, () => {
       logger.info(`Kebab app listeting port ${this.env.PORT}`);

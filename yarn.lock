@@ -1689,6 +1689,7 @@ __metadata:
     "@types/google-spreadsheet": ^3
     "@types/helmet": 0.0.45
     "@types/node": 13.13.45
+    "@types/query-string": ^6
     body-parser: 1.19.0
     compression: 1.7.4
     cors: 2.8.5
@@ -1698,6 +1699,7 @@ __metadata:
     helmet: 3.22.0
     loglevel: 1.7.1
     nodemon: 2.0.7
+    query-string: 6.14.1
     ts-node: 8.10.2
   peerDependencies:
     typescript: ">=4"
@@ -2378,6 +2380,13 @@ __metadata:
   version: 6.9.5
   resolution: "@types/qs@npm:6.9.5"
   checksum: afe4721a802a4b5fa874a7d6d9fd33c9e812bb0ef90dabb050e8072be4ab2e5e817c0feacb9b4e0771d875de99f4d9738217976aeb8d36b81ccd82ded5e9fdc0
+  languageName: node
+  linkType: hard
+
+"@types/query-string@npm:^6":
+  version: 6.2.0
+  resolution: "@types/query-string@npm:6.2.0"
+  checksum: 53c1ba7ee593a5d66c98195d6abf9ef3e9f5d5130aeeabfd0f028ecbb7cdc53bc8ba9e588a5bc3ce97c416eb5603a104c40d83bf122950ea082b75b6dc52b64b
   languageName: node
   linkType: hard
 
@@ -14731,6 +14740,18 @@ fsevents@~2.3.1:
     object-assign: ^4.1.0
     strict-uri-encode: ^1.0.0
   checksum: 68d4ad519a9fc288bc9ade3e515ce89a6806b88fd92e1459277570dca753665bb1b43e4cc7747012fc3b19b3d4283a724d519b568859943f57aaa3668c4d5b4b
+  languageName: node
+  linkType: hard
+
+"query-string@npm:6.14.1":
+  version: 6.14.1
+  resolution: "query-string@npm:6.14.1"
+  dependencies:
+    decode-uri-component: ^0.2.0
+    filter-obj: ^1.1.0
+    split-on-first: ^1.0.0
+    strict-uri-encode: ^2.0.0
+  checksum: 5d651ac420f5298baf00bb71228ffac32ed342c09836a7d2b1df3cdc7870313339cf6927827370c654cf73571bd639af497a0d9ef677a3a11b7396de2f761aa4
   languageName: node
   linkType: hard
 
