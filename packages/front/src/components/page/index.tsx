@@ -1,98 +1,43 @@
 import * as React from 'react';
-import { Global, css } from '@emotion/core';
-import { Flex, Box } from 'rebass';
+import { css } from 'astroturf';
 import Helmet from 'react-helmet';
 
-import Header from 'Components/header';
-import Footer from 'Components/footer';
+import { Box } from 'Components/atoms';
+import { Header } from 'Components/header';
+import { Footer } from 'Components/footer';
 
-import theme from 'Constants/theme';
+import 'Styles/global.module.css';
 
-
-interface PageProps {
-  title: string;
-  /**
-   * is user authorised and show him MyAccount menu
-   */
-  auth?: boolean;
-}
-
-const Page: React.FC<PageProps> = ({
-  children,
+export const Page: React.FC<{ title: string; }> = ({
   title,
-  auth = false,
-  ...rest
+  children,
 }) => (
   <React.Fragment>
-    <Global
-      styles={css`
-          body {
-            padding: 0;
-            margin: 0;
-            color: ${theme.colors.basic[4]};
-            font-family: ${theme.fonts.body};
-            font-size: ${theme.fontSizes.body};
-            line-height: ${theme.lineHeights.body};
-            min-width: 320px;
-          }
-          
-          html, body, #___gatsby {
-            height: 100%;
-          }
-          
-          div[role="group"][tabindex] {
-            height: 100%;
-          }
-
-          input::-webkit-outer-spin-button,
-          input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-          }
-          
-          #gatsby-noscript {
-            width: 100%;
-            padding: 4px 0;
-            display: block;
-            background-color: #fff88d;
-            text-align: center;
-            position: fixed;
-            bottom: 0;
-            font-size: 0.875rem;
-            z-index: 9999;
-          }
-        `}
-    />
-
     <Helmet>
-      <html lang="uk" />
+      <html lang="ru" />
       <title>
         {title}
       </title>
     </Helmet>
 
-    <Flex
-      flexDirection="column"
-      height="100%"
-      minHeight="100vh"
+    <Box
+      css={css`
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        grid-template-columns: 100%;
+        min-height: 100%;
+      `}
     >
-      <Header
-        auth={auth}
-      />
+      <Header />
 
       <Box
-        flexGrow={1}
-        flexShrink={1}
-        flexBasis="auto"
-        width="100%"
-        {...rest}
+        as="main"
       >
         {children}
       </Box>
 
       <Footer />
-    </Flex>
+    </Box>
+
   </React.Fragment>
 );
-
-export default Page;

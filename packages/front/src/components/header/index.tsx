@@ -1,73 +1,78 @@
 import * as React from 'react';
-import { useParams } from '@reach/router';
+import { css } from 'astroturf';
+
 import {
   Box,
-  Image,
-} from 'rebass';
+  Container,
+  Link,
+  Img,
+  Text,
+} from 'Components/atoms';
 
-import Link from 'Components/link';
-import Container from 'Components/container';
+import logoExtended from 'Img/logo-extended.svg';
 
-import logo from 'Img/logo.png';
+export const Header: React.FC = () => (
+  <Box
+    as="header"
+    css={css`
+      background-color: var(--black);
+    `}
+  >
+    <Container
+      css={css`
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 32px; 
+        padding-bottom: 32px; 
 
-interface HeaderProps {
-  auth: boolean;
-}
-
-const Header: React.FC<HeaderProps> = ({ auth }) => {
-  const { userSlug } = useParams() || {};
-
-  return (
-    <Box
-      as="header"
-      bg="primary"
-      sx={{
-        boxShadow: 'small',
-      }}
-    >
-      <Container
-        display="flex"
-        alignItems="center"
-        justifyContent="space-between"
-        height="100px"
-      >
-        <Link
-          href="/"
-          variant="footerLink"
-        >
-          <Image
-            src={logo}
-            alt="logo teme"
-            display="block"
-            height="80px"
-          />
-        </Link>
-
-
-        {
-          auth && (
-            <React.Fragment>
-              <Link
-                href={`/profile/${userSlug}`}
-                variant="footerLink"
-                ml="auto"
-                mr={2}
-              >
-                Розклад
-              </Link>
-              <Link
-                external
-                href="/api/logout"
-                variant="footerLink"
-              >
-                Вийти
-              </Link>
-            </React.Fragment>
-          )
+        @media all and (min-width: 768px) {
+          & {
+            padding-top: 64px; 
+            padding-bottom: 64px; 
+          }
         }
-      </Container>
-    </Box>
-  );
-};
+      `}
+    >
+      <Img
+        src={logoExtended}
+        alt="logo extended"
+        height="32px"
+        width="125px"
+        css={css`
+          flex-shrink: 0;
+        `}
+      />
 
-export default Header;
+      <Box>
+        <Text
+          css={css`
+            display: none;
+            font-family: var(--proximaFont);
+            color: var(--accent);
+
+            @media all and (min-width: 768px) {
+              & {
+                display: inline-block;
+                margin-right: 32px;
+              }
+            }
+          `}
+        >
+          ежедневно c 9:00 до 21:00
+        </Text>
+
+        <Link
+          external
+          href="tel:+38 068 835 29 96"
+          css={css`
+            font-weight: 700;
+          `}
+        >
+          +38 068 835 29 96
+        </Link>
+      </Box>
+
+    </Container>
+  </Box>
+);

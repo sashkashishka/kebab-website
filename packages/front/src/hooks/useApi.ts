@@ -1,123 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import * as React from 'react';
 import axios, {
   AxiosRequestConfig,
   AxiosResponse,
-  AxiosPromise,
   AxiosError,
 } from 'axios';
-import {
-  useEffect,
-  useState,
-} from 'react';
-import { mergeDeepRight, prop } from 'ramda';
+import * as R from 'ramda';
 
 const { CancelToken } = axios;
-
-
-interface InitialStateMultiple {
-  data: any[];
-  response: AxiosResponse[];
-  error: undefined | Error;
-  isLoading: boolean;
-}
-
-const initialStateMultiple: InitialStateMultiple = {
-  data: [],
-  response: [],
-  error: undefined,
-  isLoading: true,
-};
-
-/**
- * useMultipleApi hook for multiple requests
- */
-export function useMultipleApi<A>(configs: AxiosRequestConfig[]): {
-  response: [AxiosResponse<A>];
-  data: [A];
-  isLoading: boolean;
-  error?: AxiosError;
-};
-export function useMultipleApi<A, B>(configs: AxiosRequestConfig[]): {
-  response: [
-    AxiosResponse<A>,
-    AxiosResponse<B>,
-  ];
-  data: [A, B];
-  isLoading: boolean;
-  error?: AxiosError;
-};
-export function useMultipleApi<A, B, C>(configs: AxiosRequestConfig[]): {
-  response: [
-    AxiosResponse<A>,
-    AxiosResponse<B>,
-    AxiosResponse<C>,
-  ];
-  data: [A, B, C];
-  isLoading: boolean;
-  error?: AxiosError;
-};
-export function useMultipleApi<A, B, C, D>(configs: AxiosRequestConfig[]): {
-  response: [
-    AxiosResponse<A>,
-    AxiosResponse<B>,
-    AxiosResponse<C>,
-    AxiosResponse<D>,
-  ];
-  data: [A, B, C, D];
-  isLoading: boolean;
-  error?: AxiosError;
-};
-export function useMultipleApi<A, B, C, D, E>(configs: AxiosRequestConfig[]): {
-  response: [
-    AxiosResponse<A>,
-    AxiosResponse<B>,
-    AxiosResponse<C>,
-    AxiosResponse<D>,
-    AxiosResponse<E>,
-  ];
-  data: [A, B, C, D, E];
-  isLoading: boolean;
-  error?: AxiosError;
-};
-export function useMultipleApi(configs: AxiosRequestConfig[]): any {
-  const [state, setState] = useState(initialState);
-
-  const source = CancelToken.source();
-
-  const request = (config: AxiosRequestConfig): AxiosPromise<any> => axios(mergeDeepRight(config, {
-    cancelToken: source.token,
-  }));
-
-  useEffect(() => {
-    axios.all(configs.map(request))
-      .then((responses) => {
-        setState({
-          data: responses.map(prop('data')),
-          error: undefined,
-          response: responses,
-          isLoading: false,
-        });
-      })
-      .catch((reason) => {
-        if (axios.isCancel(reason)) {
-          console.log('Request canceled: ', reason.message);
-        } else {
-          setState({
-            data: [],
-            error: reason,
-            response: [],
-            isLoading: false,
-          });
-        }
-      });
-
-    return (): void => {
-      source.cancel('useEffect cleanup');
-    };
-  }, []);
-
-  return state;
-}
 
 interface InitialState {
   response?: AxiosResponse;
@@ -138,20 +28,24 @@ export function useApi<T>(url: string, config: AxiosRequestConfig = {}, run = tr
   isLoading: boolean;
   request(): void;
 } {
-  const [state, setState] = useState(initialState);
+  const [state, setState] = React.useState(initialState);
 
   const configSerialized = JSON.stringify(config);
   const source = CancelToken.source();
 
   const request = (): void => {
-    axios(url, {
-      ...config,
-      headers: {
-        'X-Requested-With': 'XMLHttpRequest',
-        ...config.headers,
-      },
-      cancelToken: source.token,
-    })
+    axios(
+      url,
+      R.mergeDeepRight(
+        {
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+          },
+          cancelToken: source.token,
+        },
+        config,
+      ),
+    )
       .then((response) => {
         setState({
           error: undefined,
@@ -172,7 +66,7 @@ export function useApi<T>(url: string, config: AxiosRequestConfig = {}, run = tr
       });
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (run) {
       request();
     }

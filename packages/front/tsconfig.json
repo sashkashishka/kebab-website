@@ -9,7 +9,8 @@
       "Pages/*": ["pages/*"],
       "Constants/*": ["constants/*"],
       "Types/*": ["types/*"],
-      "Utils/*": ["utils/*"]
+      "Utils/*": ["utils/*"],
+      "Styles/*": ["styles/*"]
     }
   }
 }

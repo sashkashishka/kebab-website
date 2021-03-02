@@ -11,25 +11,16 @@ process.env.GATSBY_TELEMETRY_DISABLED = '1';
 
 const getPlugins = () => {
   const plugins = [
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-emotion',
     {
       resolve: 'gatsby-plugin-typescript',
       options: {
         isTSX: true, // defaults to false
-        jsxPragma: 'react', // defaults to "React"
+        jsxPragma: 'jsx', // defaults to "React"
         allExtensions: true, // defaults to false
       },
     },
-    {
-      resolve: 'gatsby-plugin-create-client-paths',
-      options: {
-        prefixes: [
-          '/days/*',
-          '/profile/*',
-        ],
-      },
-    },
+    'gatsby-plugin-postcss',
+    'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {
@@ -42,20 +33,20 @@ const getPlugins = () => {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'Teach Me - Онлайн вправи',
-        short_name: 'Teach Me',
+        name: 'Эль шейх - идеальная шаурма',
+        short_name: 'Эль шейх',
         start_url: '/',
-        background_color: '#FFC715',
-        theme_color: '#FFC715',
+        background_color: '#fff',
+        theme_color: '#fff',
         display: 'minimal-ui',
-        icon: 'src/images/logo.png',
+        icon: 'src/images/logo.svg',
       },
     },
     /**
      * @NOTE do not reorder manifest and offline plugins
      * @see https://www.gatsbyjs.org/packages/gatsby-plugin-offline/
      */
-    // 'gatsby-plugin-offline',
+    'gatsby-plugin-offline',
     /**
      * @NOTE provide fonts from design
      */
@@ -64,38 +55,21 @@ const getPlugins = () => {
       options: {
         fonts: [
           {
+            family: 'Proxima Nova',
+            variants: [
+              '600',
+              '800',
+            ],
+          },
+          {
             family: 'Roboto',
             variants: [
               '400',
-              '400i',
-              '500',
+              '600',
               '700',
-            ],
-          },
-          {
-            family: 'Poppins',
-            variants: [
-              '700',
-            ],
-          },
-          {
-            family: 'Roboto Slab',
-            variants: [
-              '400',
-              '500',
             ],
           },
         ],
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-eslint',
-      options: {
-        test: /\.jsx?$|\.tsx?$/,
-        options: {
-          emitWarning: true,
-          failOnError: false,
-        },
       },
     },
   ];
@@ -115,12 +89,10 @@ const getPlugins = () => {
 
 
 module.exports = {
-  /**
-   * @NOTE customize due to website requirements
-   */
   siteMetadata: {
-    title: 'Teach Me tasks',
-    siteUrl: 'https://teme.com.ua',
+    title: 'Эль шейх - идеальная шаурма',
+    // TODO use other url
+    siteUrl: 'https://kebab.com.ua',
   },
 
   plugins: getPlugins(),
@@ -129,7 +101,7 @@ module.exports = {
     app.use([
       '/api/*',
     ], createProxyMiddleware({
-      target: 'http://localhost:3000',
+      target: 'http://localhost:7000',
       timeout: 30000,
       changeOrigin: true,
       secure: false,
