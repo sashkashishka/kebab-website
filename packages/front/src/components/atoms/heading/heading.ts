@@ -10,7 +10,7 @@ export const H1 = styled('h1')`
   @media all and (min-width: 768px) {
     & {
       font-size: 64px;
-      line-height: 35px;
+      line-height: 72px;
     }
   }
 `;
@@ -19,12 +19,13 @@ export const H2 = styled('h2')`
   font-family: var(--proximaFont);
   font-weight: 800;
   font-size: 32px;
-  line-height: 58px;
+  line-height: 38px;
   letter-spacing: 1.12px;
 
   @media all and (min-width: 768px) {
     & {
       font-size: 48px;
+      line-height: 58px;
     }
   }
 `;

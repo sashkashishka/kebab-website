@@ -39,7 +39,7 @@ export const Footer: React.FC = () => (
 
         @media all and (min-width: 768px) {
           & {
-            grid-template-rows: 1fr auto 1fr;
+            grid-template-rows: 1fr auto 0.7fr;
             grid-template-columns: auto 1fr auto;
           }
         }

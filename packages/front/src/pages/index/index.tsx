@@ -5,7 +5,7 @@ import { useApi } from 'Hooks/useApi';
 import { Api } from 'Constants/api';
 
 import { Page } from 'Components/page';
-// import Container from 'Components/container';
+import { TitleBlock, WhyBlock } from 'Components/blocks';
 // import Link from 'Components/link';
 // import AdRow, { AdItem } from 'Components/adrow';
 // import AuthForm from 'Components/auth';
@@ -21,7 +21,8 @@ const MainPage: React.FC = () => {
     <Page
       {...pageMeta}
     >
-      test
+      <TitleBlock />
+      <WhyBlock />
     </Page>
   );
 }
