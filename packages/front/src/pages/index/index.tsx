@@ -22,6 +22,7 @@ const MainPage: React.FC = () => {
       {...pageMeta}
     >
       <TitleBlock />
+
       <WhyBlock />
     </Page>
   );

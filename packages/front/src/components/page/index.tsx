@@ -7,6 +7,7 @@ import { Header } from 'Components/header';
 import { Footer } from 'Components/footer';
 
 import 'Styles/global.module.css';
+import 'Styles/gilroy-font.module.css';
 
 export const Page: React.FC<{ title: string; }> = ({
   title,

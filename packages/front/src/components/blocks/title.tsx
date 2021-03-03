@@ -14,12 +14,37 @@ export const TitleBlock = () => (
   <Box
     css={css`
       background-color: var(--black);
+      background-image: url('Img/bg-wave.svg');
+      background-position: center bottom;
+      background-repeat: no-repeat;
+
+      @media all and (min-width: 768px) {
+        & {
+          background-size: contain;
+        } 
+      }
+
+      @media all and (min-width: 2560px) {
+        & {
+          background-position: 80% 250px;
+        } 
+      }
     `}
   >
     <Container
       css={css`
         padding-top: 32px;
         padding-bottom: 32px;
+        background-image: url('Img/bg-title-mobile.svg');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        @media all and (min-width: 768px) {
+          & {
+            background-image: url('Img/bg-title-desktop.svg');
+          } 
+        }
       `}
     >
       <Box
@@ -79,24 +104,45 @@ export const TitleBlock = () => (
           <Img
             src={imgKebab}
             alt="kebab"
+            css={css`
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+              max-width: 500px;
+              max-height: 500px;
+            `}
             width="300px"
             height="300px"
           />
         </Box>
 
-        <Box>
+        <Text
+          css={css`
+            color: var(--black);
+
+            @media all and (min-width: 768px) {
+              & {
+                color: var(--white);
+              } 
+            }
+          `}
+        >
           <Text
-            // css={css``}
+            as="b"
+            css={css`
+              font-weight: 700;
+            `}
           >
             Чапаева 10Б (МОД/ЖТК)
           </Text>
 
           <br />
-          
+          <br />
+
           <FreeFrom
             variant="white"
           />
-        </Box>
+        </Text>
       </Box>
     </Container>
   </Box>
