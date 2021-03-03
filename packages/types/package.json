@@ -1,0 +1,7 @@
+{
+  "name": "@kebab/types",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Aleksandr Taperik <alexandr1696@hotmail.com>",
+  "license": "MIT"
+}

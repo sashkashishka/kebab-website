@@ -2,6 +2,7 @@ import * as React from 'react';
 import { css } from 'astroturf';
 import Helmet from 'react-helmet';
 
+import { ShopProvider } from 'Components/provider';
 import { Box } from 'Components/atoms';
 import { Header } from 'Components/header';
 import { Footer } from 'Components/footer';
@@ -13,7 +14,7 @@ export const Page: React.FC<{ title: string; }> = ({
   title,
   children,
 }) => (
-  <React.Fragment>
+  <ShopProvider>
     <Helmet>
       <html lang="ru" />
       <title>
@@ -40,5 +41,5 @@ export const Page: React.FC<{ title: string; }> = ({
       <Footer />
     </Box>
 
-  </React.Fragment>
+  </ShopProvider>
 );

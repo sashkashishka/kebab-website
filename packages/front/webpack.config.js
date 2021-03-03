@@ -9,11 +9,10 @@ module.exports = {
       Components: path.resolve(__dirname, 'src/components'),
       Constants: path.resolve(__dirname, 'src/constants'),
       Img: path.resolve(__dirname, 'src/images'),
-      Hooks: path.resolve(__dirname, 'src/hooks'),
-      Static: path.resolve(__dirname, 'static'),
       Utils: path.resolve(__dirname, 'src/utils'),
-      Types: path.resolve(__dirname, 'src/types'),
       Styles: path.resolve(__dirname, 'src/styles'),
+      Services: path.resolve(__dirname, 'src/services'),
+      Machines: path.resolve(__dirname, 'src/machines'),
     },
   },
   module: {

@@ -24,6 +24,12 @@ export const TitleBlock = () => (
         } 
       }
 
+      @media all and (min-width: 1920px) {
+        & {
+          background-position: 80% 150%;
+        } 
+      }
+
       @media all and (min-width: 2560px) {
         & {
           background-position: 80% 250px;

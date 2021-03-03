@@ -1,4 +1,5 @@
-export { default as generateWords } from './generate-words';
+export { EventBus } from './event-bus';
 export { default as getRandomInt } from './get-random';
 export * from './validators';
-export { default as handleNetworkError } from './handle-network-error';
+export { request } from './request';
+export { isRequestError } from './guards/is-request-error';

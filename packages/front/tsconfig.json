@@ -10,7 +10,12 @@
       "Constants/*": ["constants/*"],
       "Types/*": ["types/*"],
       "Utils/*": ["utils/*"],
-      "Styles/*": ["styles/*"]
+      "Utils": ["utils"],
+      "Styles/*": ["styles/*"],
+      "Services/*": ["services/*"],
+      "Services": ["services"],
+      "Machines/*": ["machines/*"],
+      "Machines": ["machines"]
     }
   }
 }
