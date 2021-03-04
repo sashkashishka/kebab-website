@@ -1,6 +1,6 @@
-import { Machine, assign } from 'xstate';
+import { Machine, assign, SpawnedActorRef } from 'xstate';
 
-import { ProductsList } from '@kebab/types';
+import { ProductItemWithMachine } from 'Machines';
 
 export enum MenuFilterStates {
   INIT = 'init',
@@ -17,11 +17,11 @@ interface Filter {
   text: string;
 }
 
-interface MenuFilterMachineContext {
+export interface MenuFilterMachineContext {
   filter: Filter;
   filters: Filter[];
-  products: ProductsList;
-  selected: ProductsList;
+  products: ProductItemWithMachine[];
+  selected: ProductItemWithMachine[];
 }
 
 interface MenuFilterMachineStateSchema {
@@ -40,13 +40,15 @@ const initialFilter: Filter = {
   text: 'Все позиции',
 };
 
-export const MenuFilterMachine = Machine<MenuFilterMachineContext, MenuFilterMachineStateSchema, MenuFilterMachineEvents>({
+export type MenuFilterActor = SpawnedActorRef<MenuFilterMachineEvents>;
+
+export const createMenuFilterMachine = (products: ProductItemWithMachine[]) => Machine<MenuFilterMachineContext, MenuFilterMachineStateSchema, MenuFilterMachineEvents>({
   id: 'menu-filter',
   initial: MenuFilterStates.INIT,
   context: {
     filter: initialFilter,
     filters: [initialFilter],
-    products: [],
+    products,
     selected: [],
   },
   states: {

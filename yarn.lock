@@ -1697,6 +1697,7 @@ __metadata:
   dependencies:
     "@kebab/types": "workspace:1.0.0"
     "@reach/dialog": 0.13.2
+    "@types/classnames": ^2
     "@types/ramda": 0.26.44
     "@types/react": 16.14.4
     "@types/react-dom": 16.9.11
@@ -1704,6 +1705,7 @@ __metadata:
     "@xstate/react": 1.3.1
     astroturf: 0.10.5
     axios: 0.21.1
+    classnames: 2.2.6
     date-fns: 2.8.1
     gatsby: 2.32.4
     gatsby-plugin-manifest: 2.12.0
@@ -2088,6 +2090,13 @@ __metadata:
     "@types/connect": "*"
     "@types/node": "*"
   checksum: 4576f3fde5980c1219cadbc7c523bdb1cefc3713300e18bf47ff37bb9b8176342a1dc7519008311fd8fc11413cf188a83931b9b59051aa1c2f095c1e10459369
+  languageName: node
+  linkType: hard
+
+"@types/classnames@npm:^2":
+  version: 2.2.11
+  resolution: "@types/classnames@npm:2.2.11"
+  checksum: 5bbd4fd0f803a46424152ecc89cfb88464af4d655634de8a98ec54977b0b6d9da107e799c24a2b66f0133438e84bac51b2275134cf028edea749fb018f731e89
   languageName: node
   linkType: hard
 
@@ -4907,6 +4916,13 @@ __metadata:
     isobject: ^3.0.0
     static-extend: ^0.1.1
   checksum: 6411679ad4d2bde81b62ad721d4771d108d5d8ef32805d10ebfa6f1d6bdcfd5cb6dfea5232b85221f079e42691c36cf2db05a5e76b87ba8f6deb37a2c23a4a41
+  languageName: node
+  linkType: hard
+
+"classnames@npm:2.2.6":
+  version: 2.2.6
+  resolution: "classnames@npm:2.2.6"
+  checksum: 490eaeca5931846737ffd33e472a701d268d5b8bc5717dd4cf108a127b06e86e05350e06799abbbe763a0e4c945b4217f6700b7ae00ddc703505682c370e5cf2
   languageName: node
   linkType: hard
 

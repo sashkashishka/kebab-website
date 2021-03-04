@@ -8,7 +8,7 @@ export const getSheetRowValues = (row: GoogleSpreadsheetRow): { [key: string]: s
     // acc[key] = safeParse(row[key]) || row[key];
     const val = row[key];
     acc[key] = val?.indexOf && val.indexOf('?') === 0
-      ? qs.parse(val, { arrayFormat: 'comma' })
+      ? qs.parse(val, { arrayFormat: 'comma', parseNumbers: true })
       : val;
 
     return acc;

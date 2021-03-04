@@ -1,7 +1,6 @@
 import { RequestHandler } from 'express';
 import { getSheetRowValues } from '../../utils';
 
-
 export const getProductList: RequestHandler = async (req, res, next) => {
   try {
     const doc = req.gSheet;

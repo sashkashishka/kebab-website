@@ -3,7 +3,7 @@ type Channel = 'snackbar';
 type Listener = (...args: any[]) => any;
 
 interface Subscribers {
-  [key: string]: Array<Listener>;
+  [channel: string]: Array<Listener>;
 }
 
 class Bus {

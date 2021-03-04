@@ -7,11 +7,11 @@ export interface ProductItem {
   name: string;
   description: string;
   imageUrl: string;
-  sizes?: {
-    [key: string]: [Price, Weight];
+  sizes: {
+    [size: string]: [Price, Weight];
   };
-  additives?: {
-    [key: string]: Price;
+  toppings?: {
+    [topping: string]: Price;
   };
 }
 
@@ -29,6 +29,6 @@ export interface Order {
     name: string;
     qty: number;
     size: ProductItem['sizes'];
-    additives: ProductItem['additives'];
+    toppings: ProductItem['toppings'];
   }>;
 }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export const PointUp: React.FC<{ style?: { [key: string]: string | number }; }> = ({ style, ...rest }) => (
+export const PointUp: React.FC<{ style?: { [style: string]: string | number }; }> = ({ style, ...rest }) => (
   <span
     aria-label="emoji"
     role="img"

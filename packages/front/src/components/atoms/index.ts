@@ -5,3 +5,4 @@ export { Img } from './img';
 export { Text } from './text';
 export * from './heading';
 export { Tab } from './tab';
+export * from './button';

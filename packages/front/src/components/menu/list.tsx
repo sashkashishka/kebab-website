@@ -1,83 +1,86 @@
 import * as React from 'react';
-import { send } from 'xstate';
-import { useMachine } from '@xstate/react';
+import { useActor } from '@xstate/react';
 import { css } from 'astroturf';
 
-import { ProductsList } from '@kebab/types';
-
+import { ShopContext } from 'Components/provider';
 import { Box, Tab } from 'Components/atoms';
 import { ProductCard } from 'Components/product-card';
 
 import {
-  MenuFilterMachine,
-  MenuFilterStates,
+  ShopStates,
+  MenuFilterMachineContext,
+  MenuFilterActor,
   MenuFilterActions,
 } from 'Machines';
 
-interface FiltersProps {
-  products: ProductsList;
-  shopSend: typeof send;
+interface FilterAndListProps {
+  menuFilterRef: MenuFilterActor;
 }
 
-export const List: React.FC<FiltersProps> = ({ products, shopSend }) => {
-  const [state, send] = useMachine(MenuFilterMachine, {
-    context: {
-      products,
-    },
-  });
+const FilterAndList: React.FC<FilterAndListProps> = ({ menuFilterRef }) => {
+  const [state, send] = useActor(menuFilterRef);
 
   const {
     filters,
     filter,
     selected,
-  } = state.context;
+  } = state.context as MenuFilterMachineContext;
 
-  switch (state.value) {
-    case MenuFilterStates.MENU:
+  return (
+    <>
+      <Box
+        css={css`
+          margin-bottom: 8px;
+        `}
+      >
+        {
+          filters.map(({ value, text }) => (
+            <Tab
+              key={text}
+              // @ts-ignore
+              active={filter.value === value}
+              onClick={() => send({
+                type: MenuFilterActions.SET_FILTER,
+                filter: {
+                  value,
+                  text,
+                },
+              })}
+            >
+              {text}
+            </Tab>
+          ))
+        }
+      </Box>
+      <Box
+        css={css`
+          display: grid;
+          grid-gap: 16px;
+          grid-template-columns: repeat(auto-fit, minmax(284px, 1fr));
+        `}
+      >
+        {
+          selected.map((product) => (
+            <ProductCard
+              key={product.name}
+              {...product}
+            />
+          ))
+        }
+      </Box>
+    </>
+  );
+};
+
+export const MenuList: React.FC = () => {
+  const [state] = React.useContext(ShopContext);
+
+  switch (true) {
+    case state.matches(ShopStates.BUY):
       return (
-        <>
-          <Box
-            css={css`
-              margin-bottom: 16px;
-            `}
-          >
-            {
-              filters.map(({ value, text }) => (
-                <Tab
-                  key={text}
-                  // @ts-ignore
-                  active={filter.value === value}
-                  onClick={() => send({
-                    type: MenuFilterActions.SET_FILTER,
-                    filter: {
-                      value,
-                      text,
-                    },
-                  })}
-                >
-                  {text}
-                </Tab>
-              ))
-            }
-          </Box>
-          <Box
-            css={css`
-              display: grid;
-              grid-gap: 16px;
-              grid-template-columns: repeat(auto-fit, minmax(284px, 1fr));
-            `}
-          >
-            {
-              selected.map(({ name, ...rest }) => (
-                <ProductCard
-                  key={name}
-                  name={name}
-                  {...rest}
-                />
-              ))
-            }
-          </Box>
-        </>
+        <FilterAndList
+          menuFilterRef={state.context.menuFilterRef}
+        />
       );
 
     default:

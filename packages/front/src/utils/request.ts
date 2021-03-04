@@ -5,7 +5,7 @@ import axios, {
 } from 'axios';
 import * as R from 'ramda';
 
-import { EventBus } from 'Utils/event-bus';
+// import { EventBus } from 'Utils/event-bus';
 
 export * from 'axios';
 
