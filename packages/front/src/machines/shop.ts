@@ -75,7 +75,7 @@ export type ShopMachineInterpreted = [
 ];
 
 // TODO store context into sessionStorage
-export const ShopMachine = Machine<ShopMachineContext, ShopMachineStateSchema, ShopMachineEvents>(
+export const ShopMachine = Machine<ShopMachineContext, ShopMachineEvents>(
   {
     id: 'shop',
     initial: ShopStates.FETCH,
