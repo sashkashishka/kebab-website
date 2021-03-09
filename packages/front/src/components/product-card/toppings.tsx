@@ -6,6 +6,12 @@ import { ProductItem } from '@kebab/types';
 import { Text, Box } from 'Components/atoms';
 import { ProductCardActions } from 'Machines';
 
+import baconImg from 'Img/toppings/bacon.png';
+import cheeseImg from 'Img/toppings/cheese.png';
+import cornImg from 'Img/toppings/corn.png';
+import mushroomsImg from 'Img/toppings/mushrooms.png';
+import pineappleImg from 'Img/toppings/pineapple.png';
+
 import { SelectorCard } from './selector-card';
 
 interface ToppingsProps {
@@ -14,11 +20,19 @@ interface ToppingsProps {
   send: (...args: any[]) => any;
 }
 
+const images = {
+  Ананас: pineappleImg,
+  Бекон: baconImg,
+  Гриби: mushroomsImg,
+  Кукурудза: cornImg,
+  Сир: cheeseImg,
+};
+
 export const Toppings: React.FC<ToppingsProps> = ({ toppings, selectedToppings, send }) => (
   <Box
     css={css`
       background-color: var(--2color);
-      padding: 16px;
+      padding: 16px 16px 176px 16px;
     `}
   >
     <Text
@@ -29,13 +43,13 @@ export const Toppings: React.FC<ToppingsProps> = ({ toppings, selectedToppings, 
         text-align: center;
       `}
     >
-      Добавки (топинги)
+      Добавки
     </Text>
 
     <Box
       css={css`
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
         justify-items: center;
         grid-gap: 20px;
       `}
@@ -53,6 +67,7 @@ export const Toppings: React.FC<ToppingsProps> = ({ toppings, selectedToppings, 
             })}
             name={topping}
             price={toppings[topping]}
+            imgUrl={images[topping]}
           />
         ))
       }

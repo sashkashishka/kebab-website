@@ -9,7 +9,6 @@ export const ShopContext = React.createContext<ShopMachineInterpreted>(
 );
 
 export const ShopProvider: React.FC = ({ children }) => {
-  // TODO FIXME
   const machine = useMachine(ShopMachine, {
     devTools: process.env.NODE_ENV === 'development',
   });

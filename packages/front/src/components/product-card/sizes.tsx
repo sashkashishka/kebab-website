@@ -29,13 +29,13 @@ export const Sizes: React.FC<SizesProps> = ({ sizes, send, currentSize }) => (
         text-align: center;
       `}
     >
-      Размер/вес
+      Розмір/вага
     </Text>
 
     <Box
       css={css`
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
         justify-items: center;
         grid-gap: 20px;
       `}

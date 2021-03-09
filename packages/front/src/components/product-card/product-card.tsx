@@ -7,6 +7,7 @@ import {
   ShopActions,
   ProductCardActions,
   ProductCardStates,
+  ProductCardMachineContext,
 } from 'Machines';
 
 import {
@@ -17,7 +18,11 @@ import {
 } from 'Components/atoms';
 import { Popup } from 'Components/popup';
 
-import { getLowestPrice, isSizeFilled } from 'Utils';
+import {
+  getLowestPrice,
+  isSizeFilled,
+  pickSizePriceWeight,
+} from 'Utils';
 
 import { Sizes } from './sizes';
 import { Toppings } from './toppings';
@@ -34,13 +39,14 @@ export const ProductCard: React.FC<ProductItemWithMachine> = ({
 
   const {
     cartItem,
-  } = state.context;
+  } = state.context as ProductCardMachineContext;
+
+  const [sizePrice, sizeWeight] = pickSizePriceWeight(cartItem.size);
 
   return (
     <>
       <Box
         tabIndex={0}
-        onClick={() => {}}
         css={css`
           padding: 16px;
           color: var(--black);
@@ -85,15 +91,6 @@ export const ProductCard: React.FC<ProductItemWithMachine> = ({
           `}
         >
           {name}
-          {' '}
-          <Text
-            as="span"
-            css={css`
-              font-weight: 400;
-            `}
-          >
-            (250 g)
-          </Text>
         </Text>
 
         <Text
@@ -115,11 +112,11 @@ export const ProductCard: React.FC<ProductItemWithMachine> = ({
           `}
         >
           <span>
-            Стоимость
+            Вартість
           </span>
 
           <span>
-            от
+            від
             {' '}
             <Box
               as="span"
@@ -140,7 +137,7 @@ export const ProductCard: React.FC<ProductItemWithMachine> = ({
             width: 100%;
           `}
         >
-          In cart
+          В кошик
         </Button>
       </Box>
 
@@ -148,27 +145,18 @@ export const ProductCard: React.FC<ProductItemWithMachine> = ({
         isOpen={state.matches(ProductCardStates.EDIT)}
         onDismiss={() => send({ type: ProductCardActions.CLOSE_CARD_POPUP })}
         product
+        ariaLabel="product-card"
       >
         <Box
           css={css`
             position: relative;
             display: grid;
-            grid-template-rows: auto auto 1fr;
+            grid-template-rows: auto 1fr auto;
             width: 100%;
             min-height: 100%;
             padding-top: 32px;
           `}
         >
-          <Text
-            css={css`
-              margin-bottom: 16px;
-              color: var(--black);
-              text-align: center;
-            `}
-          >
-            {name}
-          </Text>
-
           <Sizes
             sizes={sizes}
             currentSize={cartItem.size}
@@ -193,6 +181,8 @@ export const ProductCard: React.FC<ProductItemWithMachine> = ({
               right: 0;
               padding: 16px 32px;
               background-color: var(--white);
+              text-align: center;
+              color: var(--black);
 
               @media all and (min-width: 768px) {
                 & {
@@ -201,6 +191,72 @@ export const ProductCard: React.FC<ProductItemWithMachine> = ({
               }
             `}
           >
+            <Box
+              css={css`
+                margin-bottom: 16px;
+              `}
+            >
+              <Text
+                css={css`
+                  margin-bottom: 4px;
+                  font-weight: bold;
+                `}
+              >
+                {name}
+
+                {' '}
+
+                {
+                  sizeWeight && (
+                    <Text
+                      as="span"
+                      css={css`
+                        color: var(--black-light);
+                        font-weight: normal;
+                      `}
+                    >
+                      {`(${sizeWeight} гр)`}
+                    </Text>
+                  )
+                }
+              </Text>
+
+              {
+                Object.keys(cartItem.toppings).length > 0 && (
+                  <Text
+                    css={css`
+                      margin-bottom: 6px;
+                      color: var(--black-light);
+                      font-size: 14px;
+                    `}
+                  >
+                    {`+ ${Object.keys(cartItem.toppings).join(' + ')}`}
+                  </Text>
+                )
+              }
+
+              {
+                cartItem.price > 0 && (
+                  <Text
+                    css={css`
+                      font-weight: bold;
+                    `}
+                  >
+                    {cartItem.price}
+                    {' '}
+                    <Text
+                      as="span"
+                      css={css`
+                        font-weight: normal;
+                      `}
+                    >
+                      грн
+                    </Text>
+                  </Text>
+                )
+              }
+            </Box>
+
             <Button
               onClick={() => send({ type: ShopActions.ADD_TO_CART })}
               disabled={!isSizeFilled(state.context)}
@@ -208,7 +264,7 @@ export const ProductCard: React.FC<ProductItemWithMachine> = ({
                 width: 100%;
               `}
             >
-              Добавить в корзину
+              Додати до кошику
             </Button>
           </Box>
         </Box>

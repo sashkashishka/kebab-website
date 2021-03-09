@@ -4,6 +4,7 @@ import { css } from 'astroturf';
 import { Box, Img, Text } from 'Components/atoms';
 
 interface SelectorCardProps {
+  imgUrl?: string;
   active: boolean;
   name: string;
   price: number;
@@ -12,6 +13,7 @@ interface SelectorCardProps {
 }
 
 export const SelectorCard: React.FC<SelectorCardProps> = ({
+  imgUrl,
   active,
   name,
   price,
@@ -41,8 +43,8 @@ export const SelectorCard: React.FC<SelectorCardProps> = ({
     `}
   >
     <Img
-      src="#"
-      alt="size img"
+      src={imgUrl}
+      alt={name}
       width="50px"
       height="50px"
     />

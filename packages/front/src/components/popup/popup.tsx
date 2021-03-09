@@ -7,6 +7,7 @@ import { CloseButton } from 'Components/atoms';
 
 interface PopupProps extends DialogProps {
   product?: boolean;
+  ariaLabel: string;
 }
 
 const styles = css`
@@ -63,6 +64,7 @@ export const Popup: React.FC<PopupProps> = ({
   onDismiss,
   isOpen,
   product = false,
+  ariaLabel,
 }) => (
   <DialogOverlay
     className={styles.overlay}
@@ -74,6 +76,7 @@ export const Popup: React.FC<PopupProps> = ({
       onClick={onDismiss}
     />
     <DialogContent
+      aria-label={ariaLabel}
       className={classnames({
         [styles.content]: true,
         [styles.contentProduct]: product,

@@ -1,18 +1,26 @@
 import * as React from 'react';
-import { css } from 'astroturf';
+import styled, { css } from 'astroturf';
 
-import { Text, Box } from 'Components/atoms';
+import { Box } from 'Components/atoms';
 import { PointUp } from 'Components/emoji';
 
-export const FreeFrom: React.FC<{ variant: 'black' | 'white'; }> = ({ variant = 'black' }) => (
-  <Text
-    as="span"
+const Component = styled('span')`
+  &.variant-black {
+    color: var(--black);
+  }  
+
+  &.variant-white {
+    color: var(--white);
+  }  
+`;
+
+export const FreeFrom: React.FC<{ variant?: 'black' | 'white'; }> = ({ variant = 'black' }) => (
+  <Component
     className="free-from"
-    css={css`
-      color: ${`--${variant}`};
-    `}
+    // @ts-ignore
+    variant={variant}
   >
     <PointUp />
     <Box as="b" css={css`font-weight: 700;`}>От 250</Box> гривен — бесплатная доставка
-  </Text>
+  </Component>
 );

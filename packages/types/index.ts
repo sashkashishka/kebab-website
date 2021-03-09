@@ -10,12 +10,21 @@ export interface ProductItem {
   sizes: {
     [size: string]: [Price, Weight];
   };
-  toppings?: {
+  toppings: {
     [topping: string]: Price;
   };
 }
 
 export type ProductsList = Array<ProductItem>;
+
+export interface CartItem {
+  price: number;
+  name: string;
+  qty: number;
+  size: ProductItem['sizes'];
+  toppings: ProductItem['toppings'];
+  item: ProductItem;
+}
 
 export interface Order {
   creation_date: Date;
@@ -25,10 +34,5 @@ export interface Order {
   charge_from?: number;
   delivery_time: Date;
   comment: string;
-  cart: Array<{
-    name: string;
-    qty: number;
-    size: ProductItem['sizes'];
-    toppings: ProductItem['toppings'];
-  }>;
+  cart: CartItem[];
 }

@@ -7,9 +7,18 @@ import {
   spawn,
 } from 'xstate';
 
-import { Order, ProductItem, ProductsList } from '@kebab/types';
+import {
+  Order,
+  ProductItem,
+  ProductsList,
+  CartItem,
+} from '@kebab/types';
 
-import { isRequestError } from 'Utils';
+import {
+  isRequestError,
+  isDuplicate,
+  findDuplicateIndex,
+} from 'Utils';
 import { GET_PRODUCT_LIST } from 'Services';
 import {
   createRequestMachine,
@@ -30,11 +39,16 @@ export enum ShopStates {
 }
 
 export enum ShopActions {
+  // cart
   OPEN_CART = 'OPEN_CART',
-  OPEN_ORDER = 'OPEN_ORDER',
-  OPEN_BUY = 'OPEN_BUY',
+  CLOSE_CART = 'CLOSE_CART',
   ADD_TO_CART = 'ADD_TO_CART',
   REMOVE_FROM_CART = 'REMOVE_FROM_CART',
+  INC = 'INC',
+  DEC = 'DEC',
+  // order
+  OPEN_ORDER = 'OPEN_ORDER',
+  CLOSE_ORDER = 'OPEN_ORDER',
 }
 
 export interface ProductItemWithMachine extends ProductItem {
@@ -46,7 +60,7 @@ interface ShopMachineContext extends Order {
   menuFilterRef: MenuFilterActor;
 }
 
-interface ShopMachineStateSchema {
+export interface ShopMachineStateSchema {
   states: {
     [ShopStates.FETCH]: {},
     [ShopStates.ERROR]: {},
@@ -62,10 +76,12 @@ interface ShopMachineStateSchema {
 }
 
 type ShopMachineEvents =
-  | { type: ShopActions.OPEN_BUY }
   | { type: ShopActions.OPEN_CART }
-  | { type: ShopActions.ADD_TO_CART, item: Order['cart'][0] }
-  | { type: ShopActions.REMOVE_FROM_CART, item: Order['cart'][0] }
+  | { type: ShopActions.CLOSE_CART }
+  | { type: ShopActions.ADD_TO_CART, item: CartItem }
+  | { type: ShopActions.REMOVE_FROM_CART, item: CartItem }
+  | { type: ShopActions.INC, item: CartItem }
+  | { type: ShopActions.DEC, item: CartItem }
   | { type: ShopActions.OPEN_ORDER };
 
 export type ShopMachineInterpreted = [
@@ -131,37 +147,48 @@ export const ShopMachine = Machine<ShopMachineContext, ShopMachineEvents>(
               [ShopActions.OPEN_CART]: {
                 target: ShopStates.CART,
               },
-              [ShopActions.ADD_TO_CART]: {
-                actions: assign({
-                  cart: (ctx, event) => ctx.cart.concat(event.item),
-                }),
-              },
+              [ShopActions.ADD_TO_CART]: [
+                {
+                  cond: 'isDuplicate',
+                  actions: 'inc',
+                },
+                {
+                  actions: assign({
+                    cart: (ctx, event) => ctx.cart.concat(event.item),
+                  }),
+                },
+              ],
             },
           },
           [ShopStates.CART]: {
             on: {
+              [ShopActions.CLOSE_CART]: {
+                target: ShopStates.IDLE,
+              },
               [ShopActions.OPEN_ORDER]: {
                 target: ShopStates.ORDER,
               },
-              [ShopActions.OPEN_BUY]: {
-                target: ShopStates.IDLE,
-              },
               [ShopActions.REMOVE_FROM_CART]: {
-                actions: assign({
-                  cart: (ctx, event) => ctx.cart.filter((item) => item !== event.item),
-                }),
+                actions: 'removeItem',
+              },
+              [ShopActions.INC]: {
+                actions: 'inc',
+              },
+              [ShopActions.DEC]: {
+                actions: 'dec',
               },
             },
           },
           [ShopStates.ORDER]: {
             on: {
               [ShopActions.OPEN_ORDER]: {},
-              [ShopActions.OPEN_BUY]: {},
+              [ShopActions.CLOSE_ORDER]: {
+                target: ShopStates.IDLE,
+              },
             },
           },
           [ShopStates.SUCCESS]: {
             on: {
-              [ShopActions.OPEN_BUY]: {},
             },
           },
         },
@@ -171,6 +198,44 @@ export const ShopMachine = Machine<ShopMachineContext, ShopMachineEvents>(
   {
     guards: {
       isRequestError,
+      isDuplicate,
+    },
+    actions: {
+      inc: assign({
+        cart: (ctx, event) => {
+          const i = findDuplicateIndex(ctx.cart, event.item);
+
+          return ctx.cart.map((item, k) => {
+            if (i !== k) return item;
+
+            return {
+              ...item,
+              qty: Math.min(100, item.qty + 1),
+            };
+          });
+        },
+      }),
+      dec: assign({
+        cart: (ctx, event) => {
+          const i = findDuplicateIndex(ctx.cart, event.item);
+
+          return ctx.cart.map((item, k) => {
+            if (i !== k) return item;
+
+            return {
+              ...item,
+              qty: Math.max(1, item.qty - 1),
+            };
+          });
+        },
+      }),
+      removeItem: assign({
+        cart: (ctx, event) => {
+          const i = findDuplicateIndex(ctx.cart, event.item);
+
+          return ctx.cart.filter((item, k) => i !== k);
+        },
+      }),
     },
   },
 );

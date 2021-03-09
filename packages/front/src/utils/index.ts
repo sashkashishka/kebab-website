@@ -2,7 +2,15 @@ export { EventBus } from './event-bus';
 export { default as getRandomInt } from './get-random';
 export * from './validators';
 export { request } from './request';
-export { isRequestError } from './guards/is-request-error';
-export { isSizeFilled } from './guards/is-size-filled';
 export { getLowestPrice } from './get-lowest-price';
 export { getSingleSize } from './get-single-size';
+export { pickSizePriceWeight } from './pick-size-price-weight';
+export { findDuplicateIndex } from './find-duplicate-index';
+
+// xstate guards
+export { isRequestError } from './guards/is-request-error';
+export { isSizeFilled } from './guards/is-size-filled';
+export { isDuplicate } from './guards/is-duplicate';
+
+// xstate actions
+export { calcPrice } from './actions/calc-price';
