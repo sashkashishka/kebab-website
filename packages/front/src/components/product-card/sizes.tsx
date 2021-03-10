@@ -19,6 +19,12 @@ export const Sizes: React.FC<SizesProps> = ({ sizes, send, currentSize }) => (
     css={css`
       padding: 0 16px;
       margin-bottom: 16px;
+
+      @media all and (min-width: 960px) {
+        & {
+          padding: 0 32px;
+        }
+      }
     `}
   >
     <Text
@@ -27,6 +33,14 @@ export const Sizes: React.FC<SizesProps> = ({ sizes, send, currentSize }) => (
         color: var(--black);
         font-weight: bold;
         text-align: center;
+
+        @media all and (min-width: 960px) {
+          & {
+            text-align: start;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #DADAE8;
+          }
+        }
       `}
     >
       Розмір/вага

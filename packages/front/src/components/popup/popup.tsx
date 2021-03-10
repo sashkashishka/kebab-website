@@ -46,6 +46,7 @@ const styles = css`
     @media all and (min-width: 960px) {
       & {
         width: 50vw;
+        max-height: 560px;
       }
     }
   }

@@ -36,6 +36,7 @@ export const SelectorCard: React.FC<SelectorCardProps> = ({
       color: var(--black);
       text-align: center;
       border: 1.5px solid transparent;
+      cursor: pointer;
 
       &.active {
         border: 1.5px solid #F9D43F;

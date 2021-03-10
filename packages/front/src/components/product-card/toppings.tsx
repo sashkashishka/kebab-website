@@ -32,7 +32,14 @@ export const Toppings: React.FC<ToppingsProps> = ({ toppings, selectedToppings, 
   <Box
     css={css`
       background-color: var(--2color);
-      padding: 16px 16px 176px 16px;
+      padding: 16px;
+
+      @media all and (min-width: 960px) {
+        & {
+          background-color: transparent;
+          padding: 32px;
+        }
+      }
     `}
   >
     <Text
@@ -41,6 +48,14 @@ export const Toppings: React.FC<ToppingsProps> = ({ toppings, selectedToppings, 
         color: var(--black);
         font-weight: bold;
         text-align: center;
+
+        @media all and (min-width: 960px) {
+          & {
+            text-align: start;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #DADAE8;
+          }
+        }
       `}
     >
       Добавки

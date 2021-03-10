@@ -15,6 +15,7 @@ export const Button = styled('button')`
   line-height: 18px;
   letter-spacing: 0.37px;
   outline: none;
+  cursor: pointer;
 
   &:disabled {
     opacity: 0.23;
@@ -45,6 +46,7 @@ export const CloseButton: React.FC<React.HTMLAttributes<HTMLButtonElement>> = (p
       border-radius: 50%;
       padding: 8px;
       outline: none;
+      cursor: pointer;
     `}
     {...props}
   >
@@ -69,6 +71,7 @@ export const DecButton: React.FC<React.HTMLAttributes<HTMLButtonElement>> = (pro
       border-radius: 50%;
       outline: none;
       transition: color 0.3s, background-color 0.3s;
+      cursor: pointer;
 
       &:hover,
       &:active,
@@ -99,6 +102,7 @@ export const IncButton: React.FC<React.HTMLAttributes<HTMLButtonElement>> = (pro
       border-radius: 50%;
       outline: none;
       transition: color 0.3s, background-color 0.3s;
+      cursor: pointer;
 
       &:hover,
       &:active,
