@@ -6,6 +6,7 @@ import {
   Img,
   Text,
   Button,
+  RemoveButton,
   IncButton,
   DecButton,
 } from 'Components/atoms';
@@ -45,8 +46,10 @@ export const CartProductItem: React.FC<CartProductItemProps> = ({
       css={css`
         display: grid;
         grid-template-rows: auto 1fr;
-        grid-template-columns: auto auto auto;
+        grid-template-columns: 1fr auto;
+        grid-row-gap: 20px;
         align-items: center;
+        margin-bottom: 16px;
         color: var(--black);
 
         @media all and (min-width: 768px) {
@@ -54,6 +57,8 @@ export const CartProductItem: React.FC<CartProductItemProps> = ({
             grid-template-rows: 100%;
             grid-template-columns: auto 1fr auto auto auto;
             grid-gap: 32px;
+            padding: 16px 0;
+            border-top: 1px solid var(--2color);
           }
         }
       `}
@@ -66,7 +71,7 @@ export const CartProductItem: React.FC<CartProductItemProps> = ({
         css={css`
           display: none;
           border-radius: 10px;
-          object-fit: contain;
+          object-fit: cover;
 
           @media all and (min-width: 768px) {
             & {
@@ -78,7 +83,7 @@ export const CartProductItem: React.FC<CartProductItemProps> = ({
 
       <Box
         css={css`
-          grid-column: 1/3;
+          grid-column: 1/2;
 
           @media all and (min-width: 768px) {
             & {
@@ -167,6 +172,15 @@ export const CartProductItem: React.FC<CartProductItemProps> = ({
       <Text
         css={css`
           font-weight: bold;
+          grid-column: 1/2;
+          grid-row: 2/3;
+
+          @media all and (min-width: 768px) {
+            & {
+              grid-column: auto;
+              grid-row: auto;
+            }
+          }
         `}
       >
         {price}
@@ -181,27 +195,26 @@ export const CartProductItem: React.FC<CartProductItemProps> = ({
         </Text>
       </Text>
 
-      <Box>
-        <Button
-          type="button"
-          onClick={() => send({
-            type: ShopActions.REMOVE_FROM_CART,
-            item: cartItem,
-          })}
-          css={css`
-            color: var(--accent);
-            background-color: transparent;
+      <RemoveButton
+        type="button"
+        onClick={() => send({
+          type: ShopActions.REMOVE_FROM_CART,
+          item: cartItem,
+        })}
+        css={css`
+          grid-column: 2/3;
+          grid-row: 1/2;
+          justify-self: end;
 
-            &:hover,
-            &:active,
-            &:focus {
-              text-decoration: underline;
+          @media all and (min-width: 768px) {
+            & {
+              grid-column: auto;
+              grid-row: auto;
+              justify-self: auto;
             }
-          `}
-        >
-          видалити
-        </Button>
-      </Box>
+          }
+        `}
+      />
     </Box>
   );
 };

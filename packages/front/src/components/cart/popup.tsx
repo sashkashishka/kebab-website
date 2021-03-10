@@ -14,6 +14,7 @@ import {
   ShopActions,
 } from 'Machines';
 
+import { SumUp } from './sum-up';
 import { CartProductItem } from './item';
 
 // TODO view when cart is empty
@@ -32,41 +33,68 @@ export const CartPopup: React.FC = () => {
     >
       <Box
         css={css`
-          padding: 16px;
-
+          display: grid;
+          grid-template-rows: 1fr auto;
+          height: 100%;
         `}
       >
-        <Text
+        <Box
           css={css`
-            margin-bottom: 16px;
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            color: var(--black);
+            padding: 16px;
           `}
         >
-          Кошик
-        </Text>
+          <Text
+            css={css`
+              margin-bottom: 16px;
+              font-size: 24px;
+              font-weight: bold;
+              text-align: center;
+              color: var(--black);
 
-        {
-          cart.map((item) => (
-            <CartProductItem
-              key={item.name}
-              send={send}
-              {...item}
-            />
-          ))
-        }
+              @media all and (min-width: 768px) {
+                & {
+                  text-align: start;
+                }
+              }
+            `}
+          >
+            Кошик
+          </Text>
 
-        <Box>
+          {
+            cart.map((item) => (
+              <CartProductItem
+                key={item.name}
+                send={send}
+                {...item}
+              />
+            ))
+          }
+        </Box>
+
+        <Box
+          css={css`
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px;
+            border-top: 1px solid var(--2color);
+
+            @media all and (min-width: 768px) {
+              & {
+                position: sticky;
+              }
+            }
+          `}
+        >
           {
             cart.length > 0 && (
-              <Button
-                type="button"
-                onClick={() => send({ type: ShopActions.OPEN_ORDER })}
-              >
-                🤤 оформить заказ
-              </Button>
+              <SumUp
+                cart={cart}
+                send={send}
+                order
+              />
             )
           }
         </Box>
