@@ -1,5 +1,6 @@
 import { Machine, assign } from 'xstate';
-import { request, AxiosResponse, isRequestError } from 'Utils';
+import { AxiosResponse } from 'axios';
+import { request, isRequestError } from 'Utils';
 
 enum States {
   PENDING = 'pending',

@@ -6,6 +6,7 @@ export { getLowestPrice } from './get-lowest-price';
 export { getSingleSize } from './get-single-size';
 export { pickSizePriceWeight } from './pick-size-price-weight';
 export { findDuplicateIndex } from './find-duplicate-index';
+export { LS } from './local-storage';
 
 // xstate guards
 export { isRequestError } from './guards/is-request-error';

@@ -1,3 +1,5 @@
+export * from './order';
+
 type Weight = number;
 type Price = number;
 

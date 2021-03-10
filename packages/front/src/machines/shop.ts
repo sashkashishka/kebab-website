@@ -25,6 +25,8 @@ import {
   createMenuFilterMachine,
   MenuFilterActor,
   createProductCardMachine,
+  createOrderMachine,
+  OrderActor,
   ProductCardActor,
 } from 'Machines';
 
@@ -49,6 +51,7 @@ export enum ShopActions {
   // order
   OPEN_ORDER = 'OPEN_ORDER',
   CLOSE_ORDER = 'OPEN_ORDER',
+  SUCCESS = 'SUCCESS',
 }
 
 export interface ProductItemWithMachine extends ProductItem {
@@ -58,6 +61,7 @@ export interface ProductItemWithMachine extends ProductItem {
 interface ShopMachineContext extends Order {
   products: ProductItemWithMachine[];
   menuFilterRef: MenuFilterActor;
+  orderRef: OrderActor;
 }
 
 export interface ShopMachineStateSchema {
@@ -82,6 +86,7 @@ type ShopMachineEvents =
   | { type: ShopActions.REMOVE_FROM_CART, item: CartItem }
   | { type: ShopActions.INC, item: CartItem }
   | { type: ShopActions.DEC, item: CartItem }
+  | { type: ShopActions.SUCCESS }
   | { type: ShopActions.OPEN_ORDER };
 
 export type ShopMachineInterpreted = [
@@ -91,6 +96,7 @@ export type ShopMachineInterpreted = [
 ];
 
 // TODO store context into sessionStorage
+// TODO when error state - show view to reload page
 export const ShopMachine = Machine<ShopMachineContext, ShopMachineEvents>(
   {
     id: 'shop',
@@ -107,6 +113,8 @@ export const ShopMachine = Machine<ShopMachineContext, ShopMachineEvents>(
       products: [],
       // @ts-ignore
       menuFilterRef: undefined,
+      // @ts-ignore
+      orderRef: undefined,
     },
     states: {
       [ShopStates.FETCH]: {
@@ -180,10 +188,15 @@ export const ShopMachine = Machine<ShopMachineContext, ShopMachineEvents>(
             },
           },
           [ShopStates.ORDER]: {
+            entry: assign({
+              orderRef: (ctx) => spawn(createOrderMachine(ctx.cart)),
+            }),
             on: {
-              [ShopActions.OPEN_ORDER]: {},
               [ShopActions.CLOSE_ORDER]: {
                 target: ShopStates.IDLE,
+              },
+              [ShopActions.SUCCESS]: {
+                target: ShopStates.SUCCESS,
               },
             },
           },

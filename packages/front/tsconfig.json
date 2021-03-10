@@ -7,7 +7,6 @@
       "Hooks/*": ["hooks/*"],
       "Img/*": ["images/*"],
       "Pages/*": ["pages/*"],
-      "Constants/*": ["constants/*"],
       "Types/*": ["types/*"],
       "Utils/*": ["utils/*"],
       "Utils": ["utils"],

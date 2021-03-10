@@ -2,19 +2,12 @@ import * as React from 'react';
 import { css } from 'astroturf';
 
 import { ShopContext } from 'Components/provider';
-import {
-  Box,
-  Button,
-  Text,
-} from 'Components/atoms';
+import { Box, Text } from 'Components/atoms';
 import { Popup } from 'Components/popup';
+import { SumUp } from 'Components/sum-up';
 
-import {
-  ShopStates,
-  ShopActions,
-} from 'Machines';
+import { ShopActions } from 'Machines';
 
-import { SumUp } from './sum-up';
 import { CartProductItem } from './item';
 
 // TODO view when cart is empty
@@ -92,7 +85,7 @@ export const CartPopup: React.FC = () => {
             cart.length > 0 && (
               <SumUp
                 cart={cart}
-                send={send}
+                send={() => send({ type: ShopActions.OPEN_ORDER })}
                 order
               />
             )

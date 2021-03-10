@@ -4,30 +4,24 @@ import { Page } from 'Components/page';
 import { TitleBlock, WhyBlock } from 'Components/blocks';
 import { MenuBlock } from 'Components/menu';
 import { Cart } from 'Components/cart';
-// import Link from 'Components/link';
-// import AdRow, { AdItem } from 'Components/adrow';
-// import AuthForm from 'Components/auth';
-
+import { OrderForm } from 'Components/order';
 
 import pageMeta from './page-meta.json';
 
+const MainPage: React.FC = () => (
+  <Page
+    {...pageMeta}
+  >
+    <TitleBlock />
 
-const MainPage: React.FC = () => {
-  // const { data } = useApi<SessionResponse>(Api.SESSION);
+    <WhyBlock />
 
-  return (
-    <Page
-      {...pageMeta}
-    >
-      <TitleBlock />
+    <MenuBlock />
 
-      <WhyBlock />
+    <Cart />
 
-      <MenuBlock />
-
-      <Cart />
-    </Page>
-  );
-};
+    <OrderForm />
+  </Page>
+);
 
 export default MainPage;

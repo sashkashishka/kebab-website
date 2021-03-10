@@ -6,3 +6,6 @@ export { Text } from './text';
 export * from './heading';
 export { Tab } from './tab';
 export * from './button';
+export { Label } from './label';
+export { Input } from './input';
+export { Asterisk } from './asterisk';

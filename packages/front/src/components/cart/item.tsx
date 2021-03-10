@@ -5,7 +5,6 @@ import {
   Box,
   Img,
   Text,
-  Button,
   RemoveButton,
   IncButton,
   DecButton,
@@ -17,10 +16,7 @@ import {
   ShopActions,
 } from 'Machines';
 
-import {
-  getLowestPrice,
-  pickSizePriceWeight,
-} from 'Utils';
+import { pickSizePriceWeight } from 'Utils';
 
 interface CartProductItemProps extends CartItem {
   send: (...args: any[]) => any;

@@ -10,16 +10,16 @@ import {
 } from 'Components/atoms';
 import { FreeFrom } from 'Components/free-from';
 
-import { ShopActions } from 'Machines';
-
 interface SumUpProps {
   order?: boolean;
+  disabled?: boolean;
   cart: CartItem[];
   send: (...args: any[]) => any;
 }
 
 export const SumUp: React.FC<SumUpProps> = ({
   order = false,
+  disabled = false,
   cart,
   send,
 }) => (
@@ -96,11 +96,8 @@ export const SumUp: React.FC<SumUpProps> = ({
 
     <Button
       type="button"
-      onClick={() => send({
-        type: order
-          ? ShopActions.OPEN_ORDER
-          : ShopActions.OPEN_CART,
-      })}
+      onClick={send}
+      disabled={disabled}
     >
       {
         order

@@ -1,0 +1,1 @@
+export { Asterisk } from './asterisk';

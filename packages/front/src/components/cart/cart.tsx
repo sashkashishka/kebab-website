@@ -5,15 +5,14 @@ import { ShopContext } from 'Components/provider';
 import {
   Box,
   Container,
-  // Text,
 } from 'Components/atoms';
-// import { FreeFrom } from 'Components/free-from';
+import { SumUp } from 'Components/sum-up';
 
 import {
   ShopStates,
+  ShopActions,
 } from 'Machines';
 
-import { SumUp } from './sum-up';
 import { CartPopup } from './popup';
 
 export const Cart: React.FC = () => {
@@ -45,7 +44,9 @@ export const Cart: React.FC = () => {
           <Container>
             <SumUp
               cart={cart}
-              send={send}
+              send={() => send({
+                type: ShopActions.OPEN_CART,
+              })}
             />
           </Container>
         </Box>
