@@ -16,6 +16,10 @@ import {
 import {
   Phone,
   DeliveryAddress,
+  Payment,
+  ChargeFrom,
+  DeliveryTime,
+  Comment,
 } from './fields';
 
 interface OrderFormPopupProps {
@@ -33,6 +37,11 @@ export const OrderFormPopup: React.FC<OrderFormPopupProps> = ({
     cart,
     phoneRef,
     deliveryAddressRef,
+    paymentRef,
+    chargeFromRef,
+    deliveryTimeRef,
+    commentRef,
+    payment,
   } = state.context as OrderMachineContext;
 
   return (
@@ -83,6 +92,26 @@ export const OrderFormPopup: React.FC<OrderFormPopupProps> = ({
 
             <DeliveryAddress
               deliveryAddressRef={deliveryAddressRef}
+            />
+
+            <Payment
+              paymentRef={paymentRef}
+            />
+
+            {
+              payment.value === 'cash' && (
+                <ChargeFrom
+                  chargeFromRef={chargeFromRef}
+                />
+              )
+            }
+
+            <DeliveryTime
+              deliveryTimeRef={deliveryTimeRef}
+            />
+
+            <Comment
+              commentRef={commentRef}
             />
           </Box>
 

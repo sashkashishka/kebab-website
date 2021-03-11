@@ -1,7 +1,6 @@
 import {
   Machine,
   assign,
-  SpawnedActorRef,
   sendParent,
 } from 'xstate';
 
@@ -17,14 +16,13 @@ export enum FieldActions {
   CHANGE = 'CHANGE',
 }
 
-export interface FieldMachineContext extends Field {}
+export interface FieldMachineContext<V> extends Field<V> {}
 
-export type FieldMachineEvents =
-  | { type: FieldActions.CHANGE, value: string | number };
-
-export type FieldActor = SpawnedActorRef<FieldMachineEvents>;
-
-export const createFieldMachine = (field: Field, name: string = 'noname') => Machine<FieldMachineContext, FieldMachineEvents>(
+export interface FieldMachineEvents<V> {
+  type: FieldActions.CHANGE;
+  value: V;
+}
+export const createFieldMachine = <V>(field: Field<V>, name: string = 'noname') => Machine<FieldMachineContext<V>, FieldMachineEvents<V>>(
   {
     id: `${name}-field`,
     initial: FieldStates.EDIT,

@@ -7,8 +7,18 @@ import {
 
 import { CartItem, Field, PaymentType } from '@kebab/types';
 
+import { getStartTime } from 'Utils';
+
+import { createRequestMachine } from 'Machines';
+
+import { ORDER } from 'Services';
+
 import { createPhoneFieldMachine, PhoneFieldActor } from './phone';
 import { createDeliveryAddressFieldMachine, DeliveryAddressFieldActor } from './delivery-address';
+import { createPaymentFieldMachine, PaymentFieldActor } from './payments';
+import { createChargeFromFieldMachine, ChargeFromFieldActor } from './charge-from';
+import { createDeliveryTimeFieldMachine, DeliveryTimeFieldActor } from './delivery-time';
+import { createCommentFieldMachine, CommentFieldActor } from './comment';
 
 export enum OrderStates {
   EDIT = 'edit',
@@ -40,17 +50,17 @@ export interface OrderMachineStateSchema {
 }
 
 export interface OrderMachineContext {
-  phone: Field;
+  phone: Field<string>;
   phoneRef: PhoneFieldActor;
   payment: Field<PaymentType>;
-  paymentRef: PaymenFieldActor;
-  chargeFrom: Field;
+  paymentRef: PaymentFieldActor;
+  chargeFrom: Field<string>;
   chargeFromRef: ChargeFromFieldActor;
-  deliveryTime: Field;
+  deliveryTime: Field<Date>;
   deliveryTimeRef: DeliveryTimeFieldActor;
-  deliveryAddress: Field;
+  deliveryAddress: Field<string>;
   deliveryAddressRef: DeliveryAddressFieldActor;
-  comment: Field;
+  comment: Field<string>;
   commentRef: CommentFieldActor;
   cart: CartItem[];
 }
@@ -86,10 +96,34 @@ export const createOrderMachine = (cart: CartItem[]) => Machine<OrderMachineCont
         value: '',
         error: undefined,
       },
+      payment: {
+        value: 'card',
+        error: undefined,
+      },
+      chargeFrom: {
+        value: '0',
+        error: undefined,
+      },
+      deliveryTime: {
+        value: getStartTime(new Date()),
+        error: undefined,
+      },
+      comment: {
+        value: '',
+        error: undefined,
+      },
       // @ts-ignore
       phoneRef: undefined,
       // @ts-ignore
       deliveryAddressRef: undefined,
+      // @ts-ignore
+      paymentRef: undefined,
+      // @ts-ignore
+      chargeFromRef: undefined,
+      // @ts-ignore
+      deliveryTimeRef: undefined,
+      // @ts-ignore
+      commentRef: undefined,
       cart,
     },
     states: {
@@ -97,6 +131,10 @@ export const createOrderMachine = (cart: CartItem[]) => Machine<OrderMachineCont
         entry: assign({
           phoneRef: (ctx) => spawn(createPhoneFieldMachine(ctx.phone)),
           deliveryAddressRef: (ctx) => spawn(createDeliveryAddressFieldMachine(ctx.deliveryAddress)),
+          paymentRef: (ctx) => spawn(createPaymentFieldMachine(ctx.payment)),
+          chargeFromRef: (ctx) => spawn(createChargeFromFieldMachine(ctx.chargeFrom)),
+          deliveryTimeRef: (ctx) => spawn(createDeliveryTimeFieldMachine(ctx.deliveryTime)),
+          commentRef: (ctx) => spawn(createCommentFieldMachine(ctx.comment)),
         }),
         on: {
           [OrderActions.CHANGE]: {
@@ -115,14 +153,72 @@ export const createOrderMachine = (cart: CartItem[]) => Machine<OrderMachineCont
             on: {
               [OrderActions.SUBMIT]: [
                 {
-                  // target: OrderStates.SUBMIT,
-                  // cond: 'isFieldsValid',
+                  target: OrderStates.SUBMIT,
+                  cond: 'isFormValid',
+                },
+                {
+                  actions: 'focusInvalid',
                 },
               ],
             },
           },
+          [OrderStates.SUBMIT]: {
+            invoke: {
+              src: () => Promise.resolve(1),
+              onDone: [
+                {
+                  target: OrderStates.ERROR,
+                  cond: 'isRequestError',
+                },
+                {
+                  target: OrderStates.SUCCESS,
+                },
+              ],
+            },
+          },
+          [OrderStates.SUCCESS]: {
+            type: 'final',
+          },
+          [OrderStates.ERROR]: {
+            on: {
+              
+            },
+          },
         },
       },
+    },
+  },
+  {
+    guards: {
+      isFormValid: (ctx) => {
+        const fields = [
+          ctx.phone,
+          ctx.payment,
+          ctx.deliveryTime,
+          ctx.deliveryAddress,
+        ];
+
+        if (ctx.payment.value === 'cash') {
+          fields.push(ctx.chargeFrom);
+        }
+
+        return fields.every(({ error }) => error === undefined);
+      },
+    },
+    actions: {
+      focusInvalid: assign((ctx) => {
+        const fields = [
+          ctx.phone,
+          ctx.payment,
+          ctx.deliveryTime,
+          ctx.deliveryAddress,
+        ];
+
+        if (ctx.payment.value === 'cash') {
+          fields.push(ctx.chargeFrom);
+        }
+
+      }),
     },
   },
 );

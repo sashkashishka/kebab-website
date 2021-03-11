@@ -9,3 +9,4 @@ export * from './button';
 export { Label } from './label';
 export { Input } from './input';
 export { Asterisk } from './asterisk';
+export { Textarea } from './textarea';

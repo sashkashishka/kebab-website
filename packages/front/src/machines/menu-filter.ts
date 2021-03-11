@@ -8,7 +8,6 @@ export enum MenuFilterStates {
 }
 
 export enum MenuFilterActions {
-  ALWAYS = 'always',
   SET_FILTER = 'SET_FILTER',
 }
 
@@ -32,7 +31,6 @@ interface MenuFilterMachineStateSchema {
 }
 
 type MenuFilterMachineEvents =
-  | { type: MenuFilterActions.ALWAYS }
   | { type: MenuFilterActions.SET_FILTER, filter: Filter };
 
 const initialFilter: Filter = {
@@ -53,7 +51,7 @@ export const createMenuFilterMachine = (products: ProductItemWithMachine[]) => M
   },
   states: {
     [MenuFilterStates.INIT]: {
-      [MenuFilterActions.ALWAYS]: {
+      always: {
         target: MenuFilterStates.MENU,
         actions: assign({
           filters: (ctx) => {

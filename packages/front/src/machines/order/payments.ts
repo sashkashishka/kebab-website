@@ -1,68 +1,24 @@
-import {
-  Machine,
-  assign,
-  SpawnedActorRef,
-  sendParent,
-} from 'xstate';
+import { assign, SpawnedActorRef } from 'xstate';
 
-import { Field } from '@kebab/types';
+import { Field, PaymentType } from '@kebab/types';
 
-import { OrderActions, ChangeEvent } from 'Machines';
+import { pipeValidators, required } from 'Utils';
 
-import { required } from 'Utils';
+import { createFieldMachine, FieldMachineEvents } from 'Machines';
 
-export enum PaymentFieldStates {
-  EDIT = 'edit',
-}
+export interface PaymentFieldMachineContext extends Field<PaymentType> {}
 
-export enum PaymentFieldActions {
-  CHANGE = 'CHANGE',
-}
+export type PaymentFieldActor = SpawnedActorRef<FieldMachineEvents<PaymentType>>;
 
-export interface PaymentFieldMachineContext extends Field {}
+const paymentRequired = required('Спосіб платежу є обов\'язковим');
 
-export type PaymentFieldMachineEvents =
-  | ChangeEvent
-  | { type: PaymentFieldActions.CHANGE, value: string | number };
-
-export type PaymentFieldActor = SpawnedActorRef<PaymentFieldMachineEvents>;
-
-const 
-
-export const createPaymentFieldMachine = (field: Field) => Machine<PaymentFieldMachineContext, PaymentFieldMachineEvents>(
-  {
-    id: 'payment-field',
-    initial: PaymentFieldStates.EDIT,
-    context: field,
-    states: {
-      [PaymentFieldStates.EDIT]: {
-        on: {
-          [PaymentFieldActions.CHANGE]: {
-            actions: [
-              'setValue',
-              'setError',
-              sendParent((ctx) => ({
-                type: OrderActions.CHANGE,
-                field: {
-                  value: ctx.value,
-                  error: ctx.error,
-                  name: 'payment',
-                },
-              })),
-            ],
-          },
-        },
-      },
-    },
-  },
-  {
+export const createPaymentFieldMachine = (field: Field<PaymentType>) => createFieldMachine<PaymentType>(field, 'payment')
+  .withConfig({
     actions: {
-      setValue: assign({
-        value: (_ctx, event) => event.value,
-      }),
       setError: assign({
-        error: (_ctx, event) => 'phone error',
+        error: (_ctx, event) => pipeValidators(
+          paymentRequired,
+        )(event.value),
       }),
     },
-  },
-);
+  });

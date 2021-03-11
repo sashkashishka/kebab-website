@@ -34,7 +34,7 @@ export const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ deliveryAddres
   return (
     <Box>
       <Label
-        htmlFor="phone"
+        htmlFor="delivery_address"
         css={css`
           display: flex;
           align-items: center;
@@ -77,9 +77,9 @@ export const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ deliveryAddres
       </Label>
 
       <Input
-        id="phone"
-        type="tel"
-        autoComplete="tel"
+        id="delivery_address"
+        type="text"
+        autoComplete="street-address"
         value={value}
         width="100%"
         disabled={isPickup}

@@ -7,6 +7,7 @@ import { Box } from 'Components/atoms';
 import { Header } from 'Components/header';
 import { Footer } from 'Components/footer';
 
+import 'react-datepicker/dist/react-datepicker.css';
 import '@reach/dialog/styles.css';
 import 'Styles/global.module.css';
 import 'Styles/gilroy-font.module.css';

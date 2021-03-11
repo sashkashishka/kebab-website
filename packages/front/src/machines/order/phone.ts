@@ -16,21 +16,21 @@ import {
   FieldMachineEvents,
 } from 'Machines';
 
-export interface PhoneFieldMachineContext extends Field {}
+export interface PhoneFieldMachineContext extends Field<string> {}
 
-export type PhoneFieldActor = SpawnedActorRef<FieldMachineEvents>;
+export type PhoneFieldActor = SpawnedActorRef<FieldMachineEvents<string>>;
 
 const phoneRequired = required('Номер телефону є обов\'язковим');
 const isPhoneNumber = isPhone('Необхідно вводити номер у вигляді +380671234567');
 
-export const createPhoneFieldMachine = (field: Field) => createFieldMachine(field, 'phone')
+export const createPhoneFieldMachine = (field: Field<string>) => createFieldMachine<string>(field, 'phone')
   .withConfig({
     actions: {
       setError: assign({
         error: (_ctx, event) => pipeValidators(
           phoneRequired,
           isPhoneNumber,
-        )(event.value as string),
+        )(event.value),
       }),
     },
   });

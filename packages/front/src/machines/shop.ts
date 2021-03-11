@@ -8,7 +8,6 @@ import {
 } from 'xstate';
 
 import {
-  Order,
   ProductItem,
   ProductsList,
   CartItem,
@@ -58,7 +57,8 @@ export interface ProductItemWithMachine extends ProductItem {
   productRef: ProductCardActor;
 }
 
-interface ShopMachineContext extends Order {
+interface ShopMachineContext {
+  cart: CartItem[];
   products: ProductItemWithMachine[];
   menuFilterRef: MenuFilterActor;
   orderRef: OrderActor;
@@ -102,13 +102,6 @@ export const ShopMachine = Machine<ShopMachineContext, ShopMachineEvents>(
     id: 'shop',
     initial: ShopStates.FETCH,
     context: {
-      creation_date: new Date(),
-      phone: '',
-      address: '',
-      payment: 'card',
-      charge_from: 0,
-      delivery_time: new Date(), // TODO add 1 hour to delivery time
-      comment: '',
       cart: [],
       products: [],
       // @ts-ignore

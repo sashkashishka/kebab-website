@@ -21,20 +21,20 @@ export enum DeliveryAddressFieldActions {
   ADDRESS = 'ADDRESS',
 }
 
-export interface DeliveryAddressFieldMachineContext extends Field {}
+export interface DeliveryAddressFieldMachineContext extends Field<string> {}
 
 export type DeliveryAddressFieldMachineEvents =
   | { type: DeliveryAddressFieldActions.ADDRESS }
   | { type: DeliveryAddressFieldActions.PICKUP }
-  | { type: FieldActions.CHANGE, value: string | number };
+  | { type: FieldActions.CHANGE, value: string };
 
 export type DeliveryAddressFieldActor = SpawnedActorRef<DeliveryAddressFieldMachineEvents>;
 
 const addressRequired = required('Адресса обов\'язкова для заповнення');
 
-export const createDeliveryAddressFieldMachine = (field: Field) => Machine<DeliveryAddressFieldMachineContext, DeliveryAddressFieldMachineEvents>(
+export const createDeliveryAddressFieldMachine = (field: Field<string>) => Machine<DeliveryAddressFieldMachineContext, DeliveryAddressFieldMachineEvents>(
   {
-    id: 'payment-field',
+    id: 'delivery-address-field',
     initial: DeliveryAddressFieldStates.EDIT,
     context: field,
     states: {
@@ -73,18 +73,22 @@ export const createDeliveryAddressFieldMachine = (field: Field) => Machine<Deliv
   {
     actions: {
       setPickup: assign({
-        error: undefined,
-        value: 'самовивіз',
+        error: (_ctx) => undefined, // eslint-disable-line
+        value: (_ctx) => 'самовивіз', // eslint-disable-line
       }),
       clearPickup: assign({
-        error: undefined,
-        value: '',
+        error: (_ctx) => undefined, // eslint-disable-line
+        value: (_ctx) => '', // eslint-disable-line
       }),
       setValue: assign({
-        value: (_ctx, event) => event.value,
+        value: (_ctx, event) => event.type === FieldActions.CHANGE
+          ? event.value
+          : '',
       }),
       setError: assign({
-        error: (_ctx, event) => addressRequired(event.value),
+        error: (_ctx, event) => event.type === FieldActions.CHANGE
+          ? addressRequired(event.value)
+          : undefined,
       }),
     },
   },
