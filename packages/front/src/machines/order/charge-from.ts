@@ -19,7 +19,7 @@ const chargeFromRequired = required('Сдача є обов\'язковою');
 const isInterger = integer('Вводіть тільки цифри');
 const isPositive = positive('Введіть невід\'ємне значення');
 
-export const createChargeFromFieldMachine = (field: Field<string>) => createFieldMachine<string>(field, 'charge-from')
+export const createChargeFromFieldMachine = (field: Field<string>) => createFieldMachine<string>(field, 'chargeFrom')
   .withConfig({
     actions: {
       setError: assign({

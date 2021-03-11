@@ -13,6 +13,7 @@ export { getStartTime } from './get-start-time';
 export { isRequestError } from './guards/is-request-error';
 export { isSizeFilled } from './guards/is-size-filled';
 export { isDuplicate } from './guards/is-duplicate';
+export { cartNotEmpty } from './guards/cart-not-empty';
 
 // xstate actions
 export { calcPrice } from './actions/calc-price';

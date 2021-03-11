@@ -27,7 +27,7 @@ export const integer = (error: string) => (value: string | number) => {
 };
 
 export const positive = (error: string) => (value: string | number) => (
-  parseInt(String(value), 10) > 0
+  parseInt(String(value), 10) >= 0
     ? undefined
     : error
 );

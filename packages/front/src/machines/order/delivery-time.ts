@@ -10,4 +10,4 @@ export interface DeliveryTimeFieldMachineContext extends Field<Val> {}
 
 export type DeliveryTimeFieldActor = SpawnedActorRef<FieldMachineEvents<Val>>;
 
-export const createDeliveryTimeFieldMachine = (field: Field<Val>) => createFieldMachine<Val>(field, 'delivery-time');
+export const createDeliveryTimeFieldMachine = (field: Field<Val>) => createFieldMachine<Val>(field, 'deliveryTime');

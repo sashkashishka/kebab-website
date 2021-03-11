@@ -49,7 +49,7 @@ export const createDeliveryAddressFieldMachine = (field: Field<string>) => Machi
                 field: {
                   value: ctx.value,
                   error: ctx.error,
-                  name: 'payment',
+                  name: 'deliveryAddress',
                 },
               })),
             ],

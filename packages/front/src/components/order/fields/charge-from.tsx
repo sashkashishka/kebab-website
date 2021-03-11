@@ -30,7 +30,7 @@ export const ChargeFrom: React.FC<ChargeFromProps> = ({ chargeFromRef }) => {
       <Label
         htmlFor="charge_from"
       >
-        Сдача з
+        Решта з
         {' '}
         <Asterisk />
       </Label>

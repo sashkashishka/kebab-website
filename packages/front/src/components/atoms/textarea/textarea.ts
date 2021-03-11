@@ -1,8 +1,8 @@
 import styled from 'astroturf';
 
 export const Textarea = styled('textarea')`
-  max-width: 350px;
-  max-height: 150px;
+  width: 100%;
+  max-height: 250px;
   padding: 12px;
   border-radius: 2px;
   border: 1px solid #f1f1f9;

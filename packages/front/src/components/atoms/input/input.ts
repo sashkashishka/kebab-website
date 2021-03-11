@@ -1,6 +1,7 @@
 import styled from 'astroturf';
 
 export const Input = styled('input')`
+  width: 100%;
   padding: 12px;
   border-radius: 2px;
   border: 1px solid #f1f1f9;

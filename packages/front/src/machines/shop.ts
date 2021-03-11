@@ -17,6 +17,7 @@ import {
   isRequestError,
   isDuplicate,
   findDuplicateIndex,
+  cartNotEmpty,
 } from 'Utils';
 import { GET_PRODUCT_LIST } from 'Services';
 import {
@@ -147,6 +148,7 @@ export const ShopMachine = Machine<ShopMachineContext, ShopMachineEvents>(
             on: {
               [ShopActions.OPEN_CART]: {
                 target: ShopStates.CART,
+                cond: 'cartNotEmpty',
               },
               [ShopActions.ADD_TO_CART]: [
                 {
@@ -205,6 +207,7 @@ export const ShopMachine = Machine<ShopMachineContext, ShopMachineEvents>(
     guards: {
       isRequestError,
       isDuplicate,
+      cartNotEmpty,
     },
     actions: {
       inc: assign({

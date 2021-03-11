@@ -41,6 +41,7 @@
     "@types/react-datepicker": "^3",
     "@types/react-dom": "16.9.11",
     "@types/react-helmet": "6.1.0",
+    "@xstate/inspect": "0.4.1",
     "gatsby-plugin-typescript": "2.12.1",
     "gatsby-plugin-webpack-bundle-analyzer": "1.0.5",
     "http-proxy-middleware": "1.0.3",

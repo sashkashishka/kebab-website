@@ -4,12 +4,13 @@ import {
   SpawnedActorRef,
   spawn,
 } from 'xstate';
+import { format } from 'date-fns';
 
 import { CartItem, Field, PaymentType } from '@kebab/types';
 
-import { getStartTime } from 'Utils';
+import { getStartTime, isRequestError } from 'Utils';
 
-import { createRequestMachine } from 'Machines';
+import { createRequestMachine, FieldActions } from 'Machines';
 
 import { ORDER } from 'Services';
 
@@ -34,13 +35,14 @@ export enum OrderActions {
   SUCCESS = 'SUCCESS',
   ERROR = 'ERROR',
   EDIT = 'EDIT',
+  RETRY = 'RETRY',
 }
 
 export interface OrderMachineStateSchema {
   states: {
-    [OrderStates.EDIT]: {
+    [OrderStates.IDLE]: {
       states: {
-        [OrderStates.IDLE]: {},
+        [OrderStates.EDIT]: {},
         [OrderStates.SUBMIT]: {},
         [OrderStates.SUCCESS]: {},
         [OrderStates.ERROR]: {},
@@ -76,6 +78,7 @@ export interface ChangeEvent {
 
 type OrderMachineEvents =
   | ChangeEvent
+  | { type: OrderActions.RETRY }
   | { type: OrderActions.SUCCESS }
   | { type: OrderActions.ERROR }
   | { type: OrderActions.EDIT }
@@ -128,6 +131,7 @@ export const createOrderMachine = (cart: CartItem[]) => Machine<OrderMachineCont
     },
     states: {
       [OrderStates.IDLE]: {
+        initial: OrderStates.EDIT,
         entry: assign({
           phoneRef: (ctx) => spawn(createPhoneFieldMachine(ctx.phone)),
           deliveryAddressRef: (ctx) => spawn(createDeliveryAddressFieldMachine(ctx.deliveryAddress)),
@@ -157,14 +161,36 @@ export const createOrderMachine = (cart: CartItem[]) => Machine<OrderMachineCont
                   cond: 'isFormValid',
                 },
                 {
-                  actions: 'focusInvalid',
+                  actions: 'setInvalid',
                 },
               ],
             },
           },
           [OrderStates.SUBMIT]: {
             invoke: {
-              src: () => Promise.resolve(1),
+              src: (ctx) => {
+                const {
+                  payment,
+                  phone,
+                  deliveryTime,
+                  deliveryAddress,
+                  chargeFrom,
+                  comment,
+                } = ctx;
+
+                return createRequestMachine({
+                  ...ORDER,
+                  data: {
+                    payment: payment.value,
+                    phone: phone.value,
+                    deliveryTime: format(deliveryTime.value, 'HH:mm dd.MM.yyyy'),
+                    deliveryAddress: deliveryAddress.value,
+                    chargeFrom: chargeFrom.value,
+                    comment: comment.value,
+                    cart,
+                  },
+                });
+              },
               onDone: [
                 {
                   target: OrderStates.ERROR,
@@ -181,7 +207,9 @@ export const createOrderMachine = (cart: CartItem[]) => Machine<OrderMachineCont
           },
           [OrderStates.ERROR]: {
             on: {
-              
+              [OrderActions.RETRY]: {
+                target: OrderStates.EDIT,
+              },
             },
           },
         },
@@ -202,23 +230,45 @@ export const createOrderMachine = (cart: CartItem[]) => Machine<OrderMachineCont
           fields.push(ctx.chargeFrom);
         }
 
-        return fields.every(({ error }) => error === undefined);
+        // HACK
+        return fields.every(({ error }) => error === undefined)
+          && fields.every(({ value }) => value);
       },
+      isRequestError,
     },
     actions: {
-      focusInvalid: assign((ctx) => {
+      setInvalid: (ctx) => {
         const fields = [
-          ctx.phone,
-          ctx.payment,
-          ctx.deliveryTime,
-          ctx.deliveryAddress,
+          {
+            actor: ctx.phoneRef,
+            field: ctx.phone,
+          },
+          {
+            actor: ctx.paymentRef,
+            field: ctx.payment,
+          },
+          {
+            actor: ctx.deliveryTimeRef,
+            field: ctx.deliveryTime,
+          },
+          {
+            actor: ctx.deliveryAddressRef,
+            field: ctx.deliveryAddress,
+          },
         ];
 
         if (ctx.payment.value === 'cash') {
-          fields.push(ctx.chargeFrom);
+          fields.push({
+            actor: ctx.chargeFromRef,
+            field: ctx.chargeFrom,
+          });
         }
 
-      }),
+        fields.forEach(({ actor, field }) => actor.send({
+          type: FieldActions.CHANGE,
+          value: field.value,
+        }));
+      },
     },
   },
 );
