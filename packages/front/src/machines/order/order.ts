@@ -3,6 +3,7 @@ import {
   assign,
   SpawnedActorRef,
   spawn,
+  sendParent,
 } from 'xstate';
 import { format } from 'date-fns';
 
@@ -10,7 +11,11 @@ import { CartItem, Field, PaymentType } from '@kebab/types';
 
 import { getStartTime, isRequestError } from 'Utils';
 
-import { createRequestMachine, FieldActions } from 'Machines';
+import {
+  createRequestMachine,
+  FieldActions,
+  ShopActions,
+} from 'Machines';
 
 import { ORDER } from 'Services';
 
@@ -181,13 +186,14 @@ export const createOrderMachine = (cart: CartItem[]) => Machine<OrderMachineCont
                 return createRequestMachine({
                   ...ORDER,
                   data: {
+                    creationDate: format(new Date(), 'HH:mm dd.MM.yyyy'),
                     payment: payment.value,
                     phone: phone.value,
                     deliveryTime: format(deliveryTime.value, 'HH:mm dd.MM.yyyy'),
                     deliveryAddress: deliveryAddress.value,
                     chargeFrom: chargeFrom.value,
                     comment: comment.value,
-                    cart,
+                    cart: cart.map(({ item, ...rest }) => rest),
                   },
                 });
               },
@@ -203,7 +209,9 @@ export const createOrderMachine = (cart: CartItem[]) => Machine<OrderMachineCont
             },
           },
           [OrderStates.SUCCESS]: {
-            type: 'final',
+            entry: sendParent({
+              type: ShopActions.SUCCESS,
+            }),
           },
           [OrderStates.ERROR]: {
             on: {
