@@ -93,6 +93,15 @@ module.exports = {
     title: 'Эль шейх - идеальная шаурма',
     // TODO use other url
     siteUrl: 'https://kebab.com.ua',
+    tiktok: '#',
+    instagram: '#',
+    telegram: '#',
+    phone: '+38 068 835 29 96',
+    address: 'Чапаева 10Б (МОД/ЖТК)',
+    addressExtended: `
+      Ул. Чапаева 10б
+      (Територия колледжа МОД/ЖТК)
+    `,
   },
 
   plugins: getPlugins(),

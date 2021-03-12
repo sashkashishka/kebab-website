@@ -1782,6 +1782,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@kebab/server@workspace:packages/server"
   dependencies:
+    "@kebab/types": 1.0.0
     "@types/body-parser": 1.19.0
     "@types/compression": 1.7.0
     "@types/cors": 2.8.10
@@ -1790,6 +1791,8 @@ __metadata:
     "@types/helmet": 0.0.45
     "@types/node": 13.13.45
     "@types/query-string": ^6
+    "@types/ramda": 0.26.44
+    ajv: 7.2.1
     body-parser: 1.19.0
     compression: 1.7.4
     cors: 2.8.5
@@ -1800,13 +1803,14 @@ __metadata:
     loglevel: 1.7.1
     nodemon: 2.0.7
     query-string: 6.14.1
+    ramda: 0.27.1
     ts-node: 8.10.2
   peerDependencies:
     typescript: ">=4"
   languageName: unknown
   linkType: soft
 
-"@kebab/types@workspace:1.0.0, @kebab/types@workspace:packages/types":
+"@kebab/types@1.0.0, @kebab/types@workspace:1.0.0, @kebab/types@workspace:packages/types":
   version: 0.0.0-use.local
   resolution: "@kebab/types@workspace:packages/types"
   languageName: unknown
@@ -3105,6 +3109,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ajv@npm:7.2.1, ajv@npm:^7.0.2":
+  version: 7.2.1
+  resolution: "ajv@npm:7.2.1"
+  dependencies:
+    fast-deep-equal: ^3.1.1
+    json-schema-traverse: ^1.0.0
+    require-from-string: ^2.0.2
+    uri-js: ^4.2.2
+  checksum: 34044f60ca45ef8ec850f5d09e4db340bb870639efc1694d54bec7ff4b06b12b077872949223f703d1507bbf3d553b59752f4c327ffcd25726ee27919d586037
+  languageName: node
+  linkType: hard
+
 "ajv@npm:^6.1.0, ajv@npm:^6.10.0, ajv@npm:^6.10.2, ajv@npm:^6.12.3, ajv@npm:^6.12.4, ajv@npm:^6.12.5":
   version: 6.12.6
   resolution: "ajv@npm:6.12.6"
@@ -3114,18 +3130,6 @@ __metadata:
     json-schema-traverse: ^0.4.1
     uri-js: ^4.2.2
   checksum: 19a8f3b0a06001eb68e6268f4f9f04424b32baadd5df6ba8292cd473e22e5f4019ed9ab17c3e3510394178ed8bef9b42ad0bdb5c675d65f042421a774780ce1a
-  languageName: node
-  linkType: hard
-
-"ajv@npm:^7.0.2":
-  version: 7.2.1
-  resolution: "ajv@npm:7.2.1"
-  dependencies:
-    fast-deep-equal: ^3.1.1
-    json-schema-traverse: ^1.0.0
-    require-from-string: ^2.0.2
-    uri-js: ^4.2.2
-  checksum: 34044f60ca45ef8ec850f5d09e4db340bb870639efc1694d54bec7ff4b06b12b077872949223f703d1507bbf3d553b59752f4c327ffcd25726ee27919d586037
   languageName: node
   linkType: hard
 

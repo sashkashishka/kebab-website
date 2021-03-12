@@ -1,26 +1,30 @@
 import { RequestHandler } from 'express';
+import * as R from 'ramda';
 
-// TODO req validation
+import { validate } from './schema';
+import { transformCart, cartToString } from './transform';
+import { translateKeys } from './translate';
+
 export const postOrder: RequestHandler = async (req, res, next) => {
   try {
+    const isValid = validate(req.body);
+
+    if (!isValid) {
+      // TODO return readable errors
+      res.status(400).json(validate.errors);
+    }
+
     const doc = req.gSheet;
 
     await doc.loadInfo();
 
     const orderSheet = doc.sheetsByIndex[1];
 
-    // TODO check if req.body exists and has full list of keys and values
-    const data = Object.keys(req.body).reduce((acc, key) => {
-      if (key === 'cart') {
-        acc[key] = JSON.stringify(req.body[key], null, '  ');
-      } else {
-        acc[key] = req.body[key];
-      }
-
-      return acc;
-    }, {});
-
-    console.log(data)
+    const data = R.pipe(
+      transformCart,
+      translateKeys,
+      cartToString,
+    )(req.body);
 
     const orderRow = await orderSheet.addRow(data);
 

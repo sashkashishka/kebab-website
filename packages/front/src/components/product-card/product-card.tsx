@@ -61,8 +61,8 @@ export const ProductCard: React.FC<ProductItemWithMachine> = ({
           title={name}
           css={css`
             width: 100%;
-            heigt: 100%;
-            max-heigt: 150px;
+            height: 100%;
+            max-height: 150px;
             margin-bottom: 16px;
             border-radius: 10px;
             object-fit: cover;

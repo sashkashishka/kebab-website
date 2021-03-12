@@ -29,12 +29,44 @@ export interface CartItem {
 }
 
 export interface Order {
-  creation_date: Date;
+  creationDate: string;
   phone: string;
-  address: string;
+  deliveryAddress: string;
   payment: 'card' | 'cash';
-  charge_from?: number;
-  delivery_time: Date;
+  chargeFrom: string;
+  deliveryTime: string;
   comment: string;
-  cart: CartItem[];
+  cart: Omit<CartItem, 'item'>[];
+}
+
+export interface OrderSimplified extends Omit<Order, 'cart'> {
+  cart: Array<{
+    price: number;
+    name: string;
+    qty: number;
+    size: string;
+    toppings: string[];
+  }>;
+}
+
+export interface OrderSimplifiedTranslated {
+  'Дата создания': string;
+  'Номер телефона': string;
+  'Адрес доставки': string;
+  'Тип оплаты': 'card' | 'cash';
+  'Сдача с': string;
+  'Время доставки': string;
+  'Комментарий': string;
+  'Корзина': Array<{
+    'Количество': number;
+    'Размер': string;
+    'Наименование': string;
+    'Добавки': string[];
+    'Цена': number;
+  }>;
+}
+
+export interface OrderForTable extends Omit<OrderSimplifiedTranslated, 'Корзина'> {
+  'Корзина': string;
+  [header: string]: string | number | boolean;
 }

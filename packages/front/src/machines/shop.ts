@@ -52,6 +52,8 @@ export enum ShopActions {
   OPEN_ORDER = 'OPEN_ORDER',
   CLOSE_ORDER = 'OPEN_ORDER',
   SUCCESS = 'SUCCESS',
+  // success
+  CLOSE_SUCCESS = 'CLOSE_SUCCESS',
 }
 
 export interface ProductItemWithMachine extends ProductItem {
@@ -88,6 +90,7 @@ type ShopMachineEvents =
   | { type: ShopActions.INC, item: CartItem }
   | { type: ShopActions.DEC, item: CartItem }
   | { type: ShopActions.SUCCESS }
+  | { type: ShopActions.CLOSE_SUCCESS }
   | { type: ShopActions.OPEN_ORDER };
 
 export type ShopMachineInterpreted = [
@@ -197,6 +200,10 @@ export const ShopMachine = Machine<ShopMachineContext, ShopMachineEvents>(
           },
           [ShopStates.SUCCESS]: {
             on: {
+              [ShopActions.CLOSE_SUCCESS]: {
+                target: ShopStates.IDLE,
+                actions: 'clearCart',
+              },
             },
           },
         },
@@ -244,6 +251,9 @@ export const ShopMachine = Machine<ShopMachineContext, ShopMachineEvents>(
 
           return ctx.cart.filter((item, k) => i !== k);
         },
+      }),
+      clearCart: assign({
+        cart: [],
       }),
     },
   },

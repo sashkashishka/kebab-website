@@ -5,6 +5,7 @@ import { ShopContext } from 'Components/provider';
 import { ShopStates } from 'Machines';
 
 import { OrderFormPopup } from './popup';
+import { SuccessPopup } from './success';
 
 export const OrderForm: React.FC = () => {
   const [state, send] = React.useContext(ShopContext);
@@ -19,6 +20,13 @@ export const OrderForm: React.FC = () => {
         <OrderFormPopup
           shopSend={send}
           orderRef={orderRef}
+        />
+      );
+
+    case state.matches({ [ShopStates.BUY]: ShopStates.SUCCESS }):
+      return (
+        <SuccessPopup
+          shopSend={send}
         />
       );
 
