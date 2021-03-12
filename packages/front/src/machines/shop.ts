@@ -167,6 +167,10 @@ export const ShopMachine = Machine<ShopMachineContext, ShopMachineEvents>(
             },
           },
           [ShopStates.CART]: {
+            always: {
+              cond: 'cartEmpty',
+              target: ShopStates.IDLE,
+            },
             on: {
               [ShopActions.CLOSE_CART]: {
                 target: ShopStates.IDLE,
@@ -215,6 +219,7 @@ export const ShopMachine = Machine<ShopMachineContext, ShopMachineEvents>(
       isRequestError,
       isDuplicate,
       cartNotEmpty,
+      cartEmpty: (ctx) => !cartNotEmpty(ctx),
     },
     actions: {
       inc: assign({

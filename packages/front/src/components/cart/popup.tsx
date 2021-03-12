@@ -10,7 +10,6 @@ import { ShopActions } from 'Machines';
 
 import { CartProductItem } from './item';
 
-// TODO view when cart is empty
 export const CartPopup: React.FC = () => {
   const [state, send] = React.useContext(ShopContext);
 
