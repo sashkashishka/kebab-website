@@ -1769,6 +1769,7 @@ __metadata:
     query-string: 5.1.1
     ramda: 0.27.1
     react: 16.14.0
+    react-content-loader: 6.0.2
     react-datepicker: 3.6.0
     react-dom: 16.14.0
     react-helmet: 5.2.1
@@ -15194,6 +15195,15 @@ fsevents@~2.3.1:
   peerDependencies:
     react: ^15.3.0 || ^16.0.0 || ^17.0.0
   checksum: d4ddba85219bc4b839b01900ea275e4b39331f1b6995f64ee02210d10eb119c7b18ce6de5739aaf2b66ff0047c074096341d44113af84671c1b69d4b4650626c
+  languageName: node
+  linkType: hard
+
+"react-content-loader@npm:6.0.2":
+  version: 6.0.2
+  resolution: "react-content-loader@npm:6.0.2"
+  peerDependencies:
+    react: ">=16.0.0"
+  checksum: 11289e94e1cf7b15cc636d3ab545fdc057419616e8f908c39cab58211764b1337a07288b5c55fd3926e4e3ae15b210273f30043ac6abe81e4bdf711e2768493a
   languageName: node
   linkType: hard
 

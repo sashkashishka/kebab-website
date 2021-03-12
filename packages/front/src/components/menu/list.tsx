@@ -4,7 +4,7 @@ import { css } from 'astroturf';
 
 import { ShopContext } from 'Components/provider';
 import { Box, Tab } from 'Components/atoms';
-import { ProductCard } from 'Components/product-card';
+import { ProductCard, ProductCardSkeleton } from 'Components/product-card';
 
 import {
   ShopStates,
@@ -12,6 +12,8 @@ import {
   MenuFilterActor,
   MenuFilterActions,
 } from 'Machines';
+
+import { MenuFiltersSkeleton } from './skeleton';
 
 interface FilterAndListProps {
   menuFilterRef: MenuFilterActor;
@@ -83,8 +85,35 @@ export const MenuList: React.FC = () => {
         />
       );
 
+    case state.matches(ShopStates.FETCH):
+      return (
+        <>
+          <Box
+            css={css`
+              margin-bottom: 8px;
+            `}
+          >
+            <MenuFiltersSkeleton />
+          </Box>
+          <Box
+            css={css`
+              display: grid;
+              grid-gap: 16px;
+              grid-template-columns: repeat(auto-fit, minmax(284px, 1fr));
+            `}
+          >
+            {
+              Array.from(Array(10).keys()).map((_v, i) => (
+                <ProductCardSkeleton
+                  key={i} // eslint-disable-line
+                />
+              ))
+            }
+          </Box>
+        </>
+      );
+
     default:
-      // TODO skeleton
       return null;
   }
 };
