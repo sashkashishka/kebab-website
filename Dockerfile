@@ -1,28 +1,18 @@
-FROM node:12 as builder
+FROM node:12-alpine
 
-WORKDIR /usr/src/teme
+EXPOSE 80
+EXPOSE 443
+
+WORKDIR /kebab
 
 COPY . .
 
 RUN yarn
 
-RUN yarn workspace @teme/front build
+RUN yarn workspace @kebab/front build
 
-RUN yarn workspace @teme/server build
+RUN yarn workspace @kebab/server build
 
-RUN mkdir app && mv packages/front/public app/public && mv packages/server/build/* app
+RUN mkdir app && cp -r packages/front/public packages/server
 
-
-FROM node:12-alpine as prod
-
-WORKDIR /usr/src/app
-
-COPY --from=builder /usr/src/teme/app .
-
-COPY packages/server/package.json .
-
-RUN yarn --prod --no-lockfile
-
-RUN yarn global add pm2
-
-CMD ["pm2-runtime", "server.js"]
+CMD ["yarn", "workspace", "@kebab/server", "start"]

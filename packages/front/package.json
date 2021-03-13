@@ -5,7 +5,6 @@
   "author": "Aleksandr Taperik <alexandr1696@hotmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@kebab/types": "workspace:1.0.0",
     "@reach/dialog": "0.13.2",
     "@xstate/react": "1.3.1",
     "astroturf": "0.10.5",
@@ -36,6 +35,7 @@
     "xstate": "4.16.2"
   },
   "devDependencies": {
+    "@kebab/types": "workspace:1.0.0",
     "@types/classnames": "^2",
     "@types/ramda": "0.26.44",
     "@types/react": "16.14.4",

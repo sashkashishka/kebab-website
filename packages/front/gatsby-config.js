@@ -47,31 +47,21 @@ const getPlugins = () => {
      * @see https://www.gatsbyjs.org/packages/gatsby-plugin-offline/
      */
     'gatsby-plugin-offline',
-    /**
-     * @NOTE provide fonts from design
-     */
-    {
-      resolve: 'gatsby-plugin-prefetch-google-fonts',
-      options: {
-        fonts: [
-          {
-            family: 'Proxima Nova',
-            variants: [
-              '600',
-              '800',
-            ],
-          },
-          {
-            family: 'Roboto',
-            variants: [
-              '400',
-              '600',
-              '700',
-            ],
-          },
-        ],
-      },
-    },
+    // TODO change proxima nova font or download it
+    // {
+    //   resolve: 'gatsby-plugin-prefetch-google-fonts',
+    //   options: {
+    //     fonts: [
+    //       {
+    //         family: 'Proxima Nova',
+    //         variants: [
+    //           '600',
+    //           '800',
+    //         ],
+    //       },
+    //     ],
+    //   },
+    // },
   ];
 
   if (process.env.BUNDLE) {

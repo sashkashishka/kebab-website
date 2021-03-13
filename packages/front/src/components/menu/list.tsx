@@ -85,7 +85,7 @@ export const MenuList: React.FC = () => {
         />
       );
 
-    case state.matches(ShopStates.FETCH):
+    default:
       return (
         <>
           <Box
@@ -112,8 +112,5 @@ export const MenuList: React.FC = () => {
           </Box>
         </>
       );
-
-    default:
-      return null;
   }
 };
