@@ -9,6 +9,7 @@ export const Tab = styled('button')`
   color: var(--black);
   border-radius: 10px;
   background-color: var(--2color);
+  cursor: pointer;
   outline: none;
 
   &:hover {

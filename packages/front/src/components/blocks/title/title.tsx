@@ -1,44 +1,34 @@
+import { useMachine } from '@xstate/react';
 import { css } from 'astroturf';
 import {
   Box,
   Container,
   H1,
   Text,
-  Img,
 } from 'Components/atoms';
-import { FreeFrom } from 'Components/free-from';
+import { Socials } from 'Components/socials';
+import { KebabEmoji, PizzaEmoji } from 'Components/emoji';
 
-import { useSiteMetadata } from 'Hooks';
+import { CarouselMachine, CarouselStates } from 'Machines';
 
 import imgKebab from 'Img/img-kebab.png';
+import imgPizza from 'Img/img-pizza.png';
+
+import { CarouselItem } from './item';
 
 export const TitleBlock = () => {
-  const { address } = useSiteMetadata();
+  const [state, send] = useMachine(CarouselMachine);
 
   return (
     <Box
       css={css`
         background-color: var(--black);
-        background-image: url('Img/bg-wave.svg');
-        background-position: center bottom;
-        background-repeat: no-repeat;
+        background-image: linear-gradient(to bottom, #131313 60%, #F1F1F9 40%);
 
         @media all and (min-width: 768px) {
           & {
-            background-size: contain;
-          } 
-        }
-
-        @media all and (min-width: 1920px) {
-          & {
-            background-position: 80% 150%;
-          } 
-        }
-
-        @media all and (min-width: 2560px) {
-          & {
-            background-position: 80% 250px;
-          } 
+            background-image: linear-gradient(to bottom, #131313 70%, #F1F1F9 30%);
+          }
         }
       `}
     >
@@ -46,14 +36,15 @@ export const TitleBlock = () => {
         css={css`
           padding-top: 32px;
           padding-bottom: 32px;
-          background-image: url('Img/bg-title-mobile.svg');
+          background-image: url('Img/bg-title-mobile.png');
           background-size: contain;
           background-position: center;
           background-repeat: no-repeat;
 
           @media all and (min-width: 768px) {
             & {
-              background-image: url('Img/bg-title-desktop.svg');
+              background-position: center right;
+              background-image: url('Img/bg-title-desktop.png');
             } 
           }
         `}
@@ -69,7 +60,7 @@ export const TitleBlock = () => {
             @media all and (min-width: 768px) {
               & {
                 grid-template-rows: auto 1fr;
-                grid-template-columns: 50% 50%;
+                grid-template-columns: 40% 60%;
                 text-align: start;
               } 
             }
@@ -81,7 +72,7 @@ export const TitleBlock = () => {
                 margin-bottom: 18px;
               `}
             >
-              Идеальная шаурма
+              Идеальная шаурма и пицца
             </H1>
 
             <Text
@@ -95,14 +86,19 @@ export const TitleBlock = () => {
             <Text
               css={css`
                 color: var(--accent);
+                font-weight: bold;
               `}
             >
               c 9:00 до 21:00
             </Text>
+
           </Box>
 
           <Box
             css={css`
+              overflow: hidden;
+              width: 100%;
+
               @media all and (min-width: 768px) {
                 & {
                   grid-row: 1/3;
@@ -112,48 +108,58 @@ export const TitleBlock = () => {
               }
             `}
           >
-            <Img
-              src={imgKebab}
-              alt="kebab"
+            <Box
               css={css`
-                width: 100%;
-                height: 100%;
-                object-fit: contain;
-                max-width: 500px;
-                max-height: 500px;
+                display: flex;
+                justify-content: space-around;
+                width: 200%;
+                transform: translateX(${state.value === CarouselStates.PIZZA ? '-50%' : 0});
+                transition: transform 0.5s;
               `}
-              width="300px"
-              height="300px"
-            />
+            >
+              <CarouselItem
+                img={imgKebab}
+                alt="kebab"
+                price={40}
+                name={(
+                  <>
+                    Сочная шаурма <KebabEmoji />
+                  </>
+                )}
+              />
+
+              <CarouselItem
+                img={imgPizza}
+                alt="pizza"
+                price={55}
+                name={(
+                  <>
+                    Ароматная пицца <PizzaEmoji />
+                  </>
+                )}
+              />
+            </Box>
           </Box>
 
-          <Text
+          <Box
             css={css`
-              color: var(--black);
+              display: none;
 
               @media all and (min-width: 768px) {
                 & {
-                  color: var(--white);
+                  display: block;
+                  margin-top: 32px;
+                  grid-row: 2/3;
+                  grid-column: 1/2;
+                  align-self: end;
+                  color: var(--black);
                 } 
               }
             `}
           >
-            <Text
-              as="b"
-              css={css`
-                font-weight: 700;
-              `}
-            >
-              {address}
-            </Text>
+            <Socials />
+          </Box>
 
-            <br />
-            <br />
-
-            <FreeFrom
-              variant="white"
-            />
-          </Text>
         </Box>
       </Container>
     </Box>

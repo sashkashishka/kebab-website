@@ -8,6 +8,7 @@ import {
   Img,
   Text,
 } from 'Components/atoms';
+import { RoundPushpin } from 'Components/emoji';
 
 import { useSiteMetadata } from 'Hooks';
 
@@ -50,6 +51,24 @@ export const Header: React.FC = () => {
         />
 
         <Box>
+          <Link
+            external
+            // TODO link to google maps
+            href="#"
+            css={css`
+              display: none;
+              font-weight: 700;
+
+              @media all and (min-width: 768px) {
+                & {
+                  display: inline-block;
+                  margin-right: 24px;
+                }
+              }
+            `}
+          >
+            <RoundPushpin /> Чапаева 10Б (МОД/ЖТК)
+          </Link>
           <Text
             css={css`
               display: none;

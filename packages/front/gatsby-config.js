@@ -64,16 +64,6 @@ const getPlugins = () => {
     // },
   ];
 
-  if (process.env.BUNDLE) {
-    plugins.push({
-      resolve: 'gatsby-plugin-webpack-bundle-analyzer',
-      options: {
-        production: true,
-        analyzerMode: 'static',
-      },
-    });
-  }
-
   return plugins;
 };
 
@@ -82,7 +72,7 @@ module.exports = {
   siteMetadata: {
     title: 'Эль шейх - идеальная шаурма',
     // TODO use other url
-    siteUrl: 'https://kebab.com.ua',
+    siteUrl: 'https://el-sheikh.herokuapp.com',
     tiktok: '#',
     instagram: '#',
     telegram: '#',

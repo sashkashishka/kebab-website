@@ -5,8 +5,6 @@ import axios, {
 } from 'axios';
 import * as R from 'ramda';
 
-// import { EventBus } from 'Utils/event-bus';
-
 export * from 'axios';
 
 // NOTE if we find some bugs with this implementation - fix
@@ -29,24 +27,11 @@ export function request<Resp>(cfg: AxiosRequestConfig): Promise<AxiosResponse<Re
     .catch((error: AxiosError<Resp>) => {
       const {
         response,
-        message,
       } = error;
 
       if (response && response.status >= 400 && response.status < 500) {
         return response;
       }
-
-      // TODO snackbak
-      // EventBus.notify(
-      //   'snackbar',
-      //   {
-      //     payload: {
-      //       error,
-      //       message,
-      //     },
-      //   },
-      // );
-      console.error(error);
 
       return {
         error,

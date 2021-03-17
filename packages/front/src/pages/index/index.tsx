@@ -14,8 +14,6 @@ const MainPage: React.FC = () => (
   >
     <TitleBlock />
 
-    <WhyBlock />
-
     <MenuBlock />
 
     <Cart />
