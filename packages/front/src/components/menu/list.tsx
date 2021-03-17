@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useActor } from '@xstate/react';
 import { css } from 'astroturf';
+import classname from 'classnames';
 
 import { ShopContext } from 'Components/provider';
 import { Box, Tab } from 'Components/atoms';
@@ -19,6 +20,27 @@ interface FilterAndListProps {
   menuFilterRef: MenuFilterActor;
 }
 
+const styles = css`
+  .scrollable {
+    overflow-x: scroll;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+  }
+
+  .tabContainer {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .tab {
+    flex-shrink: 0;
+  }
+`;
+
 const FilterAndList: React.FC<FilterAndListProps> = ({ menuFilterRef }) => {
   const [state, send] = useActor(menuFilterRef);
 
@@ -31,6 +53,10 @@ const FilterAndList: React.FC<FilterAndListProps> = ({ menuFilterRef }) => {
   return (
     <>
       <Box
+        className={classname(
+          styles.scrollable,
+          styles.tabContainer,
+        )}
         css={css`
           margin-bottom: 8px;
         `}
@@ -39,6 +65,7 @@ const FilterAndList: React.FC<FilterAndListProps> = ({ menuFilterRef }) => {
           filters.map(({ value, text }) => (
             <Tab
               key={text}
+              className={styles.tab}
               // @ts-ignore
               active={filter.value === value}
               onClick={() => send({
@@ -89,6 +116,7 @@ export const MenuList: React.FC = () => {
       return (
         <>
           <Box
+            className={styles.scrollable}
             css={css`
               margin-bottom: 8px;
             `}
