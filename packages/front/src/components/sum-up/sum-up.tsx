@@ -95,7 +95,7 @@ export const SumUp: React.FC<SumUpProps> = ({
     </Box>
 
     <Button
-      type="button"
+      type={order ? 'submit' : 'button'}
       onClick={send}
       disabled={disabled}
     >

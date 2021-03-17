@@ -52,7 +52,6 @@ export const ProductCardPopup: React.FC<ProductCardPopupProps> = ({
     >
       <Box
         css={css`
-          position: relative;
           display: grid;
           grid-template-rows: auto 1fr auto;
           width: 100%;
@@ -78,7 +77,7 @@ export const ProductCardPopup: React.FC<ProductCardPopupProps> = ({
 
         <Box
           css={css`
-            position: fixed;
+            position: sticky;
             bottom: 0;
             left: 0;
             right: 0;
@@ -86,12 +85,6 @@ export const ProductCardPopup: React.FC<ProductCardPopupProps> = ({
             background-color: var(--white);
             text-align: center;
             color: var(--black);
-
-            @media all and (min-width: 768px) {
-              & {
-                position: sticky;
-              }
-            }
           `}
         >
           <Box
@@ -161,6 +154,7 @@ export const ProductCardPopup: React.FC<ProductCardPopupProps> = ({
           </Box>
 
           <Button
+            type="button"
             onClick={() => send({ type: ShopActions.ADD_TO_CART })}
             disabled={!isSizeFilled(context)}
             css={css`

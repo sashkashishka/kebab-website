@@ -2,12 +2,7 @@ import * as React from 'react';
 import { css } from 'astroturf';
 import { useActor } from '@xstate/react';
 import DatePicker from 'react-datepicker';
-import {
-  addDays,
-  startOfDay,
-  setHours,
-  setMinutes,
-} from 'date-fns';
+import { max, min } from 'date-fns';
 
 import {
   DeliveryTimeFieldActor,
@@ -24,6 +19,8 @@ import {
 
 import { getStartTime } from 'Utils';
 
+import { MAX_DATE, MIN_DATE } from 'Constants';
+
 import { FieldError } from '../field-error';
 
 interface DeliveryTimeProps {
@@ -32,9 +29,11 @@ interface DeliveryTimeProps {
 
 const styles = css`
   .calendar {
-    width: 60px;
+    width: 70px;
   }
 `;
+
+const START_TIME = getStartTime(new Date());
 
 export const DeliveryTime: React.FC<DeliveryTimeProps> = ({ deliveryTimeRef }) => {
   const [state, send] = useActor(deliveryTimeRef);
@@ -61,8 +60,14 @@ export const DeliveryTime: React.FC<DeliveryTimeProps> = ({ deliveryTimeRef }) =
             ? date
             : getStartTime(new Date()),
         })}
-        minTime={getStartTime(new Date())}
-        maxTime={setHours(setMinutes(new Date(), 59), 23)}
+        minTime={max([START_TIME, MIN_DATE])}
+        maxTime={min([
+          max([
+            START_TIME,
+            MIN_DATE,
+          ]),
+          MAX_DATE,
+        ])}
         showTimeSelect
         showTimeSelectOnly
         timeIntervals={15}

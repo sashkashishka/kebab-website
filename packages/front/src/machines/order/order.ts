@@ -5,7 +5,11 @@ import {
   spawn,
   sendParent,
 } from 'xstate';
-import { format } from 'date-fns';
+import {
+  format,
+  max,
+  min,
+} from 'date-fns';
 
 import { CartItem, Field, PaymentType } from '@kebab/types';
 
@@ -18,6 +22,8 @@ import {
 } from 'Machines';
 
 import { ORDER } from 'Services';
+
+import { MAX_DATE, MIN_DATE } from 'Constants';
 
 import { createPhoneFieldMachine, PhoneFieldActor } from './phone';
 import { createDeliveryAddressFieldMachine, DeliveryAddressFieldActor } from './delivery-address';
@@ -113,7 +119,13 @@ export const createOrderMachine = (cart: CartItem[]) => Machine<OrderMachineCont
         error: undefined,
       },
       deliveryTime: {
-        value: getStartTime(new Date()),
+        value: min([
+          max([
+            getStartTime(new Date()),
+            MIN_DATE,
+          ]),
+          MAX_DATE,
+        ]),
         error: undefined,
       },
       comment: {

@@ -33,7 +33,6 @@ export const ProductCard: React.FC<ProductItemWithMachine> = ({
   return (
     <>
       <Box
-        tabIndex={0}
         css={css`
           padding: 16px;
           color: var(--black);

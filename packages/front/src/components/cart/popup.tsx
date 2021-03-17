@@ -66,18 +66,13 @@ export const CartPopup: React.FC = () => {
 
         <Box
           css={css`
-            position: fixed;
+            position: sticky;
             bottom: 0;
             left: 0;
             right: 0;
             padding: 16px;
             border-top: 1px solid var(--2color);
-
-            @media all and (min-width: 768px) {
-              & {
-                position: sticky;
-              }
-            }
+            background-color: var(--white);
           `}
         >
           {

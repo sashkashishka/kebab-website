@@ -22,6 +22,13 @@ const isPositive = positive('Введіть невід\'ємне значенн�
 export const createChargeFromFieldMachine = (field: Field<string>) => createFieldMachine<string>(field, 'chargeFrom')
   .withConfig({
     actions: {
+      setValue: assign({
+        value: (_ctx, event) => {
+          if (~~event.value > 1000) return '1000'; // eslint-disable-line
+
+          return event.value;
+        },
+      }),
       setError: assign({
         error: (_ctx, event) => pipeValidators(
           chargeFromRequired,

@@ -4,6 +4,7 @@
     "baseUrl": "src",
     "paths": {
       "Components/*": ["components/*"],
+      "Constants": ["constants"],
       "Hooks/*": ["hooks/*"],
       "Hooks": ["hooks"],
       "Img/*": ["images/*"],

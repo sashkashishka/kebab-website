@@ -51,6 +51,7 @@ export const Payment: React.FC<PaymentProps> = ({ paymentRef }) => {
         `}
       >
         <Tab
+          type="button"
           // @ts-ignore
           active={value === 'card'}
           onClick={() => send({ type: FieldActions.CHANGE, value: 'card' })}
@@ -65,6 +66,7 @@ export const Payment: React.FC<PaymentProps> = ({ paymentRef }) => {
         </Tab>
 
         <Tab
+          type="button"
           // @ts-ignore
           active={value === 'cash'}
           onClick={() => send({ type: FieldActions.CHANGE, value: 'cash' })}

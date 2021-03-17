@@ -93,6 +93,7 @@ export const OrderFormPopup: React.FC<OrderFormPopupProps> = ({
       product
     >
       <Box
+        as="form"
         css={css`
           display: grid;
           grid-template-rows: 1fr auto;

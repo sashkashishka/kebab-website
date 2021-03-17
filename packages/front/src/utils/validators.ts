@@ -1,3 +1,5 @@
+import { isWithinInterval } from 'date-fns';
+
 interface Validator<V> {
   (v: V): undefined | string;
 }
@@ -37,3 +39,7 @@ export const pipeValidators = <V>(...validators: Validator<V>[]) => (
     validators.reduce<string | undefined>((err, validator) => (err || validator(value)), undefined)
   )
 );
+
+export const timeInterval = (start: Date, end: Date) => (error: string) => (value: Date) => isWithinInterval(value, { start, end })
+  ? undefined
+  : error;

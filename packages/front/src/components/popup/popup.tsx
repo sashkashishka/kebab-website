@@ -13,9 +13,11 @@ interface PopupProps extends DialogProps {
 const styles = css`
   .overlay {
     display: grid;
-    grid-template-rows: 70px auto;
+    grid-template-rows: 70px 1fr;
     justify-items: center;
     align-items: center;
+    width: 100%;
+    height: 100%;
 
     @media all and (min-width: 960px) {
       & {

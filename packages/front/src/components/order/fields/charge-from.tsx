@@ -41,6 +41,7 @@ export const ChargeFrom: React.FC<ChargeFromProps> = ({ chargeFromRef }) => {
         value={value}
         step="1"
         min="0"
+        max="1000"
         // @ts-ignore
         error={Boolean(error)}
         onChange={({ target: { value: v } }) => send({
