@@ -48,6 +48,7 @@ export const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ deliveryAddres
         </Box>
 
         <Button
+          type="button"
           onClick={() => send({
             type: isPickup
               ? DeliveryAddressFieldActions.ADDRESS
