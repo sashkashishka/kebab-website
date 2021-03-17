@@ -13,6 +13,7 @@ export { isRequestError } from './guards/is-request-error';
 export { isSizeFilled } from './guards/is-size-filled';
 export { isDuplicate } from './guards/is-duplicate';
 export { cartNotEmpty } from './guards/cart-not-empty';
+export { oneLeft } from './guards/one-left';
 
 // xstate actions
 export { calcPrice } from './actions/calc-price';
