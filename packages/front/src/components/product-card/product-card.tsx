@@ -27,6 +27,7 @@ export const ProductCard: React.FC<ProductItemWithMachine> = ({
   sizes,
   toppings,
   productRef,
+  type_name,
 }) => {
   const [state, send] = useActor(productRef);
 
@@ -135,6 +136,7 @@ export const ProductCard: React.FC<ProductItemWithMachine> = ({
             name={name}
             toppings={toppings}
             sizes={sizes}
+            type_name={type_name}
           />
         )
       }

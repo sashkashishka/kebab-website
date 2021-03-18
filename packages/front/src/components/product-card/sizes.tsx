@@ -12,9 +12,15 @@ interface SizesProps {
   sizes: ProductItem['sizes'];
   send: (...args: any[]) => any;
   currentSize: ProductItem['sizes'];
+  img?: boolean;
 }
 
-export const Sizes: React.FC<SizesProps> = ({ sizes, send, currentSize }) => (
+export const Sizes: React.FC<SizesProps> = ({
+  sizes,
+  send,
+  currentSize,
+  img,
+}) => (
   <Box
     css={css`
       padding: 0 16px;
@@ -55,25 +61,30 @@ export const Sizes: React.FC<SizesProps> = ({ sizes, send, currentSize }) => (
       `}
     >
       {
-        Object.keys(sizes).map((size) => {
-          const item = sizes[size];
+        Object.keys(sizes)
+          .sort((sizeA, sizeB) => sizes[sizeA][1] - sizes[sizeB][1])
+          .map((size, i, arr) => {
+            const item = sizes[size];
 
-          return (
-            <SelectorCard
-              key={size}
-              active={Boolean(currentSize[size])}
-              name={size}
-              price={item[0]}
-              weight={item[1]}
-              onSelect={() => send({
-                type: ProductCardActions.CHANGE_SIZE,
-                size: {
-                  [size]: item,
-                },
-              })}
-            />
-          );
-        })
+            return (
+              <SelectorCard
+                key={size}
+                img={img}
+                active={Boolean(currentSize[size])}
+                name={size}
+                price={item[0]}
+                weight={item[1]}
+                onSelect={() => send({
+                  type: ProductCardActions.CHANGE_SIZE,
+                  size: {
+                    [size]: item,
+                  },
+                })}
+                index={i}
+                qty={arr.length}
+              />
+            );
+          })
       }
     </Box>
   </Box>

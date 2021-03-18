@@ -1,24 +1,28 @@
 import * as React from 'react';
 import { css } from 'astroturf';
 
-import { Box, Img, Text } from 'Components/atoms';
+import { Box, Text } from 'Components/atoms';
 
 interface SelectorCardProps {
-  imgUrl?: string;
+  img?: boolean;
   active: boolean;
   name: string;
   price: number;
   weight?: number;
   onSelect: () => void;
+  index?: number;
+  qty?: number;
 }
 
 export const SelectorCard: React.FC<SelectorCardProps> = ({
-  imgUrl,
+  img,
   active,
   name,
   price,
   weight,
   onSelect,
+  index = 0,
+  qty = 1,
 }) => (
   <Box
     onClick={onSelect}
@@ -43,12 +47,21 @@ export const SelectorCard: React.FC<SelectorCardProps> = ({
       }
     `}
   >
-    <Img
-      src={imgUrl}
-      alt={name}
-      width="50px"
-      height="50px"
-    />
+    {
+      img && (
+        <Box
+          css={css`
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+            background-image: url('Img/img-kebab-size.png');
+            background-position: center;
+            background-size: ${65 + 65 * ((index) / qty)}%;
+            background-repeat: no-repeat;
+          `}
+        />
+      )
+    }
 
     <Box
       css={css`
@@ -65,7 +78,11 @@ export const SelectorCard: React.FC<SelectorCardProps> = ({
 
       {
         weight && (
-          <Text>
+          <Text
+            css={css`
+              color: #7D7D91;
+            `}
+          >
             {weight} гр
           </Text>
         )

@@ -21,6 +21,8 @@ import {
   pickSizePriceWeight,
 } from 'Utils';
 
+import { PRODUCT_TYPES } from 'Constants';
+
 import { Sizes } from './sizes';
 import { Toppings } from './toppings';
 
@@ -30,6 +32,7 @@ interface ProductCardPopupProps {
   name: ProductItem['name'];
   toppings: ProductItem['toppings'];
   sizes: ProductItem['sizes'];
+  type_name: ProductItem['type_name'];
 }
 
 export const ProductCardPopup: React.FC<ProductCardPopupProps> = ({
@@ -38,6 +41,7 @@ export const ProductCardPopup: React.FC<ProductCardPopupProps> = ({
   context,
   toppings,
   sizes,
+  type_name,
 }) => {
   const { cartItem } = context;
 
@@ -63,6 +67,7 @@ export const ProductCardPopup: React.FC<ProductCardPopupProps> = ({
           sizes={sizes}
           currentSize={cartItem.size}
           send={send}
+          img={type_name === PRODUCT_TYPES.kebab}
         />
 
         {
