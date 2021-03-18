@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   devtool: process.env.NODE_ENV === 'development' 
-    ? 'eval-cheap-module-source-map'
+    ? 'eval-source-map'
     : 'source-map',
   resolve: {
     alias: {

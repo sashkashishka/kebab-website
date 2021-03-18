@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { css } from 'astroturf';
 import { useActor } from '@xstate/react';
-import DatePicker from 'react-datepicker';
-import { max, min } from 'date-fns';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import { uk } from 'date-fns/locale';
 
 import {
   DeliveryTimeFieldActor,
@@ -19,7 +19,11 @@ import {
 
 import { getStartTime } from 'Utils';
 
-import { MAX_DATE, MIN_DATE } from 'Constants';
+import {
+  MAX_TIME,
+  MIN_TIME,
+  MAX_DATE,
+} from 'Constants';
 
 import { FieldError } from '../field-error';
 
@@ -27,13 +31,9 @@ interface DeliveryTimeProps {
   deliveryTimeRef: DeliveryTimeFieldActor;
 }
 
-const styles = css`
-  .calendar {
-    width: 70px;
-  }
-`;
+registerLocale('uk', uk);
 
-const START_TIME = getStartTime(new Date());
+const START_DATE = getStartTime(new Date());
 
 export const DeliveryTime: React.FC<DeliveryTimeProps> = ({ deliveryTimeRef }) => {
   const [state, send] = useActor(deliveryTimeRef);
@@ -52,7 +52,8 @@ export const DeliveryTime: React.FC<DeliveryTimeProps> = ({ deliveryTimeRef }) =
 
       <DatePicker
         id="delivery-time"
-        className={styles.calendar}
+        // className={styles.calendar}
+        locale="uk"
         selected={value}
         onChange={date => send({
           type: FieldActions.CHANGE,
@@ -60,19 +61,14 @@ export const DeliveryTime: React.FC<DeliveryTimeProps> = ({ deliveryTimeRef }) =
             ? date
             : getStartTime(new Date()),
         })}
-        minTime={max([START_TIME, MIN_DATE])}
-        maxTime={min([
-          max([
-            START_TIME,
-            MIN_DATE,
-          ]),
-          MAX_DATE,
-        ])}
+        minTime={MIN_TIME}
+        maxTime={MAX_TIME}
+        minDate={START_DATE}
+        maxDate={MAX_DATE}
         showTimeSelect
-        showTimeSelectOnly
         timeIntervals={15}
         timeCaption="Час"
-        dateFormat="HH:mm"
+        dateFormat="HH:mm dd.MM.yyyy"
         timeFormat="HH:mm"
         customInput={(
           <Input

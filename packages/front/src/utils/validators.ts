@@ -40,6 +40,6 @@ export const pipeValidators = <V>(...validators: Validator<V>[]) => (
   )
 );
 
-export const timeInterval = (start: Date, end: Date) => (error: string) => (value: Date) => isWithinInterval(value, { start, end })
+export const timeInterval = (error: string) => (start: Date, end: Date) => (value: Date) => isWithinInterval(value, { start, end })
   ? undefined
   : error;

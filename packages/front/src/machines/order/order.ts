@@ -23,7 +23,7 @@ import {
 
 import { ORDER } from 'Services';
 
-import { MAX_DATE, MIN_DATE } from 'Constants';
+import { MAX_TIME, MIN_TIME } from 'Constants';
 
 import { createPhoneFieldMachine, PhoneFieldActor } from './phone';
 import { createDeliveryAddressFieldMachine, DeliveryAddressFieldActor } from './delivery-address';
@@ -119,13 +119,7 @@ export const createOrderMachine = (cart: CartItem[]) => Machine<OrderMachineCont
         error: undefined,
       },
       deliveryTime: {
-        value: min([
-          max([
-            getStartTime(new Date()),
-            MIN_DATE,
-          ]),
-          MAX_DATE,
-        ]),
+        value: getStartTime(new Date()),
         error: undefined,
       },
       comment: {
