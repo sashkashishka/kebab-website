@@ -19,6 +19,7 @@ export const Footer: React.FC = () => {
     telegram,
     phone,
     addressExtended,
+    addressLink,
   } = useSiteMetadata();
 
   return (
@@ -126,8 +127,8 @@ export const Footer: React.FC = () => {
 
           <Link
             external
-            // TODO provide link
-            href="#"
+            href={addressLink}
+            target="_blank"
             css={css`
               color: var(--accent);
               margin-bottom: 24px;

@@ -89,7 +89,7 @@ export const TitleBlock = () => {
                 font-weight: bold;
               `}
             >
-              з 9:00 до 21:00
+              з 11:00 до 20:00
             </Text>
 
           </Box>

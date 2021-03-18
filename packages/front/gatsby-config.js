@@ -82,6 +82,7 @@ module.exports = {
       Вул. Чапаєва 10б
       (Територія колледжу МОД/ЖТК)
     `,
+    addressLink: 'https://www.google.com.ua/maps/place/%D0%A8%D0%B0%D1%83%D1%80%D0%BC%D0%B0+%D0%95%D0%BB%D1%8C+%D0%A8%D0%B5%D0%B9%D1%85/@50.2630893,28.6651277,16z/data=!4m13!1m7!3m6!1s0x472c64bf05eb02af:0xb040deee8b6864da!2zMTBBLCDQstGD0LvQuNGG0Y8g0KHRgtC10L_QsNC90LAg0JHQsNC90LTQtdGA0LgsIDEw0JAsIDEw0JEsINCW0LjRgtC-0LzQuNGALCDQltC40YLQvtC80LjRgNGB0YzQutCwINC-0LHQu9Cw0YHRgtGMLCAxMDAwMQ!3b1!8m2!3d50.2630453!4d28.6641683!3m4!1s0x472c65354d9c9a73:0xf1cd52c16117e2d1!8m2!3d50.2630453!4d28.6641683?hl=ru',
   },
 
   plugins: getPlugins(),

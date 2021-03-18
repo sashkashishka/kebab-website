@@ -15,7 +15,11 @@ import { useSiteMetadata } from 'Hooks';
 import logoExtended from 'Img/logo-extended.svg';
 
 export const Header: React.FC = () => {
-  const { phone, address } = useSiteMetadata();
+  const {
+    phone,
+    address,
+    addressLink,
+  } = useSiteMetadata();
 
   return (
     <Box
@@ -53,8 +57,8 @@ export const Header: React.FC = () => {
         <Box>
           <Link
             external
-            // TODO link to google maps
-            href="#"
+            href={addressLink}
+            target="_blank"
             css={css`
               display: none;
               font-weight: 700;
