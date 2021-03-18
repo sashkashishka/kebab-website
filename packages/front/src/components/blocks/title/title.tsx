@@ -72,7 +72,7 @@ export const TitleBlock = () => {
                 margin-bottom: 18px;
               `}
             >
-              Идеальная шаурма и пицца
+              Ідеальна шаурма та піцца
             </H1>
 
             <Text
@@ -80,7 +80,7 @@ export const TitleBlock = () => {
                 margin-bottom: 18px;
               `}
             >
-              C доставкой по городу Житомир
+              З доставкою по Житомиру
             </Text>
 
             <Text
@@ -89,7 +89,7 @@ export const TitleBlock = () => {
                 font-weight: bold;
               `}
             >
-              c 9:00 до 21:00
+              з 9:00 до 21:00
             </Text>
 
           </Box>
@@ -123,7 +123,7 @@ export const TitleBlock = () => {
                 price={40}
                 name={(
                   <>
-                    Сочная шаурма <KebabEmoji />
+                    Соковита шаурма <KebabEmoji />
                   </>
                 )}
               />
@@ -134,7 +134,7 @@ export const TitleBlock = () => {
                 price={55}
                 name={(
                   <>
-                    Ароматная пицца <PizzaEmoji />
+                    Ароматна піцца <PizzaEmoji />
                   </>
                 )}
               />

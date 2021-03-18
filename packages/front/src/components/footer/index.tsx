@@ -16,6 +16,7 @@ export const Footer: React.FC = () => {
   const {
     tiktok,
     instagram,
+    telegram,
     phone,
     addressExtended,
   } = useSiteMetadata();
@@ -70,9 +71,9 @@ export const Footer: React.FC = () => {
               padding-bottom: 24px;
             `}
           >
-            Доставка на дом
+            Доставка додому
             <br />
-            Также Предзаказ
+            Також передзамовлення
           </H2>
 
           <Text
@@ -80,7 +81,7 @@ export const Footer: React.FC = () => {
               margin-bottom: 24px;
             `}
           >
-            с 11 утра до 20 вечера
+            з 11 ранку до 20 вечора
           </Text>
 
           <Link
@@ -112,7 +113,7 @@ export const Footer: React.FC = () => {
               padding-bottom: 8px;
             `}
           >
-            Адрес
+            Адреса
           </H3>
 
           <Text
@@ -138,7 +139,7 @@ export const Footer: React.FC = () => {
               }
             `}
           >
-            Как пройти?
+            Як пройти?
           </Link>
 
           <H3
@@ -146,7 +147,7 @@ export const Footer: React.FC = () => {
               padding-bottom: 16px;
             `}
           >
-            Мы в соц сетях
+            Ми у соцмережах
           </H3>
 
           <Box>
@@ -165,6 +166,16 @@ export const Footer: React.FC = () => {
               href={tiktok}
             >
               tiktok
+            </Link>
+
+            <Link
+              external
+              href={telegram}
+              css={css`
+                margin-right: 24px;
+              `}
+            >
+              telegram
             </Link>
           </Box>
         </Box>

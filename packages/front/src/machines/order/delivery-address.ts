@@ -30,7 +30,7 @@ export type DeliveryAddressFieldMachineEvents =
 
 export type DeliveryAddressFieldActor = SpawnedActorRef<DeliveryAddressFieldMachineEvents>;
 
-const addressRequired = required('Адресса обов\'язкова для заповнення');
+const addressRequired = required('Адреса обов\'язкова для заповнення');
 
 export const createDeliveryAddressFieldMachine = (field: Field<string>) => Machine<DeliveryAddressFieldMachineContext, DeliveryAddressFieldMachineEvents>(
   {

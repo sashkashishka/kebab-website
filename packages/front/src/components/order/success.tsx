@@ -40,9 +40,9 @@ export const SuccessPopup: React.FC<SuccessPopupProps> = ({
             color: var(--black);
           `}
       >
-        Заказ готовят
+        Замовлення готують
         <br />
-        приятного апетита
+        смачного
       </Text>
 
       <Text
@@ -51,7 +51,7 @@ export const SuccessPopup: React.FC<SuccessPopupProps> = ({
             margin-bottom: 32px;
           `}
       >
-        Скоро с вами свяжуться
+        Скоро з вами зв'яжуться
       </Text>
 
       <Socials />

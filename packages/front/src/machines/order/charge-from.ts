@@ -15,7 +15,7 @@ export interface ChargeFromFieldMachineContext extends Field<string> {}
 
 export type ChargeFromFieldActor = SpawnedActorRef<FieldMachineEvents<string>>;
 
-const chargeFromRequired = required('Сдача є обов\'язковою');
+const chargeFromRequired = required('Решта є обов\'язковою');
 const isInterger = integer('Вводіть тільки цифри');
 const isPositive = positive('Введіть невід\'ємне значення');
 

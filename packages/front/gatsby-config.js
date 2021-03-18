@@ -70,17 +70,17 @@ const getPlugins = () => {
 
 module.exports = {
   siteMetadata: {
-    title: 'Эль шейх - идеальная шаурма',
+    title: 'Ель шейх - ідеальна шаурма',
     // TODO use other url
     siteUrl: 'https://el-sheikh.herokuapp.com',
     tiktok: '#',
     instagram: '#',
     telegram: '#',
     phone: '+38 068 835 29 96',
-    address: 'Чапаева 10Б (МОД/ЖТК)',
+    address: 'Чапаєва 10Б (МОД/ЖТК)',
     addressExtended: `
-      Ул. Чапаева 10б
-      (Територия колледжа МОД/ЖТК)
+      Вул. Чапаєва 10б
+      (Територія колледжу МОД/ЖТК)
     `,
   },
 

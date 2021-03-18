@@ -15,7 +15,7 @@ import { useSiteMetadata } from 'Hooks';
 import logoExtended from 'Img/logo-extended.svg';
 
 export const Header: React.FC = () => {
-  const { phone } = useSiteMetadata();
+  const { phone, address } = useSiteMetadata();
 
   return (
     <Box
@@ -67,7 +67,7 @@ export const Header: React.FC = () => {
               }
             `}
           >
-            <RoundPushpin /> Чапаева 10Б (МОД/ЖТК)
+            <RoundPushpin /> {address}
           </Link>
           <Text
             css={css`
@@ -83,7 +83,7 @@ export const Header: React.FC = () => {
               }
             `}
           >
-            ежедневно c 9:00 до 21:00
+            щодня з 9:00 до 21:00
           </Text>
 
           <Link

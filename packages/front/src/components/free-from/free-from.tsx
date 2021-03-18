@@ -21,6 +21,6 @@ export const FreeFrom: React.FC<{ variant?: 'black' | 'white'; }> = ({ variant =
     variant={variant}
   >
     <PointUp />
-    <Box as="b" css={css`font-weight: 700;`}>От 250</Box> гривен — бесплатная доставка
+    <Box as="b" css={css`font-weight: 700;`}>Від 250</Box> гривень — безкоштовна доставка
   </Component>
 );
