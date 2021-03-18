@@ -35,6 +35,15 @@ registerLocale('uk', uk);
 
 const START_DATE = getStartTime(new Date());
 
+const CustomInput: React.FC<{ error: boolean; }> = ({ error, ...rest }) => (
+  <Input
+    {...rest}
+    // @ts-ignore
+    error={Boolean(error)}
+    readOnly
+  />
+);
+
 export const DeliveryTime: React.FC<DeliveryTimeProps> = ({ deliveryTimeRef }) => {
   const [state, send] = useActor(deliveryTimeRef);
 
@@ -71,10 +80,9 @@ export const DeliveryTime: React.FC<DeliveryTimeProps> = ({ deliveryTimeRef }) =
         dateFormat="HH:mm dd.MM.yyyy"
         timeFormat="HH:mm"
         customInput={(
-          <Input
+          <CustomInput
             // @ts-ignore
             error={Boolean(error)}
-            width="100px"
           />
         )}
       />

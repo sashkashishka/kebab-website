@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { css } from 'astroturf';
 
-import { Box, Text } from 'Components/atoms';
+import { Box, Img, Text } from 'Components/atoms';
 
 interface SelectorCardProps {
+  imgUrl?: boolean;
   img?: boolean;
   active: boolean;
   name: string;
@@ -16,6 +17,7 @@ interface SelectorCardProps {
 
 export const SelectorCard: React.FC<SelectorCardProps> = ({
   img,
+  imgUrl,
   active,
   name,
   price,
@@ -59,6 +61,17 @@ export const SelectorCard: React.FC<SelectorCardProps> = ({
             background-size: ${65 + 65 * ((index) / qty)}%;
             background-repeat: no-repeat;
           `}
+        />
+      )
+    }
+
+    {
+      imgUrl && (
+        <Img
+          src={imgUrl}
+          alt={name}
+          width="50px"
+          height="50px"
         />
       )
     }
