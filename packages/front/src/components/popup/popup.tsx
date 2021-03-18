@@ -73,6 +73,7 @@ export const Popup: React.FC<PopupProps> = ({
     className={styles.overlay}
     isOpen={isOpen}
     onDismiss={onDismiss}
+    dangerouslyBypassFocusLock
   >
     <CloseButton
       className={styles.closeButton}

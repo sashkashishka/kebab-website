@@ -38,6 +38,7 @@ export const Button = styled('button')`
 export const CloseButton: React.FC<React.HTMLAttributes<HTMLButtonElement>> = (props) => (
   <Box
     as="button"
+    type="button"
     css={css`
       width: 38px;
       height: 38px;

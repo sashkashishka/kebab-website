@@ -72,7 +72,10 @@ export const SumUp: React.FC<SumUpProps> = ({
             font-weight: normal;
           `}
         >
-          - позиції
+          -
+          {cart.length === 1 && 'позиція'}
+          {cart.length > 1 && cart.length < 5 && 'позиції'}
+          {(cart.length === 0 || cart.length > 4) && 'позицій'}
         </Text>
       </Text>
 
