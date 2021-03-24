@@ -4777,6 +4777,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"clean-publish@npm:2.1.1":
+  version: 2.1.1
+  resolution: "clean-publish@npm:2.1.1"
+  dependencies:
+    cross-spawn: ^7.0.3
+    fs-extra: ^9.1.0
+    lilconfig: ^2.0.2
+  bin:
+    clean-publish: clean-publish.js
+    clear-package-json: clear-package-json.js
+  checksum: 876b607d328159ae0eb2a1aac500568f15a414c956ad319b7afa217be904589fa8be0ecfa69ba2e751b96727188ce4cfe9de77c062388da42ef4efec540f6397
+  languageName: node
+  linkType: hard
+
 "clean-stack@npm:^2.0.0":
   version: 2.2.0
   resolution: "clean-stack@npm:2.2.0"
@@ -5450,7 +5464,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cross-spawn@npm:^7.0.0, cross-spawn@npm:^7.0.1, cross-spawn@npm:^7.0.2":
+"cross-spawn@npm:^7.0.0, cross-spawn@npm:^7.0.1, cross-spawn@npm:^7.0.2, cross-spawn@npm:^7.0.3":
   version: 7.0.3
   resolution: "cross-spawn@npm:7.0.3"
   dependencies:
@@ -8027,7 +8041,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-extra@npm:^9.0.0":
+"fs-extra@npm:^9.0.0, fs-extra@npm:^9.1.0":
   version: 9.1.0
   resolution: "fs-extra@npm:9.1.0"
   dependencies:
@@ -11094,6 +11108,7 @@ fsevents@~2.3.1:
   dependencies:
     "@typescript-eslint/eslint-plugin": 4.17.0
     "@typescript-eslint/parser": 4.17.0
+    clean-publish: 2.1.1
     eslint: 7.21.0
     eslint-config-airbnb-typescript: 12.3.1
     eslint-plugin-import: 2.22.1
@@ -11227,6 +11242,13 @@ fsevents@~2.3.1:
     prelude-ls: ^1.2.1
     type-check: ~0.4.0
   checksum: 2f6ddfb0b956f2cb6b1608253a62b0c30e7392dd3c7b4cf284dfe2889b44d8385eaa81597646e253752c312a960ccb5e4d596968e476d5f6614f4ca60e5218e9
+  languageName: node
+  linkType: hard
+
+"lilconfig@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "lilconfig@npm:2.0.2"
+  checksum: f1e2588a14717caed14e8220d7b69f096566b30ba65aa3586815e68c2b0b2c409ff81c5ab14eeb3455f16c291c57b608ac34a869cfebacff4bbe288010bed857
   languageName: node
   linkType: hard
 

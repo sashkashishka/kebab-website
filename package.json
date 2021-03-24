@@ -10,11 +10,13 @@
     ]
   },
   "scripts": {
-    "tsc:b": "tsc"
+    "tsc:b": "tsc",
+    "clean-server-deps": "clear-package-json packages/server/package.json -o packages/server/build/package.json --fields devDependencies,scripts,peerDependencies"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "4.17.0",
     "@typescript-eslint/parser": "4.17.0",
+    "clean-publish": "2.1.1",
     "eslint": "7.21.0",
     "eslint-config-airbnb-typescript": "12.3.1",
     "eslint-plugin-import": "2.22.1",

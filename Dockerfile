@@ -1,7 +1,4 @@
-FROM node:12-alpine
-
-EXPOSE 80
-EXPOSE 443
+FROM node:12-alpine as builder
 
 WORKDIR /kebab
 
@@ -13,6 +10,18 @@ RUN yarn workspace @kebab/front build
 
 RUN yarn workspace @kebab/server build
 
-RUN mkdir app && cp -r packages/front/public packages/server
+RUN yarn clean-server-deps
 
-CMD ["yarn", "workspace", "@kebab/server", "start"]
+FROM node:12-alpine as prod
+
+WORKDIR /app
+
+COPY --from=builder /kebab/packages/server/build .
+COPY --from=builder /kebab/packages/front/public public
+
+RUN yarn install --prod --no-lockfile
+
+EXPOSE 80
+EXPOSE 443
+
+CMD ["node", "index.js"]

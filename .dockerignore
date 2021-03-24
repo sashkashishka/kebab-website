@@ -11,3 +11,4 @@ Dockerfile
 !.yarn/releases
 !.yarn/plugins
 .pnp.*
+.env
