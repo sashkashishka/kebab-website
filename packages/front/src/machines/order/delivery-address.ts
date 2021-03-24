@@ -44,14 +44,7 @@ export const createDeliveryAddressFieldMachine = (field: Field<string>) => Machi
             actions: [
               'setValue',
               'setError',
-              sendParent((ctx) => ({
-                type: OrderActions.CHANGE,
-                field: {
-                  value: ctx.value,
-                  error: ctx.error,
-                  name: 'deliveryAddress',
-                },
-              })),
+              'updateParent',
             ],
           },
           [DeliveryAddressFieldActions.PICKUP]: {
@@ -60,13 +53,19 @@ export const createDeliveryAddressFieldMachine = (field: Field<string>) => Machi
         },
       },
       [DeliveryAddressFieldStates.PICKUP]: {
-        entry: 'setPickup',
+        entry: [
+          'setPickup',
+          'updateParent',
+        ],
         on: {
           [DeliveryAddressFieldActions.ADDRESS]: {
             target: DeliveryAddressFieldStates.EDIT,
           },
         },
-        exit: 'clearPickup',
+        exit: [
+          'clearPickup',
+          'updateParent',
+        ],
       },
     },
   },
@@ -90,6 +89,14 @@ export const createDeliveryAddressFieldMachine = (field: Field<string>) => Machi
           ? addressRequired(event.value)
           : undefined,
       }),
+      updateParent: sendParent((ctx) => ({
+        type: OrderActions.CHANGE,
+        field: {
+          value: ctx.value,
+          error: ctx.error,
+          name: 'deliveryAddress',
+        },
+      })),
     },
   },
 );
