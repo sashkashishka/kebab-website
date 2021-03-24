@@ -35,14 +35,15 @@ registerLocale('uk', uk);
 
 const START_DATE = getStartTime(new Date());
 
-const CustomInput: React.FC<{ error: boolean; }> = ({ error, ...rest }) => (
+const CustomInput = React.forwardRef<HTMLInputElement, { error: string | undefined; }>(({ error, ...rest }, ref) => (
   <Input
     {...rest}
     // @ts-ignore
     error={Boolean(error)}
     readOnly
+    ref={ref}
   />
-);
+));
 
 export const DeliveryTime: React.FC<DeliveryTimeProps> = ({ deliveryTimeRef }) => {
   const [state, send] = useActor(deliveryTimeRef);

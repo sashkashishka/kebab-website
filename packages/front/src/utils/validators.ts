@@ -9,7 +9,8 @@ export const required = (error: string) => (value: string | number) => value
   : error;
 
 export const isPhone = (error: string) => (value: string | number) => {
-  const phoneRegExp = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/;
+  // to match exactly +38 (000) 000-00-00
+  const phoneRegExp = /^[+]?[0-9]{1,3}\s[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s.0-9]{10}$/;
 
   return phoneRegExp.test(String(value))
     ? undefined

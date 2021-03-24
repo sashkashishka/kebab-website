@@ -21,7 +21,7 @@ export interface PhoneFieldMachineContext extends Field<string> {}
 export type PhoneFieldActor = SpawnedActorRef<FieldMachineEvents<string>>;
 
 const phoneRequired = required('Номер телефону є обов\'язковим');
-const isPhoneNumber = isPhone('Необхідно вводити номер у вигляді +380671234567');
+const isPhoneNumber = isPhone('Необхідно вводити номер у вигляді +38 (067) 123-45-67');
 
 export const createPhoneFieldMachine = (field: Field<string>) => createFieldMachine<string>(field, 'phone')
   .withConfig({

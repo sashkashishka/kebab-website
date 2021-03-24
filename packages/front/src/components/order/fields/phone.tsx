@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useActor } from '@xstate/react';
+import InputMask from 'react-input-mask';
 
 import {
   PhoneFieldActor,
@@ -35,18 +36,26 @@ export const Phone: React.FC<PhoneProps> = ({ phoneRef }) => {
         <Asterisk />
       </Label>
 
-      <Input
-        id="phone"
-        type="tel"
-        autoComplete="tel"
+      <InputMask
         value={value}
-        // @ts-ignore
-        error={Boolean(error)}
+        mask="+38 (999) 999-99-99"
         onChange={({ target: { value: v } }) => send({
           type: FieldActions.CHANGE,
           value: v,
         })}
-      />
+      >
+        {
+          (inputProps: any) => (
+            <Input
+              {...inputProps}
+              id="phone"
+              type="tel"
+              autoComplete="tel"
+              placeholder="+38 (000) 000-00-00"
+            />
+          )
+        }
+      </InputMask>
 
       <FieldError
         error={error}

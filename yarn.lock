@@ -1744,6 +1744,7 @@ __metadata:
     "@types/react-datepicker": ^3
     "@types/react-dom": 16.9.11
     "@types/react-helmet": 6.1.0
+    "@types/react-input-mask": ^2
     "@xstate/inspect": 0.4.1
     "@xstate/react": 1.3.1
     astroturf: 0.10.5
@@ -1769,6 +1770,7 @@ __metadata:
     react-dom: 16.14.0
     react-helmet: 5.2.1
     react-hint: 3.2.0
+    react-input-mask: 2.0.4
     webpack: ^4.46.0
     xstate: 4.16.2
   languageName: unknown
@@ -2395,6 +2397,15 @@ __metadata:
   dependencies:
     "@types/react": "*"
   checksum: b7aaa3aa2d81cd3b14a0e77a858de86934a3400f4ec35945117edb3979b8a41130e70b8a27241de295195e365962a9b5bc149a2a029d23795fd0f6c740d1de77
+  languageName: node
+  linkType: hard
+
+"@types/react-input-mask@npm:^2":
+  version: 2.0.5
+  resolution: "@types/react-input-mask@npm:2.0.5"
+  dependencies:
+    "@types/react": "*"
+  checksum: 63f347e166878fdc06bde79d950336d15d734e7406883aea9fc24f23cfa4887b8ce57de933d2bdec0ab2567eddbea79cecab24dde80219773dc548235b87ed79
   languageName: node
   linkType: hard
 
@@ -14603,6 +14614,19 @@ fsevents@~2.3.1:
     "@types/react":
       optional: true
   checksum: f1df03e93206b379b605f3da983f700d5c8a16e3ebedf25ca1311067f4dc95cf968206af44d0b734a5505619958f2da5efe9df4bf749ed6a4989e1f6ea5d2915
+  languageName: node
+  linkType: hard
+
+"react-input-mask@npm:2.0.4":
+  version: 2.0.4
+  resolution: "react-input-mask@npm:2.0.4"
+  dependencies:
+    invariant: ^2.2.4
+    warning: ^4.0.2
+  peerDependencies:
+    react: ">=0.14.0"
+    react-dom: ">=0.14.0"
+  checksum: d2eb641a036e87b5d8e9aacd3a0db0553b8fcc714d1acfe597d52e3c794035ef35b515e6ee00b3286f26fed99b8e246aeeb2f77163f312c70377aa19a882e6ec
   languageName: node
   linkType: hard
 

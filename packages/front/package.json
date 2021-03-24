@@ -27,6 +27,7 @@
     "react-dom": "16.14.0",
     "react-helmet": "5.2.1",
     "react-hint": "3.2.0",
+    "react-input-mask": "2.0.4",
     "xstate": "4.16.2"
   },
   "devDependencies": {
@@ -37,6 +38,7 @@
     "@types/react-datepicker": "^3",
     "@types/react-dom": "16.9.11",
     "@types/react-helmet": "6.1.0",
+    "@types/react-input-mask": "^2",
     "@xstate/inspect": "0.4.1",
     "gatsby-plugin-typescript": "2.12.1",
     "gatsby-plugin-webpack-bundle-analyzer": "1.0.5",

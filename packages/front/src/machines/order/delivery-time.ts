@@ -30,7 +30,7 @@ export interface DeliveryTimeFieldMachineContext extends Field<Val> {}
 
 export type DeliveryTimeFieldActor = SpawnedActorRef<FieldMachineEvents<Val>>;
 
-const isInTwoWeekInterval = timeInterval('Оберіть будь-який активний день у календарі')(
+const isInTwoWeekInterval = timeInterval('Оберіть будь-який активний час або день у календарі')(
   getStartTime(new Date()),
   MAX_DATE,
 );
