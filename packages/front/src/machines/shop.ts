@@ -55,6 +55,7 @@ export enum ShopActions {
   SUCCESS = 'SUCCESS',
   // success
   CLOSE_SUCCESS = 'CLOSE_SUCCESS',
+  RETRY = 'RETRY',
 }
 
 export interface ProductItemWithMachine extends ProductItem {
@@ -92,6 +93,7 @@ type ShopMachineEvents =
   | { type: ShopActions.DEC, item: CartItem }
   | { type: ShopActions.SUCCESS }
   | { type: ShopActions.CLOSE_SUCCESS }
+  | { type: ShopActions.RETRY }
   | { type: ShopActions.OPEN_ORDER };
 
 export type ShopMachineInterpreted = [
@@ -143,7 +145,11 @@ export const ShopMachine = Machine<ShopMachineContext, ShopMachineEvents>(
         ],
       },
       [ShopStates.ERROR]: {
-        type: 'final',
+        on: {
+          [ShopActions.RETRY]: {
+            target: ShopStates.FETCH,
+          },
+        },
       },
       [ShopStates.BUY]: {
         initial: ShopStates.IDLE,

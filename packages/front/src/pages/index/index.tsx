@@ -1,25 +1,86 @@
+/* eslint-disable import/no-default-export */
 import * as React from 'react';
+import { css } from 'astroturf';
 
+import { ShopContext } from 'Components/provider';
 import { Page } from 'Components/page';
 import { TitleBlock } from 'Components/blocks';
 import { MenuBlock } from 'Components/menu';
 import { Cart } from 'Components/cart';
 import { OrderForm } from 'Components/order';
+import { SnackbarView } from 'Components/snackbar';
+import { Box, Text, Button } from 'Components/atoms';
+
+import { ShopStates, ShopActions } from 'Machines';
 
 import pageMeta from './page-meta.json';
 
-const MainPage: React.FC = () => (
+const MainPage: React.FC = () => {
+  const [state, send] = React.useContext(ShopContext);
+
+  return (
+    <>
+      <TitleBlock />
+
+      <MenuBlock />
+
+      <Cart />
+
+      <OrderForm />
+
+      {state.matches(ShopStates.ERROR) && (
+        <SnackbarView>
+          <Box
+            css={css`
+              display: grid;
+              grid-template-columns: 100%;
+              grid-gap: 8px;
+              text-align: center;
+
+              @media all and (min-width: 768px) {
+                & {
+                  grid-template-columns: 1fr auto;
+                  text-align: start;
+                }
+              }
+            `}
+          >
+            <Text
+              css={css`
+                color: var(--black);
+              `}
+            >
+              <Text
+                as="span"
+                css={css`
+                  font-weight: bold;
+                `}
+              >
+                Непередбачена помилка
+              </Text>
+              <br />
+              Перевірте будь-ласка інтернет з'єднання
+            </Text>
+
+            <Button
+              type="button"
+              onClick={() => send({
+                type: ShopActions.RETRY,
+              })}
+            >
+              Повторити
+            </Button>
+          </Box>
+        </SnackbarView>
+      )}
+    </>
+  );
+};
+
+export default () => (
   <Page
     {...pageMeta}
   >
-    <TitleBlock />
-
-    <MenuBlock />
-
-    <Cart />
-
-    <OrderForm />
+    <MainPage />
   </Page>
 );
-
-export default MainPage;
