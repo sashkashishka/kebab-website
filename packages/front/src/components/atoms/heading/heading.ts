@@ -1,7 +1,6 @@
 import styled from 'astroturf';
 
 export const H1 = styled('h1')`
-  font-family: var(--proximaFont);
   font-weight: 800;
   font-size: 32px;
   line-height: 38px;
@@ -16,7 +15,6 @@ export const H1 = styled('h1')`
 `;
 
 export const H2 = styled('h2')`
-  font-family: var(--proximaFont);
   font-weight: 800;
   font-size: 32px;
   line-height: 38px;
@@ -31,7 +29,6 @@ export const H2 = styled('h2')`
 `;
 
 export const H3 = styled('h3')`
-  font-family: var(--proximaFont);
   font-weight: 800;
   font-size: 24px;
   line-height: 38px;

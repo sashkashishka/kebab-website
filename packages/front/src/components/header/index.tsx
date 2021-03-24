@@ -76,7 +76,6 @@ export const Header: React.FC = () => {
           <Text
             css={css`
               display: none;
-              font-family: var(--proximaFont);
               color: var(--accent);
 
               @media all and (min-width: 768px) {

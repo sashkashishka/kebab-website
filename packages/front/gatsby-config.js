@@ -19,7 +19,16 @@ const getPlugins = () => {
         allExtensions: true, // defaults to false
       },
     },
-    'gatsby-plugin-postcss',
+    {
+      resolve: 'gatsby-plugin-postcss',
+      options: {
+        cssLoaderOptions: {
+          localIdentName: process.env.NODE_ENV === 'production'
+            ? '[local]--[hash:base64:5]'
+            : '[name]__[local]--[hash:base64:5]'
+        },
+      },
+    },
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-react-svg',
@@ -47,21 +56,6 @@ const getPlugins = () => {
      * @see https://www.gatsbyjs.org/packages/gatsby-plugin-offline/
      */
     'gatsby-plugin-offline',
-    // TODO change proxima nova font or download it
-    // {
-    //   resolve: 'gatsby-plugin-prefetch-google-fonts',
-    //   options: {
-    //     fonts: [
-    //       {
-    //         family: 'Proxima Nova',
-    //         variants: [
-    //           '600',
-    //           '800',
-    //         ],
-    //       },
-    //     ],
-    //   },
-    // },
   ];
 
   return plugins;
