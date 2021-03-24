@@ -35,6 +35,7 @@ export const ProductCard: React.FC<ProductItemWithMachine> = ({
     <>
       <Box
         css={css`
+          display: grid;
           padding: 16px;
           color: var(--black);
           background-color: var(--white);
@@ -61,7 +62,6 @@ export const ProductCard: React.FC<ProductItemWithMachine> = ({
           title={name}
           css={css`
             width: 100%;
-            height: 100%;
             max-height: 150px;
             margin-bottom: 16px;
             border-radius: 10px;

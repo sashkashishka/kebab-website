@@ -85,7 +85,7 @@ const FilterAndList: React.FC<FilterAndListProps> = ({ menuFilterRef }) => {
         css={css`
           display: grid;
           grid-gap: 16px;
-          grid-template-columns: repeat(auto-fit, minmax(284px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(284px, 1fr));
         `}
       >
         {
