@@ -2,7 +2,7 @@ import { RequestHandler } from 'express';
 import * as R from 'ramda';
 
 import { validate } from './schema';
-import { transformCart, cartToString } from './transform';
+import { transformCart, cartToString, escapePhoneField } from './transform';
 import { translateKeys } from './translate';
 
 export const postOrder: RequestHandler = async (req, res, next) => {
@@ -21,6 +21,7 @@ export const postOrder: RequestHandler = async (req, res, next) => {
     const orderSheet = doc.sheetsByIndex[1];
 
     const data = R.pipe(
+      escapePhoneField,
       transformCart,
       translateKeys,
       cartToString,

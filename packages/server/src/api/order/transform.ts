@@ -22,6 +22,11 @@ const transformCartItem = (cart: Order['cart']): OrderSimplified['cart'] => cart
     toppings: R.keys(item.toppings) as string[],
   }));
 
+export const escapePhoneField = (order: Order): Order => ({
+  ...order,
+  phone: ` ${order.phone}`,
+});
+
 export const transformCart = (order: Order): OrderSimplified => {
   const { cart } = order;
 
