@@ -177,7 +177,10 @@ export const OrderFormPopup: React.FC<OrderFormPopupProps> = ({
               <SumUp
                 cart={cart}
                 disabled={state.matches({ [OrderStates.IDLE]: OrderStates.SUBMIT })}
-                send={() => send({ type: OrderActions.SUBMIT })}
+                send={(e) => {
+                  e.preventDefault();
+                  send({ type: OrderActions.SUBMIT });
+                }}
                 order
               />
             )
