@@ -132,11 +132,11 @@ export const ShopMachine = Machine<ShopMachineContext, ShopMachineEvents>(
                   assign({
                     products: (_ctx, event) => (event.data.response.data as ProductsList).map((item) => ({
                       ...item,
-                      productRef: spawn(createProductCardMachine(item)),
+                      productRef: spawn(createProductCardMachine(item), `product-${item.name}`),
                     })),
                   }),
                   assign({
-                    menuFilterRef: (ctx) => spawn(createMenuFilterMachine(ctx.products)),
+                    menuFilterRef: (ctx) => spawn(createMenuFilterMachine(ctx.products), 'menu-filter'),
                   }),
                 ],
               },
@@ -204,7 +204,7 @@ export const ShopMachine = Machine<ShopMachineContext, ShopMachineEvents>(
           },
           [ShopStates.ORDER]: {
             entry: assign({
-              orderRef: (ctx) => spawn(createOrderMachine(ctx.cart)),
+              orderRef: (ctx) => spawn(createOrderMachine(ctx.cart), 'order'),
             }),
             on: {
               [ShopActions.CLOSE_ORDER]: {

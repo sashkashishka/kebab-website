@@ -4,7 +4,7 @@ import { css } from 'astroturf';
 import { Box, Img, Text } from 'Components/atoms';
 
 interface SelectorCardProps {
-  imgUrl?: boolean;
+  imgUrl?: string;
   img?: boolean;
   active: boolean;
   name: string;

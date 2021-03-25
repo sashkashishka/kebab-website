@@ -144,12 +144,12 @@ export const createOrderMachine = (cart: CartItem[]) => Machine<OrderMachineCont
       [OrderStates.IDLE]: {
         initial: OrderStates.EDIT,
         entry: assign({
-          phoneRef: (ctx) => spawn(createPhoneFieldMachine(ctx.phone)),
-          deliveryAddressRef: (ctx) => spawn(createDeliveryAddressFieldMachine(ctx.deliveryAddress)),
-          paymentRef: (ctx) => spawn(createPaymentFieldMachine(ctx.payment)),
-          chargeFromRef: (ctx) => spawn(createChargeFromFieldMachine(ctx.chargeFrom)),
-          deliveryTimeRef: (ctx) => spawn(createDeliveryTimeFieldMachine(ctx.deliveryTime)),
-          commentRef: (ctx) => spawn(createCommentFieldMachine(ctx.comment)),
+          phoneRef: (ctx) => spawn(createPhoneFieldMachine(ctx.phone), 'field-phone'),
+          deliveryAddressRef: (ctx) => spawn(createDeliveryAddressFieldMachine(ctx.deliveryAddress), 'field-delivery-address'),
+          paymentRef: (ctx) => spawn(createPaymentFieldMachine(ctx.payment), 'field-payment'),
+          chargeFromRef: (ctx) => spawn(createChargeFromFieldMachine(ctx.chargeFrom), 'field-charge-from'),
+          deliveryTimeRef: (ctx) => spawn(createDeliveryTimeFieldMachine(ctx.deliveryTime), 'field-delivery-time'),
+          commentRef: (ctx) => spawn(createCommentFieldMachine(ctx.comment), 'field-comment'),
         }),
         on: {
           [OrderActions.CHANGE]: {
