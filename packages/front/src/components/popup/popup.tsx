@@ -18,6 +18,7 @@ const styles = css`
     align-items: center;
     width: 100%;
     height: 100%;
+    touch-action: none;
 
     @media all and (min-width: 960px) {
       & {

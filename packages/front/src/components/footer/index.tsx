@@ -165,6 +165,9 @@ export const Footer: React.FC = () => {
             <Link
               external
               href={tiktok}
+              css={css`
+                margin-right: 24px;
+              `}
             >
               tiktok
             </Link>

@@ -9,6 +9,8 @@ export const Button = styled('button')`
   color: var(--white);
   border-radius: 8px;
   padding: 12px 14px;
+  text-transform: uppercase;
+  font-family: inherit;
   text-align: center;
   font-weight: 800;
   font-size: 16px;

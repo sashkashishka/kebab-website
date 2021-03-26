@@ -5,24 +5,13 @@ export const Tab = styled('button')`
   margin: 0 8px 8px 0;
   padding: 14px;
   border: none;
+  font-family: inherit;
   font-size: 16px;
   color: var(--black);
   border-radius: 10px;
   background-color: var(--2color);
   cursor: pointer;
   outline: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-
-  &:focus {
-    text-decoration: underline;
-  }
-
-  &:active {
-    text-decoration: underline;
-  }
 
   &.active {
     background-color: var(--accent);
