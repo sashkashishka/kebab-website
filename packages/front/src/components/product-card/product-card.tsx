@@ -83,6 +83,7 @@ export const ProductCard: React.FC<ProductItemWithMachine> = ({
         <Text
           css={css`
             margin-bottom: 12px;
+            color: #4A4647;
           `}
         >
           {description}

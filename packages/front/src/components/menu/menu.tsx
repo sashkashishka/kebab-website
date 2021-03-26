@@ -71,7 +71,7 @@ export const MenuBlock = () => (
           align-items: center;
           padding: 20px;
           max-width: 446px;
-          color: var(--black);
+          color: #4A4647;
           background-color: var(--white);
           border-radius: 10px;
           box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.22);
