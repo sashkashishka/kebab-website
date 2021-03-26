@@ -103,7 +103,6 @@ export type ShopMachineInterpreted = [
 ];
 
 // TODO store context into sessionStorage
-// TODO when error state - show view to reload page
 export const ShopMachine = Machine<ShopMachineContext, ShopMachineEvents>(
   {
     id: 'shop',

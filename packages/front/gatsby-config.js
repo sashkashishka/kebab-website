@@ -65,10 +65,9 @@ const getPlugins = () => {
 module.exports = {
   siteMetadata: {
     title: 'Ель шейх - ідеальна шаурма',
-    // TODO use other url
     siteUrl: 'https://el-sheikh.herokuapp.com',
     tiktok: '#',
-    instagram: '#',
+    instagram: 'https://www.instagram.com/shaurma_zhitomir/',
     telegram: '#',
     phone: '+38 068 835 29 96',
     address: 'Чапаєва 10Б (МОД/ЖТК)',
