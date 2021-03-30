@@ -6,13 +6,70 @@ on:
     - master
 
 jobs:  
-  build_deploy:
-    name: Build and deploy to heroku
+  install:
+    name: Install dependencies
     runs-on: ubuntu-16.04
-    steps:
-      - uses: actions/checkout@v1
 
-      - name: Build and deploy the Docker image
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+        
+      - name: 'Use Node.js 12.12.0'
+        uses: actions/setup-node@master
+        with:
+          node-version: 12.12.0
+          
+      - name: Cache/extract dependencies
+        uses: actions/cache@v2
+        with:
+          path: .yarn
+          key: master
+
+      - name: Install dependencies
+        run: yarn install
+
+  build:
+    name: Build front and server
+    runs-on: ubuntu-16.04
+    needs: [install]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+        
+      - name: 'Use Node.js 12.12.0'
+        uses: actions/setup-node@master
+        with:
+          node-version: 12.12.0
+          
+      - name: Cache/extract dependencies
+        uses: actions/cache@v2
+        with:
+          path: .yarn
+          key: master
+
+      - name: Intall pnp file
+        run: yarn install
+
+      - name: Build front
+        run: yarn workspace @kebab/front build
+
+      - name: Build server
+        run: yarn workspace @kebab/server build
+
+      - name: Clean up server package.json
+        run: yarn clean-server-deps
+
+      - name: Build and deploy the Docker image to staging
+        env: 
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API }}
+          APP_NAME: ${{ 'el-sheikh-staging' }}
+        run: |
+          docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
+          heroku container:push web -a $APP_NAME
+          heroku container:release web -a $APP_NAME
+
+      - name: Build and deploy the Docker image to prod
         env: 
           HEROKU_API_KEY: ${{ secrets.HEROKU_API }}
           APP_NAME: ${{ 'el-sheikh' }}
