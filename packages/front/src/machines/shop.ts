@@ -18,7 +18,6 @@ import {
   isDuplicate,
   findDuplicateIndex,
   cartNotEmpty,
-  oneLeft,
 } from 'Utils';
 import { GET_PRODUCT_LIST } from 'Services';
 import {
@@ -190,15 +189,9 @@ export const ShopMachine = Machine<ShopMachineContext, ShopMachineEvents>(
               [ShopActions.INC]: {
                 actions: 'inc',
               },
-              [ShopActions.DEC]: [
-                {
-                  cond: 'oneLeft',
-                  actions: 'removeItem',
-                },
-                {
-                  actions: 'dec',
-                },
-              ],
+              [ShopActions.DEC]: {
+                actions: 'dec',
+              },
             },
           },
           [ShopStates.ORDER]: {
@@ -232,7 +225,6 @@ export const ShopMachine = Machine<ShopMachineContext, ShopMachineEvents>(
       isDuplicate,
       cartNotEmpty,
       cartEmpty: (ctx) => !cartNotEmpty(ctx),
-      oneLeft,
     },
     actions: {
       inc: assign({

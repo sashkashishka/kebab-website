@@ -16,9 +16,18 @@ import {
   Button,
 } from 'Components/atoms';
 
+import {
+  DropEmoji,
+  PizzaEmoji,
+  KebabEmoji,
+} from 'Components/emoji';
+
 import { getLowestPrice } from 'Utils';
 
+import { KEBAB_TYPE, PIZZA_TYPE, DRINK_TYPE } from 'Constants';
+
 import { ProductCardPopup } from './popup';
+
 
 export const ProductCard: React.FC<ProductItemWithMachine> = ({
   name,
@@ -27,6 +36,7 @@ export const ProductCard: React.FC<ProductItemWithMachine> = ({
   sizes,
   toppings,
   productRef,
+  type,
   type_name,
 }) => {
   const [state, send] = useActor(productRef);
@@ -125,7 +135,23 @@ export const ProductCard: React.FC<ProductItemWithMachine> = ({
             width: 100%;
           `}
         >
-          В кошик
+          {
+            type === KEBAB_TYPE && (
+              <KebabEmoji />
+            )
+          }
+          {
+            type === PIZZA_TYPE && (
+              <PizzaEmoji />
+            )
+          }
+          {
+            type === DRINK_TYPE && (
+              <DropEmoji />
+            )
+          }
+          {' '}
+          Додати у кошик
         </Button>
       </Box>
 

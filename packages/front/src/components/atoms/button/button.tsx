@@ -42,14 +42,24 @@ export const CloseButton: React.FC<React.HTMLAttributes<HTMLButtonElement>> = (p
     as="button"
     type="button"
     css={css`
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 38px;
       height: 38px;
       border: 0;
-      background-color: var(--2color);
+      background-color: #DADAE8;
       border-radius: 50%;
       padding: 8px;
       outline: none;
       cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: #C1C1D4; 
+      }
     `}
     {...props}
   >
@@ -67,7 +77,7 @@ export const RemoveButton: React.FC<React.HTMLAttributes<HTMLButtonElement>> = (
       width: 38px;
       height: 38px;
       border: 0;
-      background-color: var(--2color);
+      background-color: #DADAE8;
       border-radius: 50%;
       padding: 8px;
       outline: none;
@@ -77,7 +87,7 @@ export const RemoveButton: React.FC<React.HTMLAttributes<HTMLButtonElement>> = (
       &:hover,
       &:active,
       &:focus {
-        background-color: #dadae8; 
+        background-color: #C1C1D4; 
       }
     `}
     {...props}
@@ -99,8 +109,9 @@ export const DecButton: React.FC<React.HTMLAttributes<HTMLButtonElement>> = (pro
       width: 32px;
       height: 32px;
       border: 0;
-      border: 1px solid #C1C1D4;
+      background-color: #DADAE8;
       border-radius: 50%;
+      color: var(--white);
       outline: none;
       transition: color 0.3s, background-color 0.3s;
       cursor: pointer;
@@ -108,7 +119,6 @@ export const DecButton: React.FC<React.HTMLAttributes<HTMLButtonElement>> = (pro
       &:hover,
       &:active,
       &:focus {
-        color: var(--white);
         background-color: #C1C1D4; 
       }
     `}
@@ -130,8 +140,9 @@ export const IncButton: React.FC<React.HTMLAttributes<HTMLButtonElement>> = (pro
       width: 32px;
       height: 32px;
       border: 0;
-      border: 1px solid #C1C1D4;
+      background-color: #DADAE8;
       border-radius: 50%;
+      color: var(--white);
       outline: none;
       transition: color 0.3s, background-color 0.3s;
       cursor: pointer;
@@ -139,7 +150,6 @@ export const IncButton: React.FC<React.HTMLAttributes<HTMLButtonElement>> = (pro
       &:hover,
       &:active,
       &:focus {
-        color: var(--white);
         background-color: #C1C1D4; 
       }
     `}

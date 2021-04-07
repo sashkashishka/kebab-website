@@ -4,7 +4,7 @@ type Weight = number;
 type Price = number;
 
 export interface ProductItem {
-  type: 'kebab' | 'pizza' | 'drink';
+  type: 'kebab' | 'pizza' | 'drinks';
   type_name: string;
   name: string;
   description: string;
