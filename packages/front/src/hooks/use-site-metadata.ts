@@ -12,6 +12,7 @@ interface SiteMetaData {
       address: string;
       addressExtended: string;
       addressLink: string;
+      description: string;
     }
   }
 }
@@ -30,6 +31,7 @@ export const useSiteMetadata = () => {
           phone
           addressExtended
           addressLink
+          description
         }
       }
     }

@@ -65,10 +65,11 @@ const getPlugins = () => {
 module.exports = {
   siteMetadata: {
     title: 'Ель шейх - ідеальна шаурма',
+    description: `Ель шейх - ідеальна шаурма з доставкою по Житомиру ⚡ Замовлення від 250 грн доставляются безкоштовно ⚡ +38 068 835 29 96`,
     siteUrl: 'https://el-sheikh.herokuapp.com',
-    tiktok: '#',
+    tiktok: 'https://vm.tiktok.com/ZMeaM2Xfr/',
     instagram: 'https://www.instagram.com/shaurma_zhitomir/',
-    telegram: '#',
+    telegram: 'https://t.me/shawarmazhitomir_bot',
     phone: '+38 068 835 29 96',
     address: 'Чапаєва 10Б (МОД/ЖТК)',
     addressExtended: `

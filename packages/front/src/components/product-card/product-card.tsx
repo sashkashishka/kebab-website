@@ -82,6 +82,7 @@ export const ProductCard: React.FC<ProductItemWithMachine> = ({
         />
 
         <Text
+          as="h2"
           css={css`
             margin-bottom: 8px;
             font-weight: bold;

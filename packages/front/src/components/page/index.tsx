@@ -7,6 +7,8 @@ import { Box } from 'Components/atoms';
 import { Header } from 'Components/header';
 import { Footer } from 'Components/footer';
 
+import { useSiteMetadata } from 'Hooks';
+
 import 'react-datepicker/dist/react-datepicker.css';
 import '@reach/dialog/styles.css';
 import 'Styles/global.module.css';
@@ -15,33 +17,49 @@ import 'Styles/gilroy-font.module.css';
 export const Page: React.FC<{ title: string; }> = ({
   title,
   children,
-}) => (
-  <ShopProvider>
-    <Helmet>
-      <html lang="ru" />
-      <title>
-        {title}
-      </title>
-    </Helmet>
+}) => {
+  const {
+    description,
+    siteUrl,
+  } = useSiteMetadata();
 
-    <Box
-      css={css`
-        display: grid;
-        grid-template-rows: auto 1fr auto;
-        grid-template-columns: 100%;
-        min-height: 100%;
-      `}
-    >
-      <Header />
+  return (
+    <ShopProvider>
+      <Helmet>
+        <html lang="ru" />
+        <title>
+          {title}
+        </title>
+        <meta
+          name="description"
+          content={description}
+        />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={siteUrl} />
+        <meta property="og:image" content={`${siteUrl}/logo.png`} />
+      </Helmet>
 
       <Box
-        as="main"
+        css={css`
+          display: grid;
+          grid-template-rows: auto 1fr auto;
+          grid-template-columns: 100%;
+          min-height: 100%;
+        `}
       >
-        {children}
+        <Header />
+
+        <Box
+          as="main"
+        >
+          {children}
+        </Box>
+
+        <Footer />
       </Box>
 
-      <Footer />
-    </Box>
-
-  </ShopProvider>
-);
+    </ShopProvider>
+  );
+};
