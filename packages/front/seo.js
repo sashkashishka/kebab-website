@@ -1,7 +1,10 @@
-export const phone = '+38 068 835 29 96';
-export const siteUrl = 'https://el-sheikh.herokuapp.com';
+const phone = '+38 068 835 29 96';
+const siteUrl = 'https://el-sheikh.herokuapp.com';
 
-export const jsonld = {
+exports.phone = phone;
+exports.siteUrl = siteUrl;
+
+exports.jsonld = {
   '@context': 'https://schema.org',
   '@type': 'Restaurant',
   image: `${siteUrl}/restaurant-photo.jpg`,
