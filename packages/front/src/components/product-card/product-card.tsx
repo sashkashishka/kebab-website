@@ -28,7 +28,6 @@ import { KEBAB_TYPE, PIZZA_TYPE, DRINK_TYPE } from 'Constants';
 
 import { ProductCardPopup } from './popup';
 
-
 export const ProductCard: React.FC<ProductItemWithMachine> = ({
   name,
   description,

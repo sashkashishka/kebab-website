@@ -129,7 +129,7 @@ export const Footer: React.FC = () => {
             external
             href={addressLink}
             target="_blank"
-            rel="norefferer"
+            rel="noreferrer"
             css={css`
               color: var(--accent);
               margin-bottom: 24px;
