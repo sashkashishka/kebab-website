@@ -1,4 +1,4 @@
-node_modules/
+shop
 .idea/
 coverage/
 .cache/
@@ -19,3 +19,4 @@ sessions/
 .pnp.*
 
 .env
+!robots.txt

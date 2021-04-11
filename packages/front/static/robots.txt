@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://el-sheikh.shop/sitemap.xml
