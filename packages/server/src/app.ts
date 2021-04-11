@@ -9,7 +9,7 @@ import cors from 'cors';
 import compression from 'compression';
 import logger from 'loglevel';
 
-import { errorMiddleware } from './middlewares';
+import { errorMiddleware, useHttps } from './middlewares';
 import { setupCloseOnExit } from './utils';
 
 interface ServerOptions {
@@ -46,6 +46,7 @@ export class Server {
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
     this.app.use(cors());
+    this.app.use(useHttps);
   }
 
   private initErrorHandler() {
