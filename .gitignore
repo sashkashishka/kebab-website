@@ -1,4 +1,4 @@
-shop
+node_modules/
 .idea/
 coverage/
 .cache/
