@@ -1,5 +1,5 @@
 const phone = '+38 068 835 29 96';
-const siteUrl = 'https://el-sheikh.herokuapp.com';
+const siteUrl = 'https://el-sheikh.shop';
 
 exports.phone = phone;
 exports.siteUrl = siteUrl;

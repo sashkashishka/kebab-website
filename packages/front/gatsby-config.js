@@ -58,6 +58,7 @@ const getPlugins = () => {
      * @see https://www.gatsbyjs.org/packages/gatsby-plugin-offline/
      */
     'gatsby-plugin-offline',
+    'gatsby-plugin-sitemap',
   ];
 
   return plugins;
