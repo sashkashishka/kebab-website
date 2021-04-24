@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { css } from 'astroturf';
 
 import {
@@ -9,8 +10,9 @@ import { PointUp } from 'Components/emoji';
 
 import { MenuList } from './list';
 
-export const MenuBlock = () => (
+export const MenuBlock = React.forwardRef((props, ref) => (
   <Container
+    ref={ref}
     css={css`
       padding-top: 40px;
       padding-bottom: 40px;
@@ -89,4 +91,4 @@ export const MenuBlock = () => (
 
     <MenuList />
   </Container>
-);
+));

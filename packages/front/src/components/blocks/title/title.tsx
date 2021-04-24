@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { useMachine } from '@xstate/react';
 import { css } from 'astroturf';
 import {
@@ -21,7 +22,11 @@ import imgPizza from 'Img/img-pizza.png';
 
 import { CarouselItem } from './item';
 
-export const TitleBlock = () => {
+interface TitleBlockProps {
+  scroll: () => void;
+}
+
+export const TitleBlock: React.FC<TitleBlockProps> = ({ scroll }) => {
   const [state, send] = useMachine(CarouselMachine);
 
   return (
@@ -127,6 +132,7 @@ export const TitleBlock = () => {
               `}
             >
               <Button
+                onClick={scroll}
                 css={css`
                   margin-bottom: 24px;
                 `}

@@ -13,16 +13,34 @@ import { Box, Text, Button } from 'Components/atoms';
 
 import { ShopStates, ShopActions } from 'Machines';
 
+import { useScrollTo } from 'Hooks';
+
 import pageMeta from './page-meta.json';
 
 const MainPage: React.FC = () => {
   const [state, send] = React.useContext(ShopContext);
+  const [ref, scroll] = useScrollTo({
+    draw: ({ domRect, scrollValue }) => (progress) => {
+      const { top } = domRect;
+
+      window.scrollTo(
+        0,
+        scrollValue + top * progress,
+      );
+
+      return scrollValue + Math.abs(top) * progress;
+    },
+  });
 
   return (
     <>
-      <TitleBlock />
+      <TitleBlock
+        scroll={scroll}
+      />
 
-      <MenuBlock />
+      <MenuBlock
+        ref={ref}
+      />
 
       <Cart />
 
