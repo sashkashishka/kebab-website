@@ -5,9 +5,14 @@ import {
   Container,
   H1,
   Text,
+  Button,
 } from 'Components/atoms';
 import { Socials } from 'Components/socials';
-import { KebabEmoji, PizzaEmoji } from 'Components/emoji';
+import {
+  KebabEmoji,
+  PizzaEmoji,
+  DroolingFaceEmoji,
+} from 'Components/emoji';
 
 import { CarouselMachine, CarouselStates } from 'Machines';
 
@@ -23,11 +28,11 @@ export const TitleBlock = () => {
     <Box
       css={css`
         background-color: var(--black);
-        background-image: linear-gradient(to bottom, #131313 60%, #F1F1F9 40%);
+        background-image: linear-gradient(to bottom, #fff 60%, #131313 40%);
 
         @media all and (min-width: 768px) {
           & {
-            background-image: linear-gradient(to bottom, #131313 70%, #F1F1F9 30%);
+            background-image: linear-gradient(to bottom, #fff 75%, #131313 25%);
           }
         }
       `}
@@ -38,7 +43,7 @@ export const TitleBlock = () => {
           padding-bottom: 32px;
           background-image: url('Img/bg-title-mobile.png');
           background-size: contain;
-          background-position: center;
+          background-position: 50% 100%;
           background-repeat: no-repeat;
 
           @media all and (min-width: 768px) {
@@ -52,14 +57,13 @@ export const TitleBlock = () => {
         <Box
           css={css`
             display: grid;
-            grid-template-rows: 1fr auto auto;
             grid-template-columns: 100%;
             grid-gap: 18px;
             text-align: center;
+            color: var(--black);
 
             @media all and (min-width: 768px) {
               & {
-                grid-template-rows: auto 1fr;
                 grid-template-columns: 40% 60%;
                 text-align: start;
               } 
@@ -72,26 +76,70 @@ export const TitleBlock = () => {
                 margin-bottom: 18px;
               `}
             >
-              Ідеальна шаурма та піцца
+              Ідеальна шаурма та піца Житомир
             </H1>
 
             <Text
               css={css`
-                margin-bottom: 18px;
+                margin: 0 auto 18px auto;
+                max-width: 280px;
+                color: var(--text);
+
+                @media all and (min-width: 768px) {
+                  & {
+                    margin: 0 0 18px 0;
+                  }
+                }
               `}
             >
-              З доставкою по Житомиру
+              Ель Шейх замовити шаурму и піцу
+              з доставкою додому від 250 грн
             </Text>
 
             <Text
               css={css`
+                margin: 0 auto;
+                text-align: center;
                 color: var(--accent);
-                font-weight: bold;
+                font-weight: 900;
+
+                @media all and (min-width: 768px) {
+                  & {
+                    display: none;
+                  }
+                }
               `}
             >
-              з 11:00 до 20:00
+              пн / пт 10-20
+              <br />
+              сб 10-19 нд 11-18
             </Text>
 
+            <Box
+              css={css`
+                display: none;
+
+                @media all and (min-width: 768px) {
+                  & {
+                    display: block;
+                  }
+                }
+              `}
+            >
+              <Button
+                css={css`
+                  margin-bottom: 24px;
+                `}
+              >
+                <DroolingFaceEmoji />
+                {' '}
+                Замовити з доставкою
+              </Button>
+
+               <br />
+
+              <Socials />
+            </Box>
           </Box>
 
           <Box
@@ -101,8 +149,6 @@ export const TitleBlock = () => {
 
               @media all and (min-width: 768px) {
                 & {
-                  grid-row: 1/3;
-                  grid-column: 2/3;
                   justify-self: center;
                 } 
               }
@@ -140,26 +186,6 @@ export const TitleBlock = () => {
               />
             </Box>
           </Box>
-
-          <Box
-            css={css`
-              display: none;
-
-              @media all and (min-width: 768px) {
-                & {
-                  display: block;
-                  margin-top: 32px;
-                  grid-row: 2/3;
-                  grid-column: 1/2;
-                  align-self: end;
-                  color: var(--black);
-                } 
-              }
-            `}
-          >
-            <Socials />
-          </Box>
-
         </Box>
       </Container>
     </Box>

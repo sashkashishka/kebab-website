@@ -25,7 +25,7 @@ export const Header: React.FC = () => {
     <Box
       as="header"
       css={css`
-        background-color: var(--black);
+        background-color: #fff;
       `}
     >
       <Container
@@ -38,8 +38,8 @@ export const Header: React.FC = () => {
 
           @media all and (min-width: 768px) {
             & {
-              padding-top: 64px; 
-              padding-bottom: 64px; 
+              padding-top: 54px; 
+              padding-bottom: 54px; 
             }
           }
         `}
@@ -62,11 +62,12 @@ export const Header: React.FC = () => {
             css={css`
               display: none;
               font-weight: 700;
+              color: var(--black);
 
               @media all and (min-width: 768px) {
                 & {
                   display: inline-block;
-                  margin-right: 24px;
+                  margin-right: 16px;
                 }
               }
             `}
@@ -77,16 +78,17 @@ export const Header: React.FC = () => {
             css={css`
               display: none;
               color: var(--accent);
+              font-weight: 900;
 
               @media all and (min-width: 768px) {
                 & {
                   display: inline-block;
-                  margin-right: 32px;
+                  margin-right: 16px;
                 }
               }
             `}
           >
-            щодня з 9:00 до 21:00
+            пн / пт 10-20 сб 10-19 нд 11-18
           </Text>
 
           <Link
@@ -94,6 +96,7 @@ export const Header: React.FC = () => {
             href={`tel:${phone}`}
             css={css`
               font-weight: 700;
+              color: var(--black);
             `}
           >
             {phone}

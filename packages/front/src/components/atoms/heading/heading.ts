@@ -8,6 +8,13 @@ export const H1 = styled('h1')`
 
   @media all and (min-width: 768px) {
     & {
+      font-size: 42px;
+      line-height: 48px;
+    }
+  }
+
+  @media all and (min-width: 1200px) {
+    & {
       font-size: 64px;
       line-height: 72px;
     }

@@ -54,7 +54,7 @@ export const CarouselItem: React.FC<CarouselItemProps> = ({
 
     <Box
       css={css`
-        color: var(--black);
+        color: #fff;
 
         @media all and (min-width: 768px) {
           & {
@@ -62,6 +62,7 @@ export const CarouselItem: React.FC<CarouselItemProps> = ({
             padding: 16px;
             font-size: 22px;
             line-height: 135%;
+            color: var(--black);
             background-color: var(--white);
             border-radius: 10px;
           }
