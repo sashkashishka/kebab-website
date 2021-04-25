@@ -95,16 +95,22 @@ export const CartProductItem: React.FC<CartProductItemProps> = ({
           `}
         >
           {name}
-          {' '}
-          <Text
-            as="span"
-            css={css`
-              font-weight: normal;
-              color: var(--black-light);
-            `}
-          >
-            {`(${sizeWeight} гр)`}
-          </Text>
+          {
+            sizeWeight && (
+              <>
+                {' '}
+                <Text
+                  as="span"
+                  css={css`
+                    font-weight: normal;
+                    color: var(--black-light);
+                  `}
+                >
+                  {`(${sizeWeight} гр)`}
+                </Text>
+              </>
+            )
+          }
         </Text>
 
         <Text

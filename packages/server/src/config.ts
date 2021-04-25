@@ -1,0 +1,6 @@
+export const TABLES = {
+  PRODUCT_LIST: 0,
+  PROMOTION_LIST: 1,
+  BANNER_LIST: 2,
+  ORDER_LIST: 3,
+};

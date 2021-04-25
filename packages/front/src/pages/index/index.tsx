@@ -6,6 +6,8 @@ import { ShopContext } from 'Components/provider';
 import { Page } from 'Components/page';
 import { TitleBlock } from 'Components/blocks';
 import { MenuBlock } from 'Components/menu';
+import { PromoBanners } from 'Components/promo-banners';
+import { Promotion } from 'Components/promotion';
 import { Cart } from 'Components/cart';
 import { OrderForm } from 'Components/order';
 import { SnackbarView } from 'Components/snackbar';
@@ -19,24 +21,17 @@ import pageMeta from './page-meta.json';
 
 const MainPage: React.FC = () => {
   const [state, send] = React.useContext(ShopContext);
-  const [ref, scroll] = useScrollTo({
-    draw: ({ domRect, scrollValue }) => (progress) => {
-      const { top } = domRect;
-
-      window.scrollTo(
-        0,
-        scrollValue + top * progress,
-      );
-
-      return scrollValue + Math.abs(top) * progress;
-    },
-  });
+  const [ref, scroll] = useScrollTo();
 
   return (
     <>
       <TitleBlock
         scroll={scroll}
       />
+
+      <Promotion />
+
+      <PromoBanners />
 
       <MenuBlock
         ref={ref}

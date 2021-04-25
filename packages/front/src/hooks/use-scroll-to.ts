@@ -28,15 +28,15 @@ const defaultOptions = {
   timing: (t: number) => (1 + (--t) * t * t * t * t),
   duration: 1000,
   focus: false,
-  draw: ({ domRect, scrollValue }: DrawFuncArgs) => (progress: number) => {
+  draw: ({ domRect, scrollValue }) => (progress) => {
     const { top } = domRect;
 
     window.scrollTo(
       0,
-      scrollValue + (top - window.innerHeight / 3) * progress,
+      scrollValue + top * progress,
     );
 
-    return scrollValue + Math.abs(top - window.innerHeight / 3) * progress;
+    return scrollValue + Math.abs(top) * progress;
   },
   callback: () => {},
 };

@@ -2,9 +2,9 @@ const React = require('react');
 
 const GifyuPreconnect = (
   <link
-    key="gifyu"
+    key="imgdb"
     rel="preconnect"
-    href="https://s4.gifyu.com"
+    href="https://i.ibb.co"
   />
 );
 

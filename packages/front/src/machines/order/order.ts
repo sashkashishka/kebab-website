@@ -5,11 +5,7 @@ import {
   spawn,
   sendParent,
 } from 'xstate';
-import {
-  format,
-  max,
-  min,
-} from 'date-fns';
+import { format } from 'date-fns';
 
 import { CartItem, Field, PaymentType } from '@kebab/types';
 
@@ -22,8 +18,6 @@ import {
 } from 'Machines';
 
 import { ORDER } from 'Services';
-
-import { MAX_TIME, MIN_TIME } from 'Constants';
 
 import { createPhoneFieldMachine, PhoneFieldActor } from './phone';
 import { createDeliveryAddressFieldMachine, DeliveryAddressFieldActor } from './delivery-address';

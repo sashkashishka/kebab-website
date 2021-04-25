@@ -161,3 +161,67 @@ export const IncButton: React.FC<React.HTMLAttributes<HTMLButtonElement>> = (pro
     </svg>
   </Box>
 );
+
+export const BackButton: React.FC<React.HTMLAttributes<HTMLButtonElement>> = (props) => (
+  <Box
+    as="button"
+    css={css`
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border: 0;
+      background-color: #DADAE8;
+      border-radius: 50%;
+      color: var(--white);
+      outline: none;
+      transition: color 0.3s, background-color 0.3s;
+      cursor: pointer;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: #C1C1D4; 
+      }
+    `}
+    {...props}
+  >
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.125 11H4.875" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M11 17.125L4.875 11L11 4.875" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  </Box>
+);
+
+export const NextButton: React.FC<React.HTMLAttributes<HTMLButtonElement>> = (props) => (
+  <Box
+    as="button"
+    css={css`
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border: 0;
+      background-color: #DADAE8;
+      border-radius: 50%;
+      color: var(--white);
+      outline: none;
+      transition: color 0.3s, background-color 0.3s;
+      cursor: pointer;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: #C1C1D4; 
+      }
+    `}
+    {...props}
+  >
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4.875 11H17.125" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M11 17.125L17.125 11L11 4.875" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  </Box>
+);

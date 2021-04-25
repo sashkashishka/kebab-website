@@ -12,6 +12,7 @@ import { useSiteMetadata } from 'Hooks';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import '@reach/dialog/styles.css';
+import 'react-alice-carousel/lib/alice-carousel.css';
 import 'Styles/global.module.css';
 import 'Styles/gilroy-font.module.css';
 

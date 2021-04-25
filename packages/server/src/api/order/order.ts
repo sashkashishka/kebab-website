@@ -5,6 +5,8 @@ import { validate } from './schema';
 import { transformCart, cartToString, escapePhoneField } from './transform';
 import { translateKeys } from './translate';
 
+import { TABLES } from '../../config';
+
 export const postOrder: RequestHandler = async (req, res, next) => {
   try {
     const isValid = validate(req.body);
@@ -18,7 +20,7 @@ export const postOrder: RequestHandler = async (req, res, next) => {
 
     await doc.loadInfo();
 
-    const orderSheet = doc.sheetsByIndex[1];
+    const orderSheet = doc.sheetsByIndex[TABLES.ORDER_LIST];
 
     const data = R.pipe(
       escapePhoneField,

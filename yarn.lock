@@ -1766,6 +1766,7 @@ __metadata:
     query-string: 5.1.1
     ramda: 0.27.1
     react: 16.14.0
+    react-alice-carousel: 2.5.1
     react-content-loader: 6.0.2
     react-datepicker: 3.6.0
     react-dom: 16.14.0
@@ -14505,6 +14506,17 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"react-alice-carousel@npm:2.5.1":
+  version: 2.5.1
+  resolution: "react-alice-carousel@npm:2.5.1"
+  dependencies:
+    vanilla-swipe: ^2.2.0
+  peerDependencies:
+    react: ">=15.4"
+  checksum: 588e74f361fcb9cd0bfc6d44cfdd463380d1b95ea475f019f59c20823a6ec309654f13a83821095e41d373402a346fafd6d737255fe09b925641d70dbe78b7eb
+  languageName: node
+  linkType: hard
+
 "react-clientside-effect@npm:^1.2.2":
   version: 1.2.5
   resolution: "react-clientside-effect@npm:1.2.5"
@@ -17897,6 +17909,13 @@ typescript@^4.x:
     spdx-correct: ^3.0.0
     spdx-expression-parse: ^3.0.0
   checksum: 940899bd4eacfa012ceecb10a5814ba0e8103da5243aa74d0d62f1f8a405efcd23e034fb7193e2d05b392870c53aabcb1f66439b062075cdcb28bc5d562a8ff6
+  languageName: node
+  linkType: hard
+
+"vanilla-swipe@npm:^2.2.0":
+  version: 2.3.0
+  resolution: "vanilla-swipe@npm:2.3.0"
+  checksum: 8ec251cedc7076924a8fc34df9e9c1dfe894234614f08ad0daad8349f41e644a01438c04fd2a31b736b4bf0ca144b5e7eb7eb1fe2433e2562e8d6178fcecf1af
   languageName: node
   linkType: hard
 

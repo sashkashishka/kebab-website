@@ -5,6 +5,7 @@ import styled from 'astroturf';
 interface LinkProps {
   href: string;
   external?: boolean;
+  as?: string;
 }
 
 const LinkComponent = styled('a')`

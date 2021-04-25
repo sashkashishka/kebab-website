@@ -27,17 +27,19 @@ interface TitleBlockProps {
 }
 
 export const TitleBlock: React.FC<TitleBlockProps> = ({ scroll }) => {
-  const [state, send] = useMachine(CarouselMachine);
+  const [state] = useMachine(CarouselMachine);
 
   return (
     <Box
       css={css`
         background-color: var(--black);
         background-image: linear-gradient(to bottom, #fff 60%, #131313 40%);
+        border-radius: 0 0 14px 14px;
 
         @media all and (min-width: 768px) {
           & {
             background-image: linear-gradient(to bottom, #fff 75%, #131313 25%);
+            border-radius: 0;
           }
         }
       `}

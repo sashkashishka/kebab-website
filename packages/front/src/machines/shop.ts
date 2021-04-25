@@ -84,12 +84,12 @@ export interface ShopMachineStateSchema {
 }
 
 type ShopMachineEvents =
-  | { type: ShopActions.OPEN_CART }
-  | { type: ShopActions.CLOSE_CART }
   | { type: ShopActions.ADD_TO_CART, item: CartItem }
   | { type: ShopActions.REMOVE_FROM_CART, item: CartItem }
   | { type: ShopActions.INC, item: CartItem }
   | { type: ShopActions.DEC, item: CartItem }
+  | { type: ShopActions.OPEN_CART }
+  | { type: ShopActions.CLOSE_CART }
   | { type: ShopActions.SUCCESS }
   | { type: ShopActions.CLOSE_SUCCESS }
   | { type: ShopActions.RETRY }
