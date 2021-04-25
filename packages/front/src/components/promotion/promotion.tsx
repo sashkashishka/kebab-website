@@ -90,6 +90,7 @@ export const Promotion: React.FC = () => {
                 border-radius: 10px;
                 overflow: hidden;
                 box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);
+                cursor: pointer;
               `}
             >
               <Img
