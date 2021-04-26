@@ -66,6 +66,7 @@ export const PromoBanners: React.FC = () => {
             <Link
               as={banner_link ? 'a' : 'span'}
               href={banner_link}
+              target="_blank"
               external
             >
               <Img

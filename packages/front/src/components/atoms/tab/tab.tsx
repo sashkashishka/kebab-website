@@ -2,7 +2,7 @@ import styled from 'astroturf';
 
 export const Tab = styled('button')`
   display: inline-block;
-  margin: 0 8px 8px 0;
+  margin: 0 8px 0 0;
   padding: 14px;
   border: none;
   font-family: inherit;

@@ -8,6 +8,7 @@ import {
 } from 'Components/atoms';
 import { PointUp } from 'Components/emoji';
 
+import { Filter } from './filter';
 import { MenuList } from './list';
 
 export const MenuBlock = React.forwardRef((props, ref) => (
@@ -27,11 +28,17 @@ export const MenuBlock = React.forwardRef((props, ref) => (
   >
     <Box
       css={css`
-        display: grid;
-        grid-gap: 16px;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        display: flex;
+        flex-wrap: wrap;
         align-items: center;
+        justify-content: center;
         margin-bottom: 16px;
+
+        @media all and (min-width: 768px) {
+          & {
+            justify-content: space-between;
+          }
+        }
       `}
     >
       <Box
@@ -54,39 +61,37 @@ export const MenuBlock = React.forwardRef((props, ref) => (
             font-weight: 800;
           `}
         >
-          Меню
+          Шаурма Житомир
         </Text>
         <Text
           css={css`
             color: var(--accent);
+            margin-bottom: 24px;
+
+            @media all and (min-width: 768px) {
+              & {
+                margin-bottom: 0;
+              }
+            }
           `}
         >
-          доставка з 11 до 20 вечера
+          <PointUp
+            style={{
+              fontSize: '18px',
+            }}
+          />
+          {' '}
+          від 250 грн безкоштовна доставка
+          {' '}
+          <PointUp
+            style={{
+              fontSize: '18px',
+            }}
+          />
         </Text>
       </Box>
 
-      <Box
-        css={css`
-          justify-self: end;
-          display: flex;
-          flex-wrap: no-wrap;
-          align-items: center;
-          padding: 20px;
-          max-width: 446px;
-          color: #4A4647;
-          background-color: var(--white);
-          border-radius: 10px;
-          box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.22);
-        `}
-      >
-        <PointUp
-          style={{
-            flexShrink: 0,
-            marginRight: '12px',
-          }}
-        />
-        Наявність позицій уточнюйте за номером. Повідомляйте, якщо необхідно прибрати інгридієнт
-      </Box>
+      <Filter />
     </Box>
 
     <MenuList />
