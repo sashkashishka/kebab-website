@@ -11,14 +11,12 @@ import {
 import { FreeFrom } from 'Components/free-from';
 
 interface SumUpProps {
-  order?: boolean;
   disabled?: boolean;
   cart: CartItem[];
   send: (...args: any[]) => any;
 }
 
 export const SumUp: React.FC<SumUpProps> = ({
-  order = false,
   disabled = false,
   cart,
   send,
@@ -98,15 +96,11 @@ export const SumUp: React.FC<SumUpProps> = ({
     </Box>
 
     <Button
-      type={order ? 'submit' : 'button'}
+      type="button"
       onClick={send}
       disabled={disabled}
     >
-      {
-        order
-          ? '🤤 оформити замовлення'
-          : 'До кошику'
-      }
+      До кошику
     </Button>
 
   </Box>

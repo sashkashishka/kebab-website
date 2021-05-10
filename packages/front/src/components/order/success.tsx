@@ -33,12 +33,12 @@ export const SuccessPopup: React.FC<SuccessPopupProps> = ({
     >
       <Text
         css={css`
-            margin-bottom: 16px;
-            font-size: 24px;
-            line-height: 29px;
-            font-weight: bold;
-            color: var(--black);
-          `}
+          margin-bottom: 16px;
+          font-size: 24px;
+          line-height: 29px;
+          font-weight: 800;
+          color: var(--black);
+        `}
       >
         Замовлення готують,
         <br />

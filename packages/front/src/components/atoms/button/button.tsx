@@ -108,18 +108,19 @@ export const DecButton: React.FC<React.HTMLAttributes<HTMLButtonElement>> = (pro
       justify-content: center;
       width: 32px;
       height: 32px;
-      border: 0;
-      background-color: #DADAE8;
+      border: 1px solid transparent;
+      background-color: transparent;
       border-radius: 50%;
-      color: var(--white);
+      color: var(--dark);
       outline: none;
-      transition: color 0.3s, background-color 0.3s;
+      transition: color 0.3s, border-color 0.3s;
       cursor: pointer;
 
       &:hover,
       &:active,
       &:focus {
-        background-color: #C1C1D4; 
+        color: var(--accent); 
+        border-color: var(--accent);
       }
     `}
     {...props}
@@ -139,18 +140,19 @@ export const IncButton: React.FC<React.HTMLAttributes<HTMLButtonElement>> = (pro
       justify-content: center;
       width: 32px;
       height: 32px;
-      border: 0;
-      background-color: #DADAE8;
+      border: 1px solid transparent;
+      background-color: transparent;
       border-radius: 50%;
-      color: var(--white);
+      color: var(--dark);
       outline: none;
-      transition: color 0.3s, background-color 0.3s;
+      transition: color 0.3s, border-color 0.3s;
       cursor: pointer;
 
       &:hover,
       &:active,
       &:focus {
-        background-color: #C1C1D4; 
+        color: var(--accent); 
+        border-color: var(--accent);
       }
     `}
     {...props}

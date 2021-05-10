@@ -40,20 +40,28 @@ export const CartProductItem: React.FC<CartProductItemProps> = ({
   return (
     <Box
       css={css`
+        --counter-color: #F4F4F9;
+
+        &:nth-child(odd) {
+          --counter-color: var(--white);
+          background-color: #F4F4F9;
+        }
+
         display: grid;
-        grid-template-rows: auto 1fr;
+        grid-template-rows: auto 1px 1fr;
         grid-template-columns: 1fr auto;
-        grid-row-gap: 20px;
+        grid-row-gap: 10px;
         align-items: center;
         margin-bottom: 16px;
+        padding: 16px;
         color: var(--black);
+        background-color: var(--white);
 
         @media all and (min-width: 768px) {
           & {
             grid-template-rows: 100%;
             grid-template-columns: auto 1fr auto auto auto;
             grid-gap: 32px;
-            padding: 16px 0;
             border-top: 1px solid var(--2color);
           }
         }
@@ -135,10 +143,12 @@ export const CartProductItem: React.FC<CartProductItemProps> = ({
       <Box
         css={css`
           display: grid;
-          grid-gap: 16px;
-          grid-template-columns: 32px 32px 32px;
+          grid-gap: 8px;
+          grid-template-columns: 32px 16px 32px;
           align-items: center;
           justify-items: center;
+          background-color: var(--counter-color);
+          border-radius: 40px;
         `}
       >
         <DecButton
@@ -175,7 +185,7 @@ export const CartProductItem: React.FC<CartProductItemProps> = ({
         css={css`
           font-weight: bold;
           grid-column: 1/2;
-          grid-row: 2/3;
+          grid-row: 3/4;
 
           @media all and (min-width: 768px) {
             & {
@@ -196,6 +206,26 @@ export const CartProductItem: React.FC<CartProductItemProps> = ({
           грн
         </Text>
       </Text>
+
+      <Box
+        as="hr"
+        css={css`
+          width: 100%;
+          height: 1px;
+          margin: 0;
+          grid-column: 1/3;
+          grid-row: 2/3;
+          background-color: #DADAE8;
+          border: none;
+          color: transparent;
+
+          @media all and (min-width: 768px) {
+            & {
+              display: none;
+            }
+          }
+        `}
+      />
 
       <RemoveButton
         type="button"

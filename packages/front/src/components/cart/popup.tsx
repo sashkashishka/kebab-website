@@ -30,24 +30,15 @@ export const CartPopup: React.FC = () => {
           height: 100%;
         `}
       >
-        <Box
-          css={css`
-            padding: 16px;
-          `}
-        >
+        <Box>
           <Text
             css={css`
-              margin-bottom: 16px;
+              margin: 16px auto;
               font-size: 24px;
-              font-weight: bold;
+              line-height: 29px;
+              font-weight: 800;
               text-align: center;
               color: var(--black);
-
-              @media all and (min-width: 768px) {
-                & {
-                  text-align: start;
-                }
-              }
             `}
           >
             Кошик

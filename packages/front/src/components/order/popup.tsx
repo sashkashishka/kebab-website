@@ -4,7 +4,7 @@ import { css } from 'astroturf';
 
 import { Box, Text, Button } from 'Components/atoms';
 import { Popup } from 'Components/popup';
-import { SumUp } from 'Components/sum-up';
+import { PointUp } from 'Components/emoji';
 
 import {
   ShopActions,
@@ -102,27 +102,54 @@ export const OrderFormPopup: React.FC<OrderFormPopupProps> = ({
       >
         <Box
           css={css`
-            padding: 16px;
+            background-color: #F1F1F9;
+            padding: 16px 35px;
+            text-align: center;
           `}
         >
           <Text
             css={css`
+              display: inline-block;
               margin-bottom: 16px;
               font-size: 24px;
-              font-weight: bold;
-              text-align: center;
+              line-height: 29px;
+              font-weight: 800;
               color: var(--black);
-
-              @media all and (min-width: 768px) {
-                & {
-                  text-align: start;
-                }
-              }
             `}
           >
             Оформити замовлення
           </Text>
 
+          <Text
+            css={css`
+              color: var(--accent);
+              font-size: 15px;
+            `}
+          >
+            <PointUp
+              style={{
+                fontSize: '18px',
+              }}
+            />
+            {' '}
+            <Box
+              as="b"
+              css={css`
+                font-weight: bold;
+              `}
+            >
+              від 250 грн
+            </Box>
+            {' '}
+            безкоштовна доставка
+          </Text>
+        </Box>
+
+        <Box
+          css={css`
+            padding: 16px;
+          `}
+        >
           <Box
             css={css`
               display: grid;
@@ -174,15 +201,16 @@ export const OrderFormPopup: React.FC<OrderFormPopupProps> = ({
         >
           {
             cart.length > 0 && (
-              <SumUp
-                cart={cart}
-                disabled={state.matches({ [OrderStates.IDLE]: OrderStates.SUBMIT })}
-                send={(e) => {
+              <Button
+                type="submit"
+                onClick={(e) => {
                   e.preventDefault();
                   send({ type: OrderActions.SUBMIT });
                 }}
-                order
-              />
+                disabled={state.matches({ [OrderStates.IDLE]: OrderStates.SUBMIT })}
+              >
+                🤤 оформити замовлення
+              </Button>
             )
           }
         </Box>
