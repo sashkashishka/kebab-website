@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export const DroolingFaceEmoji: React.FC<{ style?: { [style: string]: string | number }; }> = ({ style, ...rest }) => (
+export const DisappointedFaceEmoji: React.FC<{ style?: { [style: string]: string | number }; }> = ({ style, ...rest }) => (
   <span
     aria-label="emoji"
     role="img"
@@ -9,6 +9,6 @@ export const DroolingFaceEmoji: React.FC<{ style?: { [style: string]: string | n
     }}
     {...rest}
   >
-    🤤
+    😞
   </span>
 );

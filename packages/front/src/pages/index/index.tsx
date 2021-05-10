@@ -12,6 +12,7 @@ import { Cart } from 'Components/cart';
 import { OrderForm } from 'Components/order';
 import { SnackbarView } from 'Components/snackbar';
 import { Box, Text, Button } from 'Components/atoms';
+import { DisappointedFaceEmoji } from 'Components/emoji';
 
 import { ShopStates, ShopActions } from 'Machines';
 
@@ -68,6 +69,8 @@ const MainPage: React.FC = () => {
                 `}
               >
                 Непередбачена помилка
+                {' '}
+                <DisappointedFaceEmoji />
               </Text>
               <br />
               Перевірте будь-ласка інтернет з'єднання

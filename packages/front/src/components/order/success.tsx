@@ -2,7 +2,7 @@ import * as React from 'react';
 import { css } from 'astroturf';
 
 import { Box, Text } from 'Components/atoms';
-import { Popup } from 'Components/popup';
+import { SuccessPopup as Popup } from 'Components/popup';
 import { Socials } from 'Components/socials';
 
 import { ShopActions } from 'Machines';
@@ -18,7 +18,6 @@ export const SuccessPopup: React.FC<SuccessPopupProps> = ({
     isOpen
     onDismiss={() => shopSend({ type: ShopActions.CLOSE_SUCCESS })}
     ariaLabel="success"
-    product
   >
     <Box
       css={css`
@@ -27,7 +26,7 @@ export const SuccessPopup: React.FC<SuccessPopupProps> = ({
         justify-content: center;
         align-items: center;
         height: 100%;
-        padding: 16px;
+        padding: 24px 24px 16px 24px;
         text-align: center;
         color: #7D7D91;
       `}
@@ -36,11 +35,12 @@ export const SuccessPopup: React.FC<SuccessPopupProps> = ({
         css={css`
             margin-bottom: 16px;
             font-size: 24px;
+            line-height: 29px;
             font-weight: bold;
             color: var(--black);
           `}
       >
-        Замовлення готують
+        Замовлення готують,
         <br />
         смачного
       </Text>
