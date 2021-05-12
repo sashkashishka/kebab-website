@@ -131,8 +131,8 @@ export const PromoBanners: React.FC = () => {
       <Swiper
         className={styles.promoBannerContainer}
         slidesPerView="auto"
-        loopedSlides={slidesArr?.length}
         observer
+        observeSlideChildren
         spaceBetween={10}
         onSwiper={(s) => {
           sliderRef.current = s;

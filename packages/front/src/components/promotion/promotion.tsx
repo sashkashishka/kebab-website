@@ -142,8 +142,8 @@ export const Promotion: React.FC = () => {
       <Swiper
         className={styles.promoContainer}
         slidesPerView="auto"
-        loopedSlides={slidesArr?.length}
         observer
+        observeSlideChildren
         spaceBetween={10}
         onSwiper={(s) => {
           sliderRef.current = s;
