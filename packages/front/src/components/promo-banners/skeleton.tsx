@@ -4,9 +4,21 @@ import { css } from 'astroturf';
 
 const styles = css`
   .banner-skeleton {
-    max-width: 630px;
-    max-height: 400px;
-    width: 100%;
+    width: 270px;
+    border-radius: 10px;
+    box-shadow: 0px 0.9625px 5.83333px rgba(0, 0, 0, 0.13);
+
+    @media all and (min-width: 425px) {
+      & {
+        width: 370px;
+      }
+    }
+
+    @media all and (min-width: 768px) {
+      & {
+        width: 630px;
+      }
+    }
   }
 `;
 

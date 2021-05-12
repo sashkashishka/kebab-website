@@ -1,1 +1,2 @@
-export { carouselStyles, useCarousel } from './carousel';
+export { useCarousel } from './carousel';
+export { SliderPagination } from './pagination';
