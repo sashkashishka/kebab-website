@@ -175,7 +175,6 @@ export const TitleBlock: React.FC<TitleBlockProps> = ({ scroll }) => {
           >
             <Swiper
               slidesPerView={1}
-              observer
               onSwiper={(s) => {
                 sliderRef.current = s;
                 return undefined;
