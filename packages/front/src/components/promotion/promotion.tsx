@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { ShopContext } from 'Components/provider';
 import {
-  Container,
   Box,
   H2,
   Img,
@@ -70,12 +69,12 @@ export const Promotion: React.FC = () => {
       css={css`
         position: relative;
         width: 100%;
-        padding: 32px max(calc((100% - 1248px) / 2), 16px);
+        padding: 0 max(calc((100% - 1248px) / 2), 16px) 32px;
         overflow: hidden;
 
         @media all and (min-width: 768px) {
           & {
-            padding-top: 80px;
+            padding-bottom: 60px;
           }
         }
       `}
@@ -140,111 +139,108 @@ export const Promotion: React.FC = () => {
         />
       </Box>
 
-
-      <Box>
-        <Swiper
-          className={styles.promoContainer}
-          slidesPerView="auto"
-          loopedSlides={slidesArr?.length}
-          observer
-          spaceBetween={10}
-          onSwiper={(s) => {
-            sliderRef.current = s;
-            return undefined;
-          }}
-          onSlideChange={(s) => setActiveSlide(s?.activeIndex)}
-        >
-          {
-            slidesArr?.map(({
-              name,
-              price,
-              imageUrl,
-              bannerUrl,
-            }) => (
-              <SwiperSlide
-                key={imageUrl}
-                style={{
-                  width: 'auto',
-                }}
-              >
-                {
-                  isSuccess
-                    ? (
-                      <Box
-                        onClick={() => shopSend({
-                          type: ShopActions.ADD_TO_CART,
+      <Swiper
+        className={styles.promoContainer}
+        slidesPerView="auto"
+        loopedSlides={slidesArr?.length}
+        observer
+        spaceBetween={10}
+        onSwiper={(s) => {
+          sliderRef.current = s;
+          return undefined;
+        }}
+        onSlideChange={(s) => setActiveSlide(s?.activeIndex)}
+      >
+        {
+          slidesArr?.map(({
+            name,
+            price,
+            imageUrl,
+            bannerUrl,
+          }) => (
+            <SwiperSlide
+              key={imageUrl}
+              style={{
+                width: 'auto',
+              }}
+            >
+              {
+                isSuccess
+                  ? (
+                    <Box
+                      onClick={() => shopSend({
+                        type: ShopActions.ADD_TO_CART,
+                        item: {
+                          price,
+                          name,
+                          qty: 1,
+                          size: {},
+                          toppings: {},
                           item: {
-                            price,
+                            type: 'kebab',
+                            type_name: '',
                             name,
-                            qty: 1,
-                            size: {},
+                            description: '',
+                            imageUrl,
+                            sizes: {},
                             toppings: {},
-                            item: {
-                              type: 'kebab',
-                              type_name: '',
-                              name,
-                              description: '',
-                              imageUrl,
-                              sizes: {},
-                              toppings: {},
-                            },
                           },
-                        })}
+                        },
+                      })}
+                      css={css`
+                        max-width: 272px;
+                        max-height: 145px;
+                        width: 100%;
+                        margin: 0 auto;
+                        border-radius: 10px;
+                        overflow: hidden;
+                        box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);
+                        cursor: pointer;
+                      `}
+                    >
+                      <Img
+                        src={bannerUrl}
+                        alt={name}
+                        title={name}
                         css={css`
-                          max-width: 270px;
-                          max-height: 145px;
-                          width: 100%;
-                          margin: 0 auto;
-                          border-radius: 10px;
-                          overflow: hidden;
-                          box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);
-                          cursor: pointer;
+                          width: 270px;
+                          height: 145px;
+                          object-fit: contain;
                         `}
-                      >
-                        <Img
-                          src={bannerUrl}
-                          alt={name}
-                          title={name}
-                          css={css`
-                            width: 270px;
-                            height: 145px;
-                            object-fit: contain;
-                          `}
-                        />
-                      </Box>
-                    )
-                    : (
-                      <PromotionSkeleton />
-                    )
-                }
-              </SwiperSlide>
-            ))
-          }
-        </Swiper>
+                      />
+                    </Box>
+                  )
+                  : (
+                    <PromotionSkeleton />
+                  )
+              }
+            </SwiperSlide>
+          ))
+        }
+      </Swiper>
 
-        <Box
-          css={css`
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            width: calc((100% - 1280px) / 2);
-            background-image: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%);
-            z-index: 2;
-          `}
-        />
-        <Box
-          css={css`
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            width: calc((100% - 1280px) / 2);
-            background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%);
-            z-index: 2;
-          `}
-        />
-      </Box>
+      <Box
+        css={css`
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          width: calc((100% - 1280px) / 2);
+          background-image: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%);
+          z-index: 2;
+        `}
+      />
+      <Box
+        css={css`
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          width: calc((100% - 1280px) / 2);
+          background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%);
+          z-index: 2;
+        `}
+      />
     </Box>
   );
 };

@@ -15,12 +15,10 @@ export const MenuBlock = React.forwardRef((props, ref) => (
   <Container
     ref={ref}
     css={css`
-      padding-top: 40px;
       padding-bottom: 40px;
 
       @media all and (min-width: 768px) {
         & {
-          padding-top: 80px;
           padding-bottom: 80px;
         }
       }

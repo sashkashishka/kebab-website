@@ -39,6 +39,7 @@ export const Cart: React.FC = () => {
             border-radius: 2px;
             box-shadow: inset -0.583919px 0.291959px 0.291959px rgba(233, 236, 249, 0.8), inset 0.291959px -0.583919px 0.291959px rgba(248, 248, 255, 0.08);
             backdrop-filter: blur(23.3568px);
+            z-index: 2;
           `}
         >
           <Container>

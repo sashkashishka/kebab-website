@@ -4,7 +4,6 @@ import { css } from 'astroturf';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import {
-  Container,
   Box,
   H2,
   Link,
@@ -30,6 +29,13 @@ const mockSlidesArr = Array(4).fill(0).map((_v, i) => ({
   description: '',
 }));
 
+const styles = css`
+  .promo-banner-container {
+    width: 100%;
+    overflow: visible;
+  }
+`;
+
 export const PromoBanners: React.FC = () => {
   const [state] = useMachine(createRequestMachine<any, BannerListResponse>(GET_BANNER_LIST));
   const {
@@ -47,10 +53,19 @@ export const PromoBanners: React.FC = () => {
     : mockSlidesArr;
 
   return (
-    <Container
+    <Box
       css={css`
-        padding-top: 32px;
+        position: relative;
         padding-bottom: 32px;
+        width: 100%;
+        padding: 0 max(calc((100% - 1248px) / 2), 16px) 32px;
+        overflow: hidden;
+
+        @media all and (min-width: 768px) {
+          & {
+            padding-bottom: 52px;
+          }
+        }
       `}
     >
       <Box
@@ -114,9 +129,7 @@ export const PromoBanners: React.FC = () => {
       </Box>
 
       <Swiper
-        style={{
-          width: '100%',
-        }}
+        className={styles.promoBannerContainer}
         slidesPerView="auto"
         loopedSlides={slidesArr?.length}
         observer
@@ -153,7 +166,7 @@ export const PromoBanners: React.FC = () => {
                         alt={description}
                         title={description}
                         css={css`
-                          max-width: 270px;
+                          max-width: 272px;
                           width: 100%;
                           border-radius: 10px;
                           box-shadow: 0px 0.9625px 5.83333px rgba(0, 0, 0, 0.13);
@@ -182,6 +195,29 @@ export const PromoBanners: React.FC = () => {
           ))
         }
       </Swiper>
-    </Container>
+
+      <Box
+        css={css`
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          width: calc((100% - 1280px) / 2);
+          background-image: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%);
+          z-index: 2;
+        `}
+      />
+      <Box
+        css={css`
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          width: calc((100% - 1280px) / 2);
+          background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%);
+          z-index: 2;
+        `}
+      />
+    </Box>
   );
 };
