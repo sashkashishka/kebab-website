@@ -84,6 +84,7 @@ export const ProductCard: React.FC<ProductItemWithMachine> = ({
           as="h2"
           css={css`
             margin-bottom: 8px;
+            font-size: 17px;
             font-weight: bold;
           `}
         >
@@ -93,6 +94,7 @@ export const ProductCard: React.FC<ProductItemWithMachine> = ({
         <Text
           css={css`
             margin-bottom: 12px;
+            font-size: 15px;
             color: #4A4647;
           `}
         >
@@ -109,9 +111,14 @@ export const ProductCard: React.FC<ProductItemWithMachine> = ({
             background-color: var(--2color);
           `}
         >
-          <span>
+          <Text
+            as="span"
+            css={css`
+              font-weight: 15px;
+            `}
+          >
             Вартість
-          </span>
+          </Text>
 
           <span>
             від
