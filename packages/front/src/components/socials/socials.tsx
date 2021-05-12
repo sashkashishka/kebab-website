@@ -13,13 +13,22 @@ import { useSiteMetadata } from 'Hooks';
 import tiktokLogo from 'Img/tiktok-logo.svg';
 import instagramLogo from 'Img/instagram-logo.svg';
 import telegramLogo from 'Img/telegram-logo.svg';
+import tiktokWhiteLogo from 'Img/tiktok-white-logo.png';
+import instagramWhiteLogo from 'Img/instagram-white-logo.png';
+import telegramWhiteLogo from 'Img/telegram-white-logo.png';
 
-export const Socials: React.FC = () => {
+interface SocialsProps {
+  theme?: 'white' | 'black';
+}
+
+export const Socials: React.FC<SocialsProps> = ({ theme = 'black' }) => {
   const {
     tiktok,
     telegram,
     instagram,
   } = useSiteMetadata();
+
+  const isBlack = theme === 'black';
 
   return (
     <>
@@ -36,7 +45,7 @@ export const Socials: React.FC = () => {
           href={tiktok}
         >
           <Img
-            src={tiktokLogo}
+            src={isBlack ? tiktokLogo : tiktokWhiteLogo}
             alt="tiktok"
             width="58px"
             height="58px"
@@ -48,7 +57,7 @@ export const Socials: React.FC = () => {
           href={instagram}
         >
           <Img
-            src={instagramLogo}
+            src={isBlack ? instagramLogo : instagramWhiteLogo}
             alt="instagram"
             width="58px"
             height="58px"
@@ -60,7 +69,7 @@ export const Socials: React.FC = () => {
           href={telegram}
         >
           <Img
-            src={telegramLogo}
+            src={isBlack ? telegramLogo : telegramWhiteLogo}
             alt="telegram"
             width="58px"
             height="58px"

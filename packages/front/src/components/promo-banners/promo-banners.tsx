@@ -134,6 +134,10 @@ export const PromoBanners: React.FC = () => {
         loopedSlides={slidesArr?.length}
         observer
         spaceBetween={10}
+        autoplay={{
+          delay: 7000,
+          disableOnInteraction: false,
+        }}
         onSwiper={(s) => {
           sliderRef.current = s;
           return undefined;

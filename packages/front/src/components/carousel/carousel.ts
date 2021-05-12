@@ -1,5 +1,8 @@
 import * as React from 'react';
+import SwiperCore, { Autoplay } from 'swiper';
 import SwiperClass from 'swiper/types/swiper-class';
+
+// SwiperCore.use([Autoplay]);
 
 export const useCarousel = () => {
   const sliderRef = React.useRef<SwiperClass>();

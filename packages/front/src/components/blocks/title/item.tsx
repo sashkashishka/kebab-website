@@ -54,44 +54,19 @@ export const CarouselItem: React.FC<CarouselItemProps> = ({
 
     <Box
       css={css`
+        font-size: 18px;
+        line-height: 24px;
         color: #fff;
-
-        @media all and (min-width: 768px) {
-          & {
-            display: inline-flex;
-            padding: 16px;
-            font-size: 22px;
-            line-height: 135%;
-            color: var(--black);
-            background-color: var(--white);
-            border-radius: 10px;
-          }
-        }
       `}
     >
-      <Text
-        css={css`
-          @media all and (min-width: 768px) {
-            & {
-              padding-right: 16px;
-              border-right: 1px dashed #C1C1D4; 
-            }
-          }
-        `}
-      >
+      <Text>
         {name}
       </Text>
 
       <Text
         css={css`
           font-weight: bold;
-
-          @media all and (min-width: 768px) {
-            & {
-              padding-left: 16px;
-              color: var(--accent);
-            }
-          }
+          color: var(--accent);
       `}
       >
         {price} грн
