@@ -18,6 +18,7 @@ const styles = css`
     width: 100%;
     height: 100%;
     touch-action: none;
+    z-index: 2;
   }
 
   .content {

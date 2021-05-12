@@ -113,77 +113,75 @@ export const PromoBanners: React.FC = () => {
         />
       </Box>
 
-      <Box>
-        <Swiper
-          style={{
-            width: '100%',
-          }}
-          slidesPerView="auto"
-          loopedSlides={slidesArr?.length}
-          observer
-          spaceBetween={10}
-          onSwiper={(s) => {
-            sliderRef.current = s;
-            return undefined;
-          }}
-          onSlideChange={(s) => setActiveSlide(s?.activeIndex)}
-        >
-          {
-            slidesArr?.map(({
-              image_link,
-              banner_link,
-              description,
-            }) => (
-              <SwiperSlide
-                key={image_link}
-                style={{
-                  width: 'auto',
-                }}
-              >
-                {
-                  isSuccess
-                    ? (
-                      <Link
-                        as={banner_link ? 'a' : 'span'}
-                        href={banner_link}
-                        target="_blank"
-                        external
-                      >
-                        <Img
-                          src={image_link}
-                          alt={description}
-                          title={description}
-                          css={css`
-                            max-width: 270px;
-                            width: 100%;
-                            border-radius: 10px;
-                            box-shadow: 0px 0.9625px 5.83333px rgba(0, 0, 0, 0.13);
+      <Swiper
+        style={{
+          width: '100%',
+        }}
+        slidesPerView="auto"
+        loopedSlides={slidesArr?.length}
+        observer
+        spaceBetween={10}
+        onSwiper={(s) => {
+          sliderRef.current = s;
+          return undefined;
+        }}
+        onSlideChange={(s) => setActiveSlide(s?.activeIndex)}
+      >
+        {
+          slidesArr?.map(({
+            image_link,
+            banner_link,
+            description,
+          }) => (
+            <SwiperSlide
+              key={image_link}
+              style={{
+                width: 'auto',
+              }}
+            >
+              {
+                isSuccess
+                  ? (
+                    <Link
+                      as={banner_link ? 'a' : 'span'}
+                      href={banner_link}
+                      target="_blank"
+                      external
+                    >
+                      <Img
+                        src={image_link}
+                        alt={description}
+                        title={description}
+                        css={css`
+                          max-width: 270px;
+                          width: 100%;
+                          border-radius: 10px;
+                          box-shadow: 0px 0.9625px 5.83333px rgba(0, 0, 0, 0.13);
 
-                            @media all and (min-width: 425px) {
-                              & {
-                                max-width: 370px;
-                              }
+                          @media all and (min-width: 425px) {
+                            & {
+                              max-width: 370px;
                             }
+                          }
 
-                            @media all and (min-width: 768px) {
-                              & {
-                                max-width: 630px;
-                                max-height: 400px;
-                              }
+                          @media all and (min-width: 768px) {
+                            & {
+                              max-width: 630px;
+                              max-height: 400px;
                             }
-                          `}
-                        />
-                      </Link>
-                    )
-                    : (
-                      <BannerSkeleton />
-                    )
-                }
-              </SwiperSlide>
-            ))
-          }
-        </Swiper>
-      </Box>
+                          }
+                        `}
+                      />
+                    </Link>
+                  )
+                  : (
+                    <BannerSkeleton />
+                  )
+              }
+            </SwiperSlide>
+          ))
+        }
+      </Swiper>
     </Container>
   );
 };

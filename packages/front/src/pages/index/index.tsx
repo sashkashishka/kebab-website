@@ -30,6 +30,8 @@ const MainPage: React.FC = () => {
         scroll={scroll}
       />
 
+      <Promotion />
+
       <PromoBanners />
 
       <MenuBlock

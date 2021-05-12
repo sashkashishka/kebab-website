@@ -96,7 +96,7 @@ export const OrderFormPopup: React.FC<OrderFormPopupProps> = ({
         as="form"
         css={css`
           display: grid;
-          grid-template-rows: 1fr auto;
+          grid-template-rows: auto 1fr auto;
           height: 100%;
         `}
       >
