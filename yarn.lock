@@ -1738,6 +1738,7 @@ __metadata:
   dependencies:
     "@kebab/types": "workspace:1.0.0"
     "@reach/dialog": 0.13.2
+    "@sentry/gatsby": 6.2.3
     "@types/classnames": ^2
     "@types/ramda": 0.26.44
     "@types/react": 16.14.4
@@ -1963,6 +1964,111 @@ __metadata:
     react: ^16.8.0 || 17.x
     react-dom: ^16.8.0 || 17.x
   checksum: 77b80e9ec28b6808154da7bd88742918a749c3ed2f2e4dce5f677dc34641b62d56ba8051cc14ec4939cc0bf8d979a7de4323948ebb1616e1700aceeb52005833
+  languageName: node
+  linkType: hard
+
+"@sentry/browser@npm:6.2.3":
+  version: 6.2.3
+  resolution: "@sentry/browser@npm:6.2.3"
+  dependencies:
+    "@sentry/core": 6.2.3
+    "@sentry/types": 6.2.3
+    "@sentry/utils": 6.2.3
+    tslib: ^1.9.3
+  checksum: 11d5904ec5f166de79838de99a84f8c574dc4585afb20da7f859c863f4b33a111dbf8f0caf7b476e136a46a946304f50ac0048a57259269fa370b180eb6a1842
+  languageName: node
+  linkType: hard
+
+"@sentry/core@npm:6.2.3":
+  version: 6.2.3
+  resolution: "@sentry/core@npm:6.2.3"
+  dependencies:
+    "@sentry/hub": 6.2.3
+    "@sentry/minimal": 6.2.3
+    "@sentry/types": 6.2.3
+    "@sentry/utils": 6.2.3
+    tslib: ^1.9.3
+  checksum: 6c894f7d21ce2929ce83ebc7703b4c6723dbe5943e19ff665d6b9ba4ae7b1e4572a051596a38751ce2da16cf096b7063c6382d6ceced72577e3cad4e6f185191
+  languageName: node
+  linkType: hard
+
+"@sentry/gatsby@npm:6.2.3":
+  version: 6.2.3
+  resolution: "@sentry/gatsby@npm:6.2.3"
+  dependencies:
+    "@sentry/react": 6.2.3
+    "@sentry/tracing": 6.2.3
+  peerDependencies:
+    gatsby: "*"
+  checksum: 0c55c929da7ea54bccf37c31362cb85e331cc4fe90013fca5c6a2f75a5d5398b64c60d8c9d62db018ee0986a181a70e2357c6d4ac263460b620c7cfb70dda7ba
+  languageName: node
+  linkType: hard
+
+"@sentry/hub@npm:6.2.3":
+  version: 6.2.3
+  resolution: "@sentry/hub@npm:6.2.3"
+  dependencies:
+    "@sentry/types": 6.2.3
+    "@sentry/utils": 6.2.3
+    tslib: ^1.9.3
+  checksum: 9b412cfb9ed5f69fc48b989f2638d52ac663d2b492267a6ca664ccfcc302976f0a05f97d2d45451c3a0417c2614f0f0a5332b7c2386db75c3e2bfd78a8a63b31
+  languageName: node
+  linkType: hard
+
+"@sentry/minimal@npm:6.2.3":
+  version: 6.2.3
+  resolution: "@sentry/minimal@npm:6.2.3"
+  dependencies:
+    "@sentry/hub": 6.2.3
+    "@sentry/types": 6.2.3
+    tslib: ^1.9.3
+  checksum: d40b9e2dedd0f91a9fe0ea11dc96e1240d82be77bcc635b5a695da1ab8e01ce1f2c3cadabc2cade9ce1aa6c27c0a11cced7dd357e3d663be23fb5c47dbf1c0fc
+  languageName: node
+  linkType: hard
+
+"@sentry/react@npm:6.2.3":
+  version: 6.2.3
+  resolution: "@sentry/react@npm:6.2.3"
+  dependencies:
+    "@sentry/browser": 6.2.3
+    "@sentry/minimal": 6.2.3
+    "@sentry/types": 6.2.3
+    "@sentry/utils": 6.2.3
+    hoist-non-react-statics: ^3.3.2
+    tslib: ^1.9.3
+  peerDependencies:
+    react: 15.x || 16.x || 17.x
+  checksum: 559be9bbe1506ada4194bf7b9a913356e9fea1eb85c97c1566d7be79cff434683f7a832ee77530bebcd185724bdceeb78b9c765bad2250cedce3ff470d61f1ec
+  languageName: node
+  linkType: hard
+
+"@sentry/tracing@npm:6.2.3":
+  version: 6.2.3
+  resolution: "@sentry/tracing@npm:6.2.3"
+  dependencies:
+    "@sentry/hub": 6.2.3
+    "@sentry/minimal": 6.2.3
+    "@sentry/types": 6.2.3
+    "@sentry/utils": 6.2.3
+    tslib: ^1.9.3
+  checksum: 7c266d445611d0f3b176984a102e627131a18025a2883f1915a5a86490e47f442d3a6a268f560b1d5a455014cdf2af7c8c4abb7cb65c2d770aae5cf95946aaef
+  languageName: node
+  linkType: hard
+
+"@sentry/types@npm:6.2.3":
+  version: 6.2.3
+  resolution: "@sentry/types@npm:6.2.3"
+  checksum: 7050daed1352312b0a4466f40ce4785fae94805a750bddf83c84fc3f1ac8a78db426a155bc0d456903836f0e5bb870ef62c95d999f38aefd5c52c1abfb6244ce
+  languageName: node
+  linkType: hard
+
+"@sentry/utils@npm:6.2.3":
+  version: 6.2.3
+  resolution: "@sentry/utils@npm:6.2.3"
+  dependencies:
+    "@sentry/types": 6.2.3
+    tslib: ^1.9.3
+  checksum: 20d5352b9d9aea77c1c1829968052906811f07c19126e053916de09a33ea457d3622aa49f6734f161b58d1718807400c5f7db95edcc1e3e7fa8c63360f8a7899
   languageName: node
   linkType: hard
 
@@ -9484,7 +9590,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"hoist-non-react-statics@npm:^3.3.0":
+"hoist-non-react-statics@npm:^3.3.0, hoist-non-react-statics@npm:^3.3.2":
   version: 3.3.2
   resolution: "hoist-non-react-statics@npm:3.3.2"
   dependencies:
