@@ -1772,6 +1772,7 @@ __metadata:
     react-helmet: 5.2.1
     react-hint: 3.2.0
     react-input-mask: 2.0.4
+    react-swipeable: 6.2.0
     swiper: 6.5.9
     webpack: ^4.46.0
     xstate: 4.16.2
@@ -14786,6 +14787,15 @@ fsevents@~2.3.1:
     "@types/react":
       optional: true
   checksum: c7b4ed0d1f70da253e2d43b706c8e4550d87826d8a7bfbe5882b85db0ef12482663288d993f14286eea84f3a07e07bb27a677f27aee7a88848caee9a882c8f6a
+  languageName: node
+  linkType: hard
+
+"react-swipeable@npm:6.2.0":
+  version: 6.2.0
+  resolution: "react-swipeable@npm:6.2.0"
+  peerDependencies:
+    react: ^16.8.3 || ^17
+  checksum: 3d37b9a30a113032e743fedbdb27880bcdd1d9ff643e93136bdb635dd3a50ad644151d4ab74ca410e1e2671ad17256a509fc83a80e15d2113ae5d2b014df3ddd
   languageName: node
   linkType: hard
 

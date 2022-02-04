@@ -10,7 +10,15 @@ import {
   Img,
 } from 'Components/atoms';
 
+import { Carousel } from 'Components/_carousel';
+
 import notFoundImg from 'Img/404.png';
+
+const images = [
+  "https://unsplash.it/476/205",
+  'http://placekitten.com/476/205',
+  'http://placekitten.com/g/476/205',
+];
 
 const NotFound: React.FC = () => (
   <Page
@@ -19,38 +27,11 @@ const NotFound: React.FC = () => (
     <Container
       css={css`
         padding-top: 32px;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        align-items: center;
-        text-align: center;
-        color: var(--black);
-
-        @media all and (min-width: 768px) {
-          & {
-            text-align: start;
-          }
-        }
+        padding-bottom: 32px;
       `}
     >
-      <Text>
-        Сторінки не доступна, але президент так і запрошує скуштувати смачну шаурму
-        {' '}
-        <Link
-          href="/"
-          css={css`
-            color: var(--accent);
-          `}
-        >
-          тут
-        </Link>
-      </Text>
-      <Img
-        src={notFoundImg}
-        alt="not found"
-        css={css`
-          width: 100%;
-
-        `}
+      <Carousel
+        images={images}
       />
     </Container>
   </Page>
